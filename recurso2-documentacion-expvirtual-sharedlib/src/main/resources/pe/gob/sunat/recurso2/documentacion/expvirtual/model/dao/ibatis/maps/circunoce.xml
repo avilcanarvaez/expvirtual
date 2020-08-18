@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="circunoce">
+
+	<typeAlias alias="ddpBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.DdpBean"/>
+	
+	<resultMap id="resultBean" class="ddpBean" >
+		<result property="numRuc" column="DDP_NUMRUC" />
+		<result property="desRazonSocial" column="DDP_NOMBRE" />
+		<result property="codDependencia" column="DDP_NUMREG" />
+		<result property="codTipoPersona" column="DDP_TPOEMP" />
+		<result property="codActividadEconocimica" column="DDP_CIIU" />
+		<result property="codCondicionDomicilio" column="DDP_FLAG22" />
+		<result property="codRegimenRenta" column="DDP_MCLASE" />
+		<result property="codEstado" column="DDP_ESTADO" />
+		<result property="tipoPersona" column="DDP_IDENTI" />
+		<result property="tipoDoc" column="DDS_DOCIDE" />
+		<result property="numDoc" column="DDS_NRODOC" />
+		<result property="desDependencia" column="T01_DESCDEP" />
+	</resultMap>
+
+	<select id="getAgenteHabilitado" resultClass="java.util.HashMap" resultMap="resultBean">
+		SELECT 
+			c.NUM_RUC as DDP_NUMRUC, 
+			o.DES_RAZSOCIAL as DDP_NOMBRE, 
+			c.COD_CIRCUNSCRIP as DDP_NUMREG, 
+			'00' as DDP_TPOEMP,
+			o.COD_UBIGEO as DDP_CIIU, 
+			'00' as DDP_FLAG22, 
+			c.COD_CLASEOPER as DDP_MCLASE, 
+			c.COD_ESTADO as DDP_ESTADO, 
+			'00' as DDP_IDENTI,
+			'0' as DDS_DOCIDE, 
+			'12345678' as DDS_NRODOC, 
+			d.DES_DATACAT as T01_DESCDEP
+		FROM circunoce c, opecomext o, datacatalogo d
+		WHERE 
+			c.NUM_RUC = o.NUM_RUC
+			AND c.COD_CLASEOPER = o.COD_CLASEOPER
+			AND c.COD_CIRCUNSCRIP = d.COD_DATACAT
+			AND o.cod_claseoper='41'
+			AND o.cod_estado='00'
+			AND c.IND_REGACTUAL = '1' 
+			AND o.IND_REGACTUAL = '1'
+			AND d.COD_CATALOGO = '00'
+			AND d.COD_ESTADO = '01'
+			AND d.IND_REGACTUAL = '1'
+			AND c.NUM_RUC = #num_ruc_par#
+			AND c.COD_CIRCUNSCRIP = #cod_dep_par#
+	</select>
+	
+</sqlMap>

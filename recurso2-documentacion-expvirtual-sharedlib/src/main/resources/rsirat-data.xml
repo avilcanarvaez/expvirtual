@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/jee
+						http://www.springframework.org/schema/jee/spring-jee.xsd">
+		
+	<jee:jndi-lookup id="dcrsirat0011" jndi-name="jdbc/dcrsirat0011" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0021" jndi-name="jdbc/dcrsirat0021" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0023" jndi-name="jdbc/dcrsirat0023" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0051" jndi-name="jdbc/dcrsirat0051" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0053" jndi-name="jdbc/dcrsirat0053" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0061" jndi-name="jdbc/dcrsirat0061" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0063" jndi-name="jdbc/dcrsirat0063" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0071" jndi-name="jdbc/dcrsirat0071" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0073" jndi-name="jdbc/dcrsirat0073" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0081" jndi-name="jdbc/dcrsirat0081" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0083" jndi-name="jdbc/dcrsirat0083" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0091" jndi-name="jdbc/dcrsirat0091" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0093" jndi-name="jdbc/dcrsirat0093" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0101" jndi-name="jdbc/dcrsirat0101" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0103" jndi-name="jdbc/dcrsirat0103" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0111" jndi-name="jdbc/dcrsirat0111" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0113" jndi-name="jdbc/dcrsirat0113" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0121" jndi-name="jdbc/dcrsirat0121" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0123" jndi-name="jdbc/dcrsirat0123" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0131" jndi-name="jdbc/dcrsirat0131" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0133" jndi-name="jdbc/dcrsirat0133" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0141" jndi-name="jdbc/dcrsirat0141" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0143" jndi-name="jdbc/dcrsirat0143" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0151" jndi-name="jdbc/dcrsirat0151" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0153" jndi-name="jdbc/dcrsirat0153" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0161" jndi-name="jdbc/dcrsirat0161" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0163" jndi-name="jdbc/dcrsirat0163" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0171" jndi-name="jdbc/dcrsirat0171" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0173" jndi-name="jdbc/dcrsirat0173" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0181" jndi-name="jdbc/dcrsirat0181" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0183" jndi-name="jdbc/dcrsirat0183" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0191" jndi-name="jdbc/dcrsirat0191" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0193" jndi-name="jdbc/dcrsirat0193" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0211" jndi-name="jdbc/dcrsirat0211" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0213" jndi-name="jdbc/dcrsirat0213" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0223" jndi-name="jdbc/dcrsirat0223" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0251" jndi-name="jdbc/dcrsirat0251" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0253" jndi-name="jdbc/dcrsirat0253" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0231" jndi-name="jdbc/dcrsirat0231" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0233" jndi-name="jdbc/dcrsirat0233" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0241" jndi-name="jdbc/dcrsirat0241" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0243" jndi-name="jdbc/dcrsirat0243" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0271" jndi-name="jdbc/dcrsirat0271" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dcrsirat0273" jndi-name="jdbc/dcrsirat0273" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	
+	<jee:jndi-lookup id="dgrsirat0011" jndi-name="jdbc/dgrsirat0011" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0021" jndi-name="jdbc/dgrsirat0021" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0023" jndi-name="jdbc/dgrsirat0023" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0051" jndi-name="jdbc/dgrsirat0051" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0053" jndi-name="jdbc/dgrsirat0053" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0061" jndi-name="jdbc/dgrsirat0061" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0063" jndi-name="jdbc/dgrsirat0063" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0071" jndi-name="jdbc/dgrsirat0071" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0073" jndi-name="jdbc/dgrsirat0073" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0081" jndi-name="jdbc/dgrsirat0081" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0083" jndi-name="jdbc/dgrsirat0083" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0091" jndi-name="jdbc/dgrsirat0091" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0093" jndi-name="jdbc/dgrsirat0093" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0101" jndi-name="jdbc/dgrsirat0101" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0103" jndi-name="jdbc/dgrsirat0103" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0111" jndi-name="jdbc/dgrsirat0111" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0113" jndi-name="jdbc/dgrsirat0113" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0121" jndi-name="jdbc/dgrsirat0121" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0123" jndi-name="jdbc/dgrsirat0123" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0131" jndi-name="jdbc/dgrsirat0131" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0133" jndi-name="jdbc/dgrsirat0133" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0141" jndi-name="jdbc/dgrsirat0141" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0143" jndi-name="jdbc/dgrsirat0143" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0151" jndi-name="jdbc/dgrsirat0151" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0153" jndi-name="jdbc/dgrsirat0153" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0161" jndi-name="jdbc/dgrsirat0161" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0163" jndi-name="jdbc/dgrsirat0163" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0171" jndi-name="jdbc/dgrsirat0171" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0173" jndi-name="jdbc/dgrsirat0173" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0181" jndi-name="jdbc/dgrsirat0181" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0183" jndi-name="jdbc/dgrsirat0183" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0191" jndi-name="jdbc/dgrsirat0191" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0193" jndi-name="jdbc/dgrsirat0193" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0211" jndi-name="jdbc/dgrsirat0211" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0213" jndi-name="jdbc/dgrsirat0213" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0223" jndi-name="jdbc/dgrsirat0223" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0251" jndi-name="jdbc/dgrsirat0251" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0253" jndi-name="jdbc/dgrsirat0253" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />	
+	<jee:jndi-lookup id="dgrsirat0231" jndi-name="jdbc/dgrsirat0231" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0233" jndi-name="jdbc/dgrsirat0233" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />	
+	<jee:jndi-lookup id="dgrsirat0241" jndi-name="jdbc/dgrsirat0241" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0243" jndi-name="jdbc/dgrsirat0243" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0271" jndi-name="jdbc/dgrsirat0271" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgrsirat0273" jndi-name="jdbc/dgrsirat0273" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	
+	<jee:jndi-lookup id="dxrsirat0011" jndi-name="jdbc/dxrsirat0011" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0021" jndi-name="jdbc/dxrsirat0021" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0023" jndi-name="jdbc/dxrsirat0023" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0051" jndi-name="jdbc/dxrsirat0051" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0053" jndi-name="jdbc/dxrsirat0053" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0061" jndi-name="jdbc/dxrsirat0061" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0063" jndi-name="jdbc/dxrsirat0063" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0071" jndi-name="jdbc/dxrsirat0071" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0073" jndi-name="jdbc/dxrsirat0073" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0081" jndi-name="jdbc/dxrsirat0081" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0083" jndi-name="jdbc/dxrsirat0083" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0091" jndi-name="jdbc/dxrsirat0091" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0093" jndi-name="jdbc/dxrsirat0093" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0101" jndi-name="jdbc/dxrsirat0101" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0103" jndi-name="jdbc/dxrsirat0103" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0111" jndi-name="jdbc/dxrsirat0111" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0113" jndi-name="jdbc/dxrsirat0113" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0121" jndi-name="jdbc/dxrsirat0121" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0123" jndi-name="jdbc/dxrsirat0123" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0131" jndi-name="jdbc/dxrsirat0131" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0133" jndi-name="jdbc/dxrsirat0133" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0141" jndi-name="jdbc/dxrsirat0141" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0143" jndi-name="jdbc/dxrsirat0143" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0151" jndi-name="jdbc/dxrsirat0151" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0153" jndi-name="jdbc/dxrsirat0153" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0161" jndi-name="jdbc/dxrsirat0161" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0163" jndi-name="jdbc/dxrsirat0163" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0171" jndi-name="jdbc/dxrsirat0171" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0173" jndi-name="jdbc/dxrsirat0173" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0181" jndi-name="jdbc/dxrsirat0181" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0183" jndi-name="jdbc/dxrsirat0183" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0191" jndi-name="jdbc/dxrsirat0191" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0193" jndi-name="jdbc/dxrsirat0193" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0211" jndi-name="jdbc/dxrsirat0211" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0213" jndi-name="jdbc/dxrsirat0213" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0223" jndi-name="jdbc/dxrsirat0223" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0251" jndi-name="jdbc/dxrsirat0251" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0253" jndi-name="jdbc/dxrsirat0253" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0231" jndi-name="jdbc/dxrsirat0231" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0233" jndi-name="jdbc/dxrsirat0233" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0241" jndi-name="jdbc/dxrsirat0241" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0243" jndi-name="jdbc/dxrsirat0243" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0271" jndi-name="jdbc/dxrsirat0271" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dxrsirat0273" jndi-name="jdbc/dxrsirat0273" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+
+</beans>

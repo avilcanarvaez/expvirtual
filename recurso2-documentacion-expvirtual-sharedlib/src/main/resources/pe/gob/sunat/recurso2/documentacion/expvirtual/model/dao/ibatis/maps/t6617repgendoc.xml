@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6617RepGenDoc">
+	<insert id= "insertar" parameterClass="java.util.HashMap" >
+		INSERT INTO t6617repgendoc
+		(num_repdoc, num_repexp, num_repped, num_pedido, cod_idecm, num_expedv, fec_genera, cod_est, cod_usumodif, fec_modif)
+		VALUES 
+		(#numRepDoc#, #numRepExp#, #numRepPed#, #numPedido#, #codIdecm#, #numExpedv#, #fecGenera#, #codEst#, #codUsuModif#, #fecModif#)
+	</insert>
+</sqlMap>

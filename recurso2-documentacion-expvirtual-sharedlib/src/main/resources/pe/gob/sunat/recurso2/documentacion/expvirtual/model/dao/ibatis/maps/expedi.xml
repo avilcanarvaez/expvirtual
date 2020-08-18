@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="expedi">
+	
+	<insert id= "insertar" parameterClass="java.util.HashMap">
+		INSERT INTO expedi
+		(CODI_ADUA, OFIC_REC, ANOEXPEDI, NROEXPEDI, DIG_CHECK, CLASE, FECEXP, TIMEEXP, PROCEDIM, 
+		 TIPOUSER, NRODOC, TIPODOC, CODIGO, ASUNTO, DIG_USER, ACT_ESTADO, ACT_AREA, ACT_ACCION)
+		VALUES (#codAdua#, #oficRec#, #anoExpedi#, #nroExpedi#, #digCheck#, #clasePar#, #fecExp#, #timeExp#, #procedimPar#,
+		        #tipoUser#, #nroDoc#, #tipoDoc#, #codigoPar#, #asuntoPar#, #digUser#, #actEstado#, #unidOrg#, #actAccion#)
+	</insert>
+	
+</sqlMap>

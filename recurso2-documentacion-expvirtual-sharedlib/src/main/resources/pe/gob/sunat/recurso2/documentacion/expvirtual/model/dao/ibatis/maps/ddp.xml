@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Ddp">
+	
+	<typeAlias alias="ddpBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.DdpBean"/>
+	
+	<resultMap id="resultBean" class="ddpBean" >
+		<result property="numRuc" column="DDP_NUMRUC" />
+		<result property="desRazonSocial" column="DDP_NOMBRE" />
+		<result property="codDependencia" column="DDP_NUMREG" />
+		<result property="codTipoPersona" column="DDP_TPOEMP" />
+		<result property="codActividadEconocimica" column="DDP_CIIU" />
+		<result property="codCondicionDomicilio" column="DDP_FLAG22" />
+		<result property="codRegimenRenta" column="DDP_MCLASE" />
+		<result property="codEstado" column="DDP_ESTADO" />
+		<result property="tipoPersona" column="DDP_IDENTI" />
+	</resultMap>
+	
+	<resultMap id="resultMapFotoContribuyente" class="java.util.HashMap">
+		<result property="numDoc" column="NUM_DOCIDE_PNAT" />
+		<result property="desDomicilio" column="DES_DOMICI_PNAT" />
+		<result property="imgFoto" column="IMG_FOTO" />
+	</resultMap>
+	
+	<select id="obtener" resultClass="java.util.HashMap" resultMap="resultBean">
+		
+		SELECT 
+			DDP_NUMRUC, 
+			DDP_NOMBRE, 
+			DDP_NUMREG, 
+			DDP_TPOEMP, 
+			DDP_CIIU, 
+			DDP_FLAG22, 
+			DDP_MCLASE, 
+			DDP_ESTADO,
+			DDP_IDENTI
+		FROM DDP
+		WHERE DDP_NUMRUC = #numRuc#
+		
+	</select>
+	
+	
+	
+<!-- 	EAGUILAR METODO PROVISIONAL -->
+	<select id="obtenerFoto" parameterClass="java.util.HashMap" resultMap="resultMapFotoContribuyente">
+		SELECT num_docide_pnat, img_foto, des_domici_pnat
+		FROM t733pernat
+		WHERE num_docide_pnat = #numDoc#
+	</select>
+	
+</sqlMap>

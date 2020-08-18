@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!--Inicio [nchavez 24/05/2015] -->
+<sqlMap namespace="sgs33">
+
+	<parameterMap id="IN_parametros_fechaHabil" class="java.util.HashMap">
+       <parameter property="fecha_Evaluar" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+    </parameterMap>
+
+ 
+    <procedure id="validarDiaHabil" parameterMap="IN_parametros_fechaHabil" resultClass="java.lang.Integer">
+             {call sgs33_dia_habil(?,0);} 
+    </procedure>
+
+</sqlMap>
+<!--Fin [nchavez 24/05/2015] -->

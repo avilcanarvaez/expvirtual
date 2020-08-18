@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="docinte">
+
+	<select id="getByPk" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT  
+			CODI_ADUA,
+			FECHDOC,
+			TIPODOC,
+			ANNODOC,
+			AREADOC,
+			NUMEDOC,
+			NDOCID
+		FROM DOCINTE
+		WHERE
+			TIPODOC = #tipodoc_par# AND
+			ANNODOC = #annodoc_par# AND
+			AREADOC = #areadoc_par# AND
+			NUMEDOC = #numedoc_par#
+	</select>
+	
+	<select id="listarDocCircular" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT  
+			CODI_ADUA,
+			FECHDOC,
+			TIPODOC,
+			ANNODOC,
+			AREADOC,
+			NUMEDOC,
+			NDOCID
+		FROM DOCINTE
+		WHERE
+			TIPODOC = #tipodoc_par# AND
+			ANNODOC = #annodoc_par# AND
+			AREADOC = #areadoc_par# AND
+			NUMEDOC = #numedoc_par#
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	
+	<display-name>iaexpvirtual-ingvirtdoc</display-name>
+	
+	<!-- <filter>
+		<filter-name>AutenticaFilter</filter-name>
+		<filter-class>
+			pe.gob.sunat.tecnologia.menu.filter.AutenticaFilterTest
+		</filter-class>
+	</filter> -->
+	
+	<filter>
+		<filter-name>AutenticaFilter</filter-name>
+		<filter-class>
+			pe.gob.sunat.tecnologia.menu.filter.AutenticaFilter
+		</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>AutenticaFilter</filter-name>
+		<servlet-name>iaexpvirtual-ingvirtdoc</servlet-name>
+	</filter-mapping>
+	
+	<context-param>
+		<param-name>locatorFactorySelector</param-name>
+		<param-value>classpath*:recurso2-documentacion-beanRefContext.xml</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>parentContextKey</param-name>
+		<param-value>recurso2-documentacion-expvirtual.ear.context</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/iaexpvirtual-ingvirtdoc-security.xml
+			/WEB-INF/iaexpvirtual-ingvirtdoc-servlet.xml
+			/WEB-INF/iaexpvirtual-ingvirtdoc-jsonview.xml
+		</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<filter>
+		<filter-name>requestContextFilter</filter-name>
+		<filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>requestContextFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>iaexpvirtual-ingvirtdoc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>iaexpvirtual-ingvirtdoc</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+	
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+	
+	<jsp-config>
+           <jsp-property-group>
+               <url-pattern>*.jsp</url-pattern>
+               <page-encoding>UTF-8</page-encoding>
+           </jsp-property-group>
+       </jsp-config>
+	
+</web-app>

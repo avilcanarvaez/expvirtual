@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/jee
+						http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+<!-- 	RSIRAT  -->
+	<import resource="rsirat-data.xml"/>
+ 	<bean id="rsiratRoutingDataSource" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.RoutingDataSource">
+		<property name="targetDataSources">
+            <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+				<entry key="dcrsirat0011" value-ref="dcrsirat0011"/>
+				<entry key="dcrsirat0021" value-ref="dcrsirat0021"/>
+				<entry key="dcrsirat0023" value-ref="dcrsirat0023"/>
+				<entry key="dcrsirat0051" value-ref="dcrsirat0051"/>
+				<entry key="dcrsirat0053" value-ref="dcrsirat0053"/>
+				<entry key="dcrsirat0061" value-ref="dcrsirat0061"/>
+				<entry key="dcrsirat0063" value-ref="dcrsirat0063"/>
+				<entry key="dcrsirat0071" value-ref="dcrsirat0071"/>
+				<entry key="dcrsirat0073" value-ref="dcrsirat0073"/>
+				<entry key="dcrsirat0081" value-ref="dcrsirat0081"/>
+				<entry key="dcrsirat0083" value-ref="dcrsirat0083"/>
+				<entry key="dcrsirat0091" value-ref="dcrsirat0091"/>
+				<entry key="dcrsirat0093" value-ref="dcrsirat0093"/>
+				<entry key="dcrsirat0101" value-ref="dcrsirat0101"/>
+				<entry key="dcrsirat0103" value-ref="dcrsirat0103"/>
+				<entry key="dcrsirat0111" value-ref="dcrsirat0111"/>
+				<entry key="dcrsirat0113" value-ref="dcrsirat0113"/>
+				<entry key="dcrsirat0121" value-ref="dcrsirat0121"/>
+				<entry key="dcrsirat0123" value-ref="dcrsirat0123"/>
+				<entry key="dcrsirat0131" value-ref="dcrsirat0131"/>
+				<entry key="dcrsirat0133" value-ref="dcrsirat0133"/>
+				<entry key="dcrsirat0141" value-ref="dcrsirat0141"/>
+				<entry key="dcrsirat0143" value-ref="dcrsirat0143"/>
+				<entry key="dcrsirat0151" value-ref="dcrsirat0151"/>
+				<entry key="dcrsirat0153" value-ref="dcrsirat0153"/>
+				<entry key="dcrsirat0161" value-ref="dcrsirat0161"/>
+				<entry key="dcrsirat0163" value-ref="dcrsirat0163"/>
+				<entry key="dcrsirat0171" value-ref="dcrsirat0171"/>
+				<entry key="dcrsirat0173" value-ref="dcrsirat0173"/>
+				<entry key="dcrsirat0181" value-ref="dcrsirat0181"/>
+				<entry key="dcrsirat0183" value-ref="dcrsirat0183"/>
+				<entry key="dcrsirat0191" value-ref="dcrsirat0191"/>
+				<entry key="dcrsirat0193" value-ref="dcrsirat0193"/>
+				<entry key="dcrsirat0211" value-ref="dcrsirat0211"/>
+				<entry key="dcrsirat0213" value-ref="dcrsirat0213"/>
+				<entry key="dcrsirat0223" value-ref="dcrsirat0223"/>
+				<entry key="dcrsirat0251" value-ref="dcrsirat0251"/>
+				<entry key="dcrsirat0253" value-ref="dcrsirat0253"/>
+				<entry key="dcrsirat0231" value-ref="dcrsirat0231"/>
+				<entry key="dcrsirat0233" value-ref="dcrsirat0233"/>
+				<entry key="dcrsirat0241" value-ref="dcrsirat0241"/>
+				<entry key="dcrsirat0243" value-ref="dcrsirat0243"/>
+				<entry key="dcrsirat0271" value-ref="dcrsirat0271"/>
+				<entry key="dcrsirat0273" value-ref="dcrsirat0273"/>
+				                        
+				<entry key="dgrsirat0011" value-ref="dgrsirat0011"/>
+				<entry key="dgrsirat0021" value-ref="dgrsirat0021"/>
+				<entry key="dgrsirat0023" value-ref="dgrsirat0023"/>
+				<entry key="dgrsirat0051" value-ref="dgrsirat0051"/>
+				<entry key="dgrsirat0053" value-ref="dgrsirat0053"/>
+				<entry key="dgrsirat0061" value-ref="dgrsirat0061"/>
+				<entry key="dgrsirat0063" value-ref="dgrsirat0063"/>
+				<entry key="dgrsirat0071" value-ref="dgrsirat0071"/>
+				<entry key="dgrsirat0073" value-ref="dgrsirat0073"/>
+				<entry key="dgrsirat0081" value-ref="dgrsirat0081"/>
+				<entry key="dgrsirat0083" value-ref="dgrsirat0083"/>
+				<entry key="dgrsirat0091" value-ref="dgrsirat0091"/>
+				<entry key="dgrsirat0093" value-ref="dgrsirat0093"/>
+				<entry key="dgrsirat0101" value-ref="dgrsirat0101"/>
+				<entry key="dgrsirat0103" value-ref="dgrsirat0103"/>
+				<entry key="dgrsirat0111" value-ref="dgrsirat0111"/>
+				<entry key="dgrsirat0113" value-ref="dgrsirat0113"/>
+				<entry key="dgrsirat0121" value-ref="dgrsirat0121"/>
+				<entry key="dgrsirat0123" value-ref="dgrsirat0123"/>
+				<entry key="dgrsirat0131" value-ref="dgrsirat0131"/>
+				<entry key="dgrsirat0133" value-ref="dgrsirat0133"/>
+				<entry key="dgrsirat0141" value-ref="dgrsirat0141"/>
+				<entry key="dgrsirat0143" value-ref="dgrsirat0143"/>
+				<entry key="dgrsirat0151" value-ref="dgrsirat0151"/>
+				<entry key="dgrsirat0153" value-ref="dgrsirat0153"/>
+				<entry key="dgrsirat0161" value-ref="dgrsirat0161"/>
+				<entry key="dgrsirat0163" value-ref="dgrsirat0163"/>
+				<entry key="dgrsirat0171" value-ref="dgrsirat0171"/>
+				<entry key="dgrsirat0173" value-ref="dgrsirat0173"/>
+				<entry key="dgrsirat0181" value-ref="dgrsirat0181"/>
+				<entry key="dgrsirat0183" value-ref="dgrsirat0183"/>
+				<entry key="dgrsirat0191" value-ref="dgrsirat0191"/>
+				<entry key="dgrsirat0193" value-ref="dgrsirat0193"/>
+				<entry key="dgrsirat0211" value-ref="dgrsirat0211"/>
+				<entry key="dgrsirat0213" value-ref="dgrsirat0213"/>
+				<entry key="dgrsirat0223" value-ref="dgrsirat0223"/>
+				<entry key="dgrsirat0251" value-ref="dgrsirat0251"/>
+				<entry key="dgrsirat0253" value-ref="dgrsirat0253"/>
+				<entry key="dgrsirat0231" value-ref="dgrsirat0231"/>
+				<entry key="dgrsirat0233" value-ref="dgrsirat0233"/>
+				<entry key="dgrsirat0241" value-ref="dgrsirat0241"/>
+				<entry key="dgrsirat0243" value-ref="dgrsirat0243"/>
+				<entry key="dgrsirat0271" value-ref="dgrsirat0271"/>
+				<entry key="dgrsirat0273" value-ref="dgrsirat0273"/>
+				                        
+				<entry key="dxrsirat0011" value-ref="dxrsirat0011"/>
+				<entry key="dxrsirat0021" value-ref="dxrsirat0021"/>
+				<entry key="dxrsirat0023" value-ref="dxrsirat0023"/>
+				<entry key="dxrsirat0051" value-ref="dxrsirat0051"/>
+				<entry key="dxrsirat0053" value-ref="dxrsirat0053"/>
+				<entry key="dxrsirat0061" value-ref="dxrsirat0061"/>
+				<entry key="dxrsirat0063" value-ref="dxrsirat0063"/>
+				<entry key="dxrsirat0071" value-ref="dxrsirat0071"/>
+				<entry key="dxrsirat0073" value-ref="dxrsirat0073"/>
+				<entry key="dxrsirat0081" value-ref="dxrsirat0081"/>
+				<entry key="dxrsirat0083" value-ref="dxrsirat0083"/>
+				<entry key="dxrsirat0091" value-ref="dxrsirat0091"/>
+				<entry key="dxrsirat0093" value-ref="dxrsirat0093"/>
+				<entry key="dxrsirat0101" value-ref="dxrsirat0101"/>
+				<entry key="dxrsirat0103" value-ref="dxrsirat0103"/>
+				<entry key="dxrsirat0111" value-ref="dxrsirat0111"/>
+				<entry key="dxrsirat0113" value-ref="dxrsirat0113"/>
+				<entry key="dxrsirat0121" value-ref="dxrsirat0121"/>
+				<entry key="dxrsirat0123" value-ref="dxrsirat0123"/>
+				<entry key="dxrsirat0131" value-ref="dxrsirat0131"/>
+				<entry key="dxrsirat0133" value-ref="dxrsirat0133"/>
+				<entry key="dxrsirat0141" value-ref="dxrsirat0141"/>
+				<entry key="dxrsirat0143" value-ref="dxrsirat0143"/>
+				<entry key="dxrsirat0151" value-ref="dxrsirat0151"/>
+				<entry key="dxrsirat0153" value-ref="dxrsirat0153"/>
+				<entry key="dxrsirat0161" value-ref="dxrsirat0161"/>
+				<entry key="dxrsirat0163" value-ref="dxrsirat0163"/>
+				<entry key="dxrsirat0171" value-ref="dxrsirat0171"/>
+				<entry key="dxrsirat0173" value-ref="dxrsirat0173"/>
+				<entry key="dxrsirat0181" value-ref="dxrsirat0181"/>
+				<entry key="dxrsirat0183" value-ref="dxrsirat0183"/>
+				<entry key="dxrsirat0191" value-ref="dxrsirat0191"/>
+				<entry key="dxrsirat0193" value-ref="dxrsirat0193"/>
+				<entry key="dxrsirat0211" value-ref="dxrsirat0211"/>
+				<entry key="dxrsirat0213" value-ref="dxrsirat0213"/>
+				<entry key="dxrsirat0223" value-ref="dxrsirat0223"/>
+				<entry key="dxrsirat0251" value-ref="dxrsirat0251"/>
+				<entry key="dxrsirat0253" value-ref="dxrsirat0253"/>
+				<entry key="dxrsirat0231" value-ref="dxrsirat0231"/>
+				<entry key="dxrsirat0233" value-ref="dxrsirat0233"/>
+				<entry key="dxrsirat0241" value-ref="dxrsirat0241"/>
+				<entry key="dxrsirat0243" value-ref="dxrsirat0243"/>
+				<entry key="dxrsirat0271" value-ref="dxrsirat0271"/>
+				<entry key="dxrsirat0273" value-ref="dxrsirat0273"/>
+            </map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dcrsirat0011"/>
+	</bean>	
+
+<!-- 	RECUADA  -->
+	<import resource="recauda-data.xml"/>
+ 	<bean id="recaudaRoutingDataSource" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.RoutingDataSource">
+		<property name="targetDataSources">
+            <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+				<entry key="dcrecauda" value-ref="dcrecauda"/>
+				<entry key="dgrecauda" value-ref="dgrecauda"/>
+				<entry key="dxrecauda" value-ref="dxrecauda"/>
+				<entry key="dcrecauda0j" value-ref="dcrecauda0j"/>
+				<entry key="dgrecauda0j" value-ref="dgrecauda0j"/>
+				<entry key="dxrecauda0j" value-ref="dxrecauda0j"/>
+				
+				<entry key="dcrecauda0011" value-ref="dcrecauda0011"/>
+				<entry key="dcrecauda0021" value-ref="dcrecauda0021"/>
+				<entry key="dcrecauda0023" value-ref="dcrecauda0023"/>
+				<entry key="dcrecauda0051" value-ref="dcrecauda0051"/>
+				<entry key="dcrecauda0053" value-ref="dcrecauda0053"/>
+				<entry key="dcrecauda0061" value-ref="dcrecauda0061"/>
+				<entry key="dcrecauda0063" value-ref="dcrecauda0063"/>
+				<entry key="dcrecauda0071" value-ref="dcrecauda0071"/>
+				<entry key="dcrecauda0073" value-ref="dcrecauda0073"/>
+				<entry key="dcrecauda0081" value-ref="dcrecauda0081"/>
+				<entry key="dcrecauda0083" value-ref="dcrecauda0083"/>
+				<entry key="dcrecauda0091" value-ref="dcrecauda0091"/>
+				<entry key="dcrecauda0093" value-ref="dcrecauda0093"/>
+				<entry key="dcrecauda0101" value-ref="dcrecauda0101"/>
+				<entry key="dcrecauda0103" value-ref="dcrecauda0103"/>
+				<entry key="dcrecauda0111" value-ref="dcrecauda0111"/>
+				<entry key="dcrecauda0113" value-ref="dcrecauda0113"/>
+				<entry key="dcrecauda0121" value-ref="dcrecauda0121"/>
+				<entry key="dcrecauda0123" value-ref="dcrecauda0123"/>
+				<entry key="dcrecauda0131" value-ref="dcrecauda0131"/>
+				<entry key="dcrecauda0133" value-ref="dcrecauda0133"/>
+				<entry key="dcrecauda0141" value-ref="dcrecauda0141"/>
+				<entry key="dcrecauda0143" value-ref="dcrecauda0143"/>
+				<entry key="dcrecauda0151" value-ref="dcrecauda0151"/>
+				<entry key="dcrecauda0153" value-ref="dcrecauda0153"/>
+				<entry key="dcrecauda0161" value-ref="dcrecauda0161"/>
+				<entry key="dcrecauda0163" value-ref="dcrecauda0163"/>
+				<entry key="dcrecauda0171" value-ref="dcrecauda0171"/>
+				<entry key="dcrecauda0173" value-ref="dcrecauda0173"/>
+				<entry key="dcrecauda0181" value-ref="dcrecauda0181"/>
+				<entry key="dcrecauda0183" value-ref="dcrecauda0183"/>
+				<entry key="dcrecauda0191" value-ref="dcrecauda0191"/>
+				<entry key="dcrecauda0193" value-ref="dcrecauda0193"/>
+				<entry key="dcrecauda0211" value-ref="dcrecauda0211"/>
+				<entry key="dcrecauda0213" value-ref="dcrecauda0213"/>
+				<entry key="dcrecauda0223" value-ref="dcrecauda0223"/>
+				<entry key="dcrecauda0251" value-ref="dcrecauda0251"/>
+				<entry key="dcrecauda0253" value-ref="dcrecauda0253"/>
+				<entry key="dcrecauda0231" value-ref="dcrecauda0231"/>
+				<entry key="dcrecauda0233" value-ref="dcrecauda0233"/>
+				<entry key="dcrecauda0241" value-ref="dcrecauda0241"/>
+				<entry key="dcrecauda0243" value-ref="dcrecauda0243"/>
+				<entry key="dcrecauda0271" value-ref="dcrecauda0271"/>
+				<entry key="dcrecauda0273" value-ref="dcrecauda0273"/>
+				                         
+				<entry key="dgrecauda0011" value-ref="dgrecauda0011"/>
+				<entry key="dgrecauda0021" value-ref="dgrecauda0021"/>
+				<entry key="dgrecauda0023" value-ref="dgrecauda0023"/>
+				<entry key="dgrecauda0051" value-ref="dgrecauda0051"/>
+				<entry key="dgrecauda0053" value-ref="dgrecauda0053"/>
+				<entry key="dgrecauda0061" value-ref="dgrecauda0061"/>
+				<entry key="dgrecauda0063" value-ref="dgrecauda0063"/>
+				<entry key="dgrecauda0071" value-ref="dgrecauda0071"/>
+				<entry key="dgrecauda0073" value-ref="dgrecauda0073"/>
+				<entry key="dgrecauda0081" value-ref="dgrecauda0081"/>
+				<entry key="dgrecauda0083" value-ref="dgrecauda0083"/>
+				<entry key="dgrecauda0091" value-ref="dgrecauda0091"/>
+				<entry key="dgrecauda0093" value-ref="dgrecauda0093"/>
+				<entry key="dgrecauda0101" value-ref="dgrecauda0101"/>
+				<entry key="dgrecauda0103" value-ref="dgrecauda0103"/>
+				<entry key="dgrecauda0111" value-ref="dgrecauda0111"/>
+				<entry key="dgrecauda0113" value-ref="dgrecauda0113"/>
+				<entry key="dgrecauda0121" value-ref="dgrecauda0121"/>
+				<entry key="dgrecauda0123" value-ref="dgrecauda0123"/>
+				<entry key="dgrecauda0131" value-ref="dgrecauda0131"/>
+				<entry key="dgrecauda0133" value-ref="dgrecauda0133"/>
+				<entry key="dgrecauda0141" value-ref="dgrecauda0141"/>
+				<entry key="dgrecauda0143" value-ref="dgrecauda0143"/>
+				<entry key="dgrecauda0151" value-ref="dgrecauda0151"/>
+				<entry key="dgrecauda0153" value-ref="dgrecauda0153"/>
+				<entry key="dgrecauda0161" value-ref="dgrecauda0161"/>
+				<entry key="dgrecauda0163" value-ref="dgrecauda0163"/>
+				<entry key="dgrecauda0171" value-ref="dgrecauda0171"/>
+				<entry key="dgrecauda0173" value-ref="dgrecauda0173"/>
+				<entry key="dgrecauda0181" value-ref="dgrecauda0181"/>
+				<entry key="dgrecauda0183" value-ref="dgrecauda0183"/>
+				<entry key="dgrecauda0191" value-ref="dgrecauda0191"/>
+				<entry key="dgrecauda0193" value-ref="dgrecauda0193"/>
+				<entry key="dgrecauda0211" value-ref="dgrecauda0211"/>
+				<entry key="dgrecauda0213" value-ref="dgrecauda0213"/>
+				<entry key="dgrecauda0223" value-ref="dgrecauda0223"/>
+				<entry key="dgrecauda0251" value-ref="dgrecauda0251"/>
+				<entry key="dgrecauda0253" value-ref="dgrecauda0253"/>
+				<entry key="dgrecauda0231" value-ref="dgrecauda0231"/>
+				<entry key="dgrecauda0233" value-ref="dgrecauda0233"/>
+				<entry key="dgrecauda0241" value-ref="dgrecauda0241"/>
+				<entry key="dgrecauda0243" value-ref="dgrecauda0243"/>
+				<entry key="dgrecauda0271" value-ref="dgrecauda0271"/>
+				<entry key="dgrecauda0273" value-ref="dgrecauda0273"/>
+							             
+				<entry key="dxrecauda0011" value-ref="dxrecauda0011"/>
+				<entry key="dxrecauda0021" value-ref="dxrecauda0021"/>
+				<entry key="dxrecauda0023" value-ref="dxrecauda0023"/>
+				<entry key="dxrecauda0051" value-ref="dxrecauda0051"/>
+				<entry key="dxrecauda0053" value-ref="dxrecauda0053"/>
+				<entry key="dxrecauda0061" value-ref="dxrecauda0061"/>
+				<entry key="dxrecauda0063" value-ref="dxrecauda0063"/>
+				<entry key="dxrecauda0071" value-ref="dxrecauda0071"/>
+				<entry key="dxrecauda0073" value-ref="dxrecauda0073"/>
+				<entry key="dxrecauda0081" value-ref="dxrecauda0081"/>
+				<entry key="dxrecauda0083" value-ref="dxrecauda0083"/>
+				<entry key="dxrecauda0091" value-ref="dxrecauda0091"/>
+				<entry key="dxrecauda0093" value-ref="dxrecauda0093"/>
+				<entry key="dxrecauda0101" value-ref="dxrecauda0101"/>
+				<entry key="dxrecauda0103" value-ref="dxrecauda0103"/>
+				<entry key="dxrecauda0111" value-ref="dxrecauda0111"/>
+				<entry key="dxrecauda0113" value-ref="dxrecauda0113"/>
+				<entry key="dxrecauda0121" value-ref="dxrecauda0121"/>
+				<entry key="dxrecauda0123" value-ref="dxrecauda0123"/>
+				<entry key="dxrecauda0131" value-ref="dxrecauda0131"/>
+				<entry key="dxrecauda0133" value-ref="dxrecauda0133"/>
+				<entry key="dxrecauda0141" value-ref="dxrecauda0141"/>
+				<entry key="dxrecauda0143" value-ref="dxrecauda0143"/>
+				<entry key="dxrecauda0151" value-ref="dxrecauda0151"/>
+				<entry key="dxrecauda0153" value-ref="dxrecauda0153"/>
+				<entry key="dxrecauda0161" value-ref="dxrecauda0161"/>
+				<entry key="dxrecauda0163" value-ref="dxrecauda0163"/>
+				<entry key="dxrecauda0171" value-ref="dxrecauda0171"/>
+				<entry key="dxrecauda0173" value-ref="dxrecauda0173"/>
+				<entry key="dxrecauda0181" value-ref="dxrecauda0181"/>
+				<entry key="dxrecauda0183" value-ref="dxrecauda0183"/>
+				<entry key="dxrecauda0191" value-ref="dxrecauda0191"/>
+				<entry key="dxrecauda0193" value-ref="dxrecauda0193"/>
+				<entry key="dxrecauda0211" value-ref="dxrecauda0211"/>
+				<entry key="dxrecauda0213" value-ref="dxrecauda0213"/>
+				<entry key="dxrecauda0223" value-ref="dxrecauda0223"/>
+				<entry key="dxrecauda0251" value-ref="dxrecauda0251"/>
+				<entry key="dxrecauda0253" value-ref="dxrecauda0253"/>
+				<entry key="dxrecauda0231" value-ref="dxrecauda0231"/>
+				<entry key="dxrecauda0233" value-ref="dxrecauda0233"/>
+				<entry key="dxrecauda0241" value-ref="dxrecauda0241"/>
+				<entry key="dxrecauda0243" value-ref="dxrecauda0243"/>
+				<entry key="dxrecauda0271" value-ref="dxrecauda0271"/>
+				<entry key="dxrecauda0273" value-ref="dxrecauda0273"/>
+            </map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dcrecauda"/>
+	</bean>
+
+<!-- EXPEDIENTE VIRTUAL (SOLO si es necesario implementar el seteo de DS al consultar la bd expvirtual) -->
+	<import resource="bdexpvir-data.xml"/>
+	<bean id="bdexpvirRoutingDataSource" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.RoutingDataSource">
+		<property name="targetDataSources">
+	           <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+				<entry key="dcbdexpvir" value-ref="dcbdexpvir"/>
+				<entry key="dgbdexpvir" value-ref="dgbdexpvir"/>
+				<entry key="dxbdexpvir" value-ref="dxbdexpvir"/> <!-- [PAS20191U210500291]: JMC -->
+	           </map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dcbdexpvir"/>
+	</bean>
+
+<!-- SP -->
+	<import resource="sp-data.xml"/>
+	<bean id="spRoutingDataSource" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.RoutingDataSource">
+		<property name="targetDataSources">
+	           <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+				<entry key="dcsp" value-ref="dcsp"/>
+	           </map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dcsp"/>
+	</bean>
+
+<!-- BD SEQ -->
+<!-- dcbdseq NO TIENE DAO EN EL PROYECTO -->
+
+<!-- IMPORTANTE: CONSULTAR A RUBEN PARA QUE ES EL ROUTING COMBINADO: -->
+<!--  	<bean id="recauda_rsiratRoutingDataSource" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.RoutingDataSource"> -->
+<!-- 		<property name="targetDataSources"> -->
+<!--             <map key-type="java.lang.String" value-type="javax.sql.DataSource"> -->
+
+<!-- 				<entry key="0" value-ref="dcrecauda"/> -->
+<!-- 				<entry key="c" value-ref="dcrecauda0j"/> -->
+<!-- 				<entry key="g" value-ref="dgrecauda0j"/> -->
+<!-- 				<entry key="x" value-ref="dxrecauda0j"/> -->
+				
+<!-- 				<entry key="rs_c0011" value-ref="dcrsirat0011"/> -->
+<!-- 				<entry key="rs_c0021" value-ref="dcrsirat0021"/> -->
+<!-- 				<entry key="rs_c0023" value-ref="dcrsirat0023"/> -->
+<!-- 				<entry key="rs_c0051" value-ref="dcrsirat0051"/> -->
+<!-- 				<entry key="rs_c0053" value-ref="dcrsirat0053"/> -->
+<!-- 				<entry key="rs_c0061" value-ref="dcrsirat0061"/> -->
+<!-- 				<entry key="rs_c0063" value-ref="dcrsirat0063"/> -->
+<!-- 				<entry key="rs_c0071" value-ref="dcrsirat0071"/> -->
+<!-- 				<entry key="rs_c0073" value-ref="dcrsirat0073"/> -->
+<!-- 				<entry key="rs_c0081" value-ref="dcrsirat0081"/> -->
+<!-- 				<entry key="rs_c0083" value-ref="dcrsirat0083"/> -->
+<!-- 				<entry key="rs_c0091" value-ref="dcrsirat0091"/> -->
+<!-- 				<entry key="rs_c0093" value-ref="dcrsirat0093"/> -->
+<!-- 				<entry key="rs_c0101" value-ref="dcrsirat0101"/> -->
+<!-- 				<entry key="rs_c0103" value-ref="dcrsirat0103"/> -->
+<!-- 				<entry key="rs_c0111" value-ref="dcrsirat0111"/> -->
+<!-- 				<entry key="rs_c0113" value-ref="dcrsirat0113"/> -->
+<!-- 				<entry key="rs_c0121" value-ref="dcrsirat0121"/> -->
+<!-- 				<entry key="rs_c0123" value-ref="dcrsirat0123"/> -->
+<!-- 				<entry key="rs_c0131" value-ref="dcrsirat0131"/> -->
+<!-- 				<entry key="rs_c0133" value-ref="dcrsirat0133"/> -->
+<!-- 				<entry key="rs_c0141" value-ref="dcrsirat0141"/> -->
+<!-- 				<entry key="rs_c0143" value-ref="dcrsirat0143"/> -->
+<!-- 				<entry key="rs_c0151" value-ref="dcrsirat0151"/> -->
+<!-- 				<entry key="rs_c0153" value-ref="dcrsirat0153"/> -->
+<!-- 				<entry key="rs_c0161" value-ref="dcrsirat0161"/> -->
+<!-- 				<entry key="rs_c0163" value-ref="dcrsirat0163"/> -->
+<!-- 				<entry key="rs_c0171" value-ref="dcrsirat0171"/> -->
+<!-- 				<entry key="rs_c0173" value-ref="dcrsirat0173"/> -->
+<!-- 				<entry key="rs_c0181" value-ref="dcrsirat0181"/> -->
+<!-- 				<entry key="rs_c0183" value-ref="dcrsirat0183"/> -->
+<!-- 				<entry key="rs_c0191" value-ref="dcrsirat0191"/> -->
+<!-- 				<entry key="rs_c0193" value-ref="dcrsirat0193"/> -->
+<!-- 				<entry key="rs_c0211" value-ref="dcrsirat0211"/> -->
+<!-- 				<entry key="rs_c0213" value-ref="dcrsirat0213"/> -->
+<!-- 				<entry key="rs_c0223" value-ref="dcrsirat0223"/> -->
+<!-- 				<entry key="rs_c0251" value-ref="dcrsirat0251"/> -->
+<!-- 				<entry key="rs_c0253" value-ref="dcrsirat0253"/> -->
+<!-- 				<entry key="rs_c0231" value-ref="dcrsirat0231"/> -->
+<!-- 				<entry key="rs_c0233" value-ref="dcrsirat0233"/> -->
+<!-- 				<entry key="rs_c0241" value-ref="dcrsirat0241"/> -->
+<!-- 				<entry key="rs_c0243" value-ref="dcrsirat0243"/> -->
+<!-- 				<entry key="rs_c0271" value-ref="dcrsirat0271"/> -->
+<!-- 				<entry key="rs_c0273" value-ref="dcrsirat0273"/> -->
+				
+<!-- 				<entry key="rs_g0011" value-ref="dgrsirat0011"/> -->
+<!-- 				<entry key="rs_g0021" value-ref="dgrsirat0021"/> -->
+<!-- 				<entry key="rs_g0023" value-ref="dgrsirat0023"/> -->
+<!-- 				<entry key="rs_g0051" value-ref="dgrsirat0051"/> -->
+<!-- 				<entry key="rs_g0053" value-ref="dgrsirat0053"/> -->
+<!-- 				<entry key="rs_g0061" value-ref="dgrsirat0061"/> -->
+<!-- 				<entry key="rs_g0063" value-ref="dgrsirat0063"/> -->
+<!-- 				<entry key="rs_g0071" value-ref="dgrsirat0071"/> -->
+<!-- 				<entry key="rs_g0073" value-ref="dgrsirat0073"/> -->
+<!-- 				<entry key="rs_g0081" value-ref="dgrsirat0081"/> -->
+<!-- 				<entry key="rs_g0083" value-ref="dgrsirat0083"/> -->
+<!-- 				<entry key="rs_g0091" value-ref="dgrsirat0091"/> -->
+<!-- 				<entry key="rs_g0093" value-ref="dgrsirat0093"/> -->
+<!-- 				<entry key="rs_g0101" value-ref="dgrsirat0101"/> -->
+<!-- 				<entry key="rs_g0103" value-ref="dgrsirat0103"/> -->
+<!-- 				<entry key="rs_g0111" value-ref="dgrsirat0111"/> -->
+<!-- 				<entry key="rs_g0113" value-ref="dgrsirat0113"/> -->
+<!-- 				<entry key="rs_g0121" value-ref="dgrsirat0121"/> -->
+<!-- 				<entry key="rs_g0123" value-ref="dgrsirat0123"/> -->
+<!-- 				<entry key="rs_g0131" value-ref="dgrsirat0131"/> -->
+<!-- 				<entry key="rs_g0133" value-ref="dgrsirat0133"/> -->
+<!-- 				<entry key="rs_g0141" value-ref="dgrsirat0141"/> -->
+<!-- 				<entry key="rs_g0143" value-ref="dgrsirat0143"/> -->
+<!-- 				<entry key="rs_g0151" value-ref="dgrsirat0151"/> -->
+<!-- 				<entry key="rs_g0153" value-ref="dgrsirat0153"/> -->
+<!-- 				<entry key="rs_g0161" value-ref="dgrsirat0161"/> -->
+<!-- 				<entry key="rs_g0163" value-ref="dgrsirat0163"/> -->
+<!-- 				<entry key="rs_g0171" value-ref="dgrsirat0171"/> -->
+<!-- 				<entry key="rs_g0173" value-ref="dgrsirat0173"/> -->
+<!-- 				<entry key="rs_g0181" value-ref="dgrsirat0181"/> -->
+<!-- 				<entry key="rs_g0183" value-ref="dgrsirat0183"/> -->
+<!-- 				<entry key="rs_g0191" value-ref="dgrsirat0191"/> -->
+<!-- 				<entry key="rs_g0193" value-ref="dgrsirat0193"/> -->
+<!-- 				<entry key="rs_g0211" value-ref="dgrsirat0211"/> -->
+<!-- 				<entry key="rs_g0213" value-ref="dgrsirat0213"/> -->
+<!-- 				<entry key="rs_g0223" value-ref="dgrsirat0223"/> -->
+<!-- 				<entry key="rs_g0251" value-ref="dgrsirat0251"/> -->
+<!-- 				<entry key="rs_g0253" value-ref="dgrsirat0253"/> -->
+<!-- 				<entry key="rs_g0231" value-ref="dgrsirat0231"/> -->
+<!-- 				<entry key="rs_g0233" value-ref="dgrsirat0233"/> -->
+<!-- 				<entry key="rs_g0241" value-ref="dgrsirat0241"/> -->
+<!-- 				<entry key="rs_g0243" value-ref="dgrsirat0243"/> -->
+<!-- 				<entry key="rs_g0271" value-ref="dgrsirat0271"/> -->
+<!-- 				<entry key="rs_g0273" value-ref="dgrsirat0273"/> -->
+				
+<!-- 				<entry key="rs_x0011" value-ref="dxrsirat0011"/> -->
+<!-- 				<entry key="rs_x0021" value-ref="dxrsirat0021"/> -->
+<!-- 				<entry key="rs_x0023" value-ref="dxrsirat0023"/> -->
+<!-- 				<entry key="rs_x0051" value-ref="dxrsirat0051"/> -->
+<!-- 				<entry key="rs_x0053" value-ref="dxrsirat0053"/> -->
+<!-- 				<entry key="rs_x0061" value-ref="dxrsirat0061"/> -->
+<!-- 				<entry key="rs_x0063" value-ref="dxrsirat0063"/> -->
+<!-- 				<entry key="rs_x0071" value-ref="dxrsirat0071"/> -->
+<!-- 				<entry key="rs_x0073" value-ref="dxrsirat0073"/> -->
+<!-- 				<entry key="rs_x0081" value-ref="dxrsirat0081"/> -->
+<!-- 				<entry key="rs_x0083" value-ref="dxrsirat0083"/> -->
+<!-- 				<entry key="rs_x0091" value-ref="dxrsirat0091"/> -->
+<!-- 				<entry key="rs_x0093" value-ref="dxrsirat0093"/> -->
+<!-- 				<entry key="rs_x0101" value-ref="dxrsirat0101"/> -->
+<!-- 				<entry key="rs_x0103" value-ref="dxrsirat0103"/> -->
+<!-- 				<entry key="rs_x0111" value-ref="dxrsirat0111"/> -->
+<!-- 				<entry key="rs_x0113" value-ref="dxrsirat0113"/> -->
+<!-- 				<entry key="rs_x0121" value-ref="dxrsirat0121"/> -->
+<!-- 				<entry key="rs_x0123" value-ref="dxrsirat0123"/> -->
+<!-- 				<entry key="rs_x0131" value-ref="dxrsirat0131"/> -->
+<!-- 				<entry key="rs_x0133" value-ref="dxrsirat0133"/> -->
+<!-- 				<entry key="rs_x0141" value-ref="dxrsirat0141"/> -->
+<!-- 				<entry key="rs_x0143" value-ref="dxrsirat0143"/> -->
+<!-- 				<entry key="rs_x0151" value-ref="dxrsirat0151"/> -->
+<!-- 				<entry key="rs_x0153" value-ref="dxrsirat0153"/> -->
+<!-- 				<entry key="rs_x0161" value-ref="dxrsirat0161"/> -->
+<!-- 				<entry key="rs_x0163" value-ref="dxrsirat0163"/> -->
+<!-- 				<entry key="rs_x0171" value-ref="dxrsirat0171"/> -->
+<!-- 				<entry key="rs_x0173" value-ref="dxrsirat0173"/> -->
+<!-- 				<entry key="rs_x0181" value-ref="dxrsirat0181"/> -->
+<!-- 				<entry key="rs_x0183" value-ref="dxrsirat0183"/> -->
+<!-- 				<entry key="rs_x0191" value-ref="dxrsirat0191"/> -->
+<!-- 				<entry key="rs_x0193" value-ref="dxrsirat0193"/> -->
+<!-- 				<entry key="rs_x0211" value-ref="dxrsirat0211"/> -->
+<!-- 				<entry key="rs_x0213" value-ref="dxrsirat0213"/> -->
+<!-- 				<entry key="rs_x0223" value-ref="dxrsirat0223"/> -->
+<!-- 				<entry key="rs_x0251" value-ref="dxrsirat0251"/> -->
+<!-- 				<entry key="rs_x0253" value-ref="dxrsirat0253"/> -->
+<!-- 				<entry key="rs_x0231" value-ref="dxrsirat0231"/> -->
+<!-- 				<entry key="rs_x0233" value-ref="dxrsirat0233"/> -->
+<!-- 				<entry key="rs_x0241" value-ref="dxrsirat0241"/> -->
+<!-- 				<entry key="rs_x0243" value-ref="dxrsirat0243"/> -->
+<!-- 				<entry key="rs_x0271" value-ref="dxrsirat0271"/> -->
+<!-- 				<entry key="rs_x0273" value-ref="dxrsirat0273"/> -->
+<!--             </map> -->
+<!-- 		</property> -->
+<!-- 		<property name="defaultTargetDataSource" ref="dcrecauda"/> -->
+<!-- 	</bean>		 -->
+
+<!-- Inicio [oachahuic][PAS20165E210400270] -->
+<!-- BDSIGAD -->
+	<import resource="bdsigad-data.xml"/>
+	<bean id="bdsigadRoutingDataSource" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.RoutingDataSource">
+		<property name="targetDataSources">
+	           <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+				<entry key="c" value-ref="dcbdsigad"/>
+	           </map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dcbdsigad"/>
+	</bean>
+	
+<!-- PRAD1 -->
+	<import resource="prad1-data.xml"/>
+	<bean id="prad1RoutingDataSource" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.RoutingDataSource">
+		<property name="targetDataSources">
+	           <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+				<entry key="c" value-ref="dcprad1"/>
+				<!-- [PAS20191U210500291]: JMC - INI -->
+				<entry key="g" value-ref="dgprad1"/>
+				<entry key="x" value-ref="dxprad1"/>
+				<!-- [PAS20191U210500291]: JMC - FIN -->
+	           </map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dcprad1"/>
+	</bean>
+<!-- Fin [oachahuic][PAS20165E210400270] -->
+
+<!-- Inicio [oachahuic][PAS20181U210400241] -->
+<!-- MENSAJERIA -->
+	<import resource="mensajeria-data.xml"/>
+	<bean id="mensajeriaRoutingDataSource" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.RoutingDataSource">
+		<property name="targetDataSources">
+	           <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+				<entry key="c" value-ref="dcmensajeria"/>
+	           </map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dcmensajeria"/>
+	</bean>
+<!-- Fin [oachahuic][PAS20181U210400241] -->
+
+</beans>

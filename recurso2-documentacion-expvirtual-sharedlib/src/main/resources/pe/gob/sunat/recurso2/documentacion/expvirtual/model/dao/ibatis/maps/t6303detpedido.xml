@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="t6303">
+
+	<select id="listarDocNotif" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.num_ruc_notificado AS num_ruc,
+			CASE WHEN (b.ind_mensaje = '4') THEN '803010' ELSE a.cod_tipdocumento END AS cod_tip_doc,
+			a.num_doc,
+			CASE WHEN (b.ind_mensaje = '4') THEN b.fec_regis ELSE a.fec_regis END AS fec_regis,
+			CASE WHEN (b.ind_mensaje = '4') THEN b.fec_regis ELSE a.fec_publica END AS fec_not,
+			b.num_id_ecm,
+			b.cnt_archivo
+		FROM t6303detpedido a
+			INNER JOIN t3623arch_msg b ON (a.cod_mens = b.cod_mensaje)
+		WHERE
+			a.cod_tipdocumento = #cod_tip_doc#
+			AND a.num_doc = #num_doc#
+			AND a.num_ruc_notificado = #num_ruc#
+			AND a.cod_etapa_doc = '09'
+			AND b.ind_mensaje IN ('4','5');
+   </select>
+ 
+ </sqlMap>

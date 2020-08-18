@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd 
+		http://www.springframework.org/schema/jee 
+		http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+<!-- SIEV 17 JUL: MODIFICACIONES PARA ROUTING DATASOURCE -->
+
+<!-- 	IMPORT FRAMEWORK DATA -->
+	<import resource="classpath:framework-data.xml"/>
+	
+<!-- 	JNDI (ya incluido en los respectivos *-data.xml) -->
+<!-- 	<jee:jndi-lookup id="dcrecauda" jndi-name="jdbc/dcrecauda" resource-ref="true" cache="true" /> -->
+<!-- 	<jee:jndi-lookup id="dcrsirat" jndi-name="jdbc/dcrsirat" resource-ref="true" cache="true" /> -->
+<!-- 	<jee:jndi-lookup id="dcsp" jndi-name="jdbc/dcsp" resource-ref="true" cache="true" /> -->
+<!-- 	<jee:jndi-lookup id="dcbdexpvir" jndi-name="jdbc/dcbdexpvir" resource-ref="true" cache="true" /> -->
+
+	
+<!-- 	IMPORT ROUTING DATASOURCE -->
+	<import resource="routing-datasource-data.xml"/>
+	
+<!-- 	POOLS DINAMICOS -->
+ 	<bean id="SqlMapClientRsirat" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.SqlMapClientImplFactoryBean"> 
+		<property name="configLocation" value="documentacion-expvirtual-sqlmap-config-rsirat.xml"></property>
+		<property name="dataSource" ref="rsiratRoutingDataSource"></property>
+	</bean>
+
+	<bean id="SqlMapClientRecauda" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.SqlMapClientImplFactoryBean"> 
+		<property name="configLocation" value="documentacion-expvirtual-sqlmap-config-recauda.xml"></property>
+		<property name="dataSource" ref="recaudaRoutingDataSource"></property>
+	</bean>
+
+<!-- 	<bean id="sqlMapClientRecaudaRsirat" class="pe.gob.sunat.recurso2.documentacion.expvirtual.util.SqlMapClientImplFactoryBean"> -->
+<!-- 		<property name="configLocation" value="documentacion-expvirtual-sqlmap-config-recauda-rsirat.xml"></property> -->
+<!-- 		<property name="dataSource" ref="recauda_rsiratRoutingDataSource"></property> -->
+<!-- 	</bean> -->
+
+<!-- 	POOLS ESTATICOS -->
+	
+	<bean id="SqlMapClientSp" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="documentacion-expvirtual-sqlmap-config-sp.xml"/>
+		<property name="dataSource" ref="spRoutingDataSource" />
+	</bean>
+	
+	<bean id="SqlMapClientBdexpvir" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="documentacion-expvirtual-sqlmap-config-bdexpvir.xml"/>
+		<property name="dataSource" ref="bdexpvirRoutingDataSource" />
+	</bean>
+	
+	<!-- Inicio [oachahuic][PAS20165E210400270] -->
+	<bean id="SqlMapClientBdsigad" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="documentacion-expvirtual-sqlmap-config-bdsigad.xml"/>
+		<property name="dataSource" ref="bdsigadRoutingDataSource" />
+	</bean>
+
+	<bean id="SqlMapClientPrad1" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="documentacion-expvirtual-sqlmap-config-prad1.xml"/>
+		<property name="dataSource" ref="prad1RoutingDataSource" />
+	</bean>
+	<!-- Fin [oachahuic][PAS20165E210400270] -->
+	
+	<!-- Inicio [oachahuic][PAS20181U210400241] -->
+	<bean id="sqlMapClientMensajeria" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="documentacion-expvirtual-sqlmap-config-mensajeria.xml"/>
+		<property name="dataSource" ref="mensajeriaRoutingDataSource" />
+	</bean>
+	<!-- Fin [oachahuic][PAS20181U210400241] -->
+	
+	<!-- *************************************** RSIRAT **************************************** -->
+	<bean id="expCoaDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapExpCoaDAO">
+		<property name="sqlMapClient" ref="SqlMapClientRsirat" />
+	</bean>
+	
+	<bean id="resCoaDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapResCoaDAO">
+		<property name="sqlMapClient" ref="SqlMapClientRsirat" />
+	</bean>
+	
+	<!--  Inicio [nchavez 26/05/2015] -->
+	<bean id="sgs33DAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapSgs33DAO">
+		<property name="sqlMapClient" ref="SqlMapClientRsirat" />
+	</bean>
+	<!-- Fin [nchavez 26/05/2015] -->
+	
+	<!-- Inicio [eaguilar 26/05/2015] -->
+	<bean id="ccs19DAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapCcs19DAO">
+		<property name="sqlMapClient" ref="SqlMapClientRsirat" />
+	</bean>
+	<!--  Fin [eaguilar 26/05/2015] -->
+
+	<bean id="accExpDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapAccExpDAO">
+		<property name="sqlMapClient" ref="SqlMapClientRsirat" />
+	</bean>
+
+	<bean id="expFiscaDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapExpFiscaDAO">
+		<property name="sqlMapClient" ref="SqlMapClientRsirat" />
+	</bean>
+	
+		<!-- [PAS20191U210500291]: JMC - INI -->
+	<bean id="recAudDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapRecAudDAO">
+		<property name="sqlMapClient" ref="SqlMapClientRsirat" />
+	</bean>
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+	
+	<!-- *************************************** RECAUDA **************************************** -->
+	<bean id="t01ParamDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT01ParamDAO">
+		<property name="sqlMapClient" ref="SqlMapClientRecauda" />
+	</bean>
+	
+	<bean id="ddpDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapDdpDAO">
+		<property name="sqlMapClient" ref="SqlMapClientRecauda" />
+	</bean>
+	
+	<!-- *************************************** SP **************************************** -->
+	<bean id="correosDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapCorreosDAO">
+		<property name="sqlMapClient" ref="SqlMapClientSp" />
+	</bean>
+	
+	<bean id="t02PerdpDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT02PerdpDAO">
+		<property name="sqlMapClient" ref="SqlMapClientSp" />
+	</bean>
+	
+	<bean id="t12UOrgaDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT12UOrgaDAO">
+		<property name="sqlMapClient" ref="SqlMapClientSp" />
+	</bean>
+	
+	<bean id="t1797DepenUOrgaDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT1797DepenUOrgaDAO">
+		<property name="sqlMapClient" ref="SqlMapClientSp" />
+	</bean>
+		
+	<!-- *************************************** EXPEDIENTE VIRTUAL **************************************** -->
+	<bean id="t6624TipExpProcDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6624TipExpProcDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6623TipDocExpDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6623TipDocExpDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6614ExpVirtualDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6614ExpVirtualDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6613DocExpVirtDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6613DocExpVirtDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6621RespExpVirtDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6621RespExpVirtDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6620RequerimDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6620RequerimDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6622SeguimDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6622SeguimDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6615ObsExpDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6615ObsExpDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6611CabPlantiDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6611CabPlantiDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6612DetPlantiDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6612DetPlantiDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6616PedRepDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6616PedRepDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6617RepGenDocDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6617RepGenDocDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6618RepGenExpDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6618RepGenExpDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="t6619RepGenPedDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6619RepGenPedDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<bean id="reporteIndicadoresDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapReportesIndicadoresDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<!-- Inicio [jquispe 02/06/2016] -->
+	<bean id="t7731DocAdiExpVirtDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT7731DocAdiExpVirtDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	<!--  Fin [jquispe 02/06/2016] -->
+	
+	<!-- Inicio [jtejada 18/08/2016] -->
+	<bean id="t6625repimpexpvirtDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6625repimpexpvirtDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	<bean id="t6626seguirepimpDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6626seguirepimpDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	<!--  Fin [jtejada 18/08/2016] -->
+	<!--  Inicio [lromerob 10/12/2019] -->
+	<bean id="t10373DocAdjReqDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT10373DocAdjReqDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	<!--  Fin [lromerob 10/12/2019] -->
+	
+		<!--  Inicio [lromerob 17/01/2020] -->
+	<bean id="t10458VersDocAdjDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT10458VersDocAdjDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+		<bean id="t10461SolDesDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT10461SolDesDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+
+	<!--  Inicio CVG 16/01/2020 -->
+	<bean id="t10459AccepExpVirtDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT10459AccepExpVirtDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	<bean id="t10460VincExpVirtDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT10460VincExpVirtDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	<!--  Fin CVG -->
+
+	<!-- Inicio [oachahuic][PAS20165E210400270] -->
+	<!-- ********************************************* BDSIGAD ********************************************** -->
+	<bean id="tabDepDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapTabDepDAO">
+		<property name="sqlMapClient" ref="SqlMapClientPrad1" />
+	</bean>
+
+	<bean id="circunOceDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapCircunOceDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdsigad" />
+	</bean>
+	
+	<bean id="dataCatalogoDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapDataCatalogoDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdsigad" />
+	</bean>
+	<!-- Fin [oachahuic][PAS20165E210400270] -->	
+
+	<!-- Inicio [oachahuic][PAS20181U210400241] -->
+	<!-- ******************************************* MENSAJERIA ******************************************* -->
+	<bean id="t6303DetPedidoDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT6303DetPedidoDAO">
+		<property name="sqlMapClient" ref="sqlMapClientMensajeria" />
+	</bean>
+	<!--  Fin [oachahuic][PAS20181U210400241] -->
+	
+	<!--[PAS20191U210500144] Inicio -->
+	<!-- ***************************************** PRAD1 ****************************************** -->
+	<bean id="docInteDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapDocInteDAO">
+		<property name="sqlMapClient" ref="SqlMapClientPrad1" />
+	</bean>
+	<!--[PAS20191U210500144] Fin -->
+	<!-- [PAS20191U210500291]: JMC - INI -->
+	<bean id="dualDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapDualDAO">
+		<property name="sqlMapClient" ref="SqlMapClientPrad1" />
+	</bean>
+	<bean id="expediDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapExpediDAO">
+		<property name="sqlMapClient" ref="SqlMapClientPrad1" />
+	</bean>
+	<bean id="seguimDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapSeguimDAO">
+		<property name="sqlMapClient" ref="SqlMapClientPrad1" />
+	</bean>
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+	<!-- *************************************** PROPERTIES **************************************** -->
+	<bean id="correoConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location">
+			<value>classpath:correo.properties</value>
+		</property>
+	</bean>
+	 <!-- ********************************** Inicio staype 26/12/2019 [PAS20191U210500291] tabla de Rsirat req_ord_fis **************************************** -->
+	<bean id="reqOrdFisDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapReqOrdFisDAO">
+		<property name="sqlMapClient" ref="SqlMapClientRsirat" />
+	</bean>
+	
+	<!-- ********************************** tabla de Rsirat det_req_ordfis **************************************** -->
+	<bean id="detReqOrdFisDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapDetReqOrdFisDAO">
+		<property name="sqlMapClient" ref="SqlMapClientRsirat" />
+	</bean>
+	
+	<!-- ********************************** tabla T10372detrequerim **************************************** -->
+	<bean id="t10372DetRequerimDAO" class="pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ibatis.SqlMapT10372DetRequerimDAO">
+		<property name="sqlMapClient" ref="SqlMapClientBdexpvir" />
+	</bean>
+	
+	<!-- ********************************** Fin staype 26/12/2019 [PAS20191U210500291] **************************************** -->
+	
+	
+</beans>

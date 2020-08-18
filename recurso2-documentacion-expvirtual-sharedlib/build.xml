@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="recurso2-documentacion-expvirtual-sharedlib" default="ear-gen" basedir=".">
+	
+	<property file="ant-proy-config.properties"/>
+	
+	<tstamp>
+		<format property="fechaHoy" pattern="dd-MM-yyyy" />
+	</tstamp>
+	
+	<!-- Crear carpetas -->
+	<target name="create">
+		<mkdir dir="${build.dir}/lib"/>
+	</target>
+	
+	<target name="model-gen">
+		
+		<jar jarfile="${project.lib}/${model}-${impl.version}.jar">
+			
+			<fileset dir="${classes.dir}">
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/bean/*.class"/>
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/model/*.class"/>
+			</fileset>
+			
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Specification-Title" value="${model}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+			</manifest>
+			
+		</jar>
+		
+	</target>
+	
+	<target name="dao-ifz-gen">
+		
+		<jar jarfile="${project.lib}/${dao-ifz}-${impl.version}.jar">
+			
+			<fileset dir="${classes.dir}">
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/*DAO.class"/>
+			</fileset>
+			
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Specification-Title" value="${dao-ifz}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+			</manifest>
+			
+		</jar>
+		
+	</target>
+	
+	<target name="dao-imp-gen">
+		
+		<jar jarfile="${project.lib}/${dao-imp}-${impl.version}.jar">
+			
+			<fileset dir="${classes.dir}">
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/SqlMap*DAO.class"/>
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/*.xml"/>
+				<include name="documentacion-expvirtual-data.xml" />
+				<include name="documentacion-expvirtual-sqlmap-config*.xml" />
+				<include name="bdexpvir-data.xml" />
+				<include name="recauda-data.xml" />
+				<include name="routing-datasource-data.xml" />
+				<include name="rsirat-data.xml" />
+				<include name="sp-data.xml" />
+				<include name="bdsigad-data.xml" /><!-- [oachahuic][PAS20165E210400270] -->
+				<include name="prad1-data.xml" /><!-- [oachahuic][PAS20165E210400270] -->
+				<include name="mensajeria-data.xml" /><!-- [oachahuic][PAS20181U210400241] -->
+			</fileset>
+			
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Specification-Title" value="${dao-imp}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+			</manifest>
+			
+		</jar>
+		
+	</target>
+	
+	<target name="service-ifz-gen">
+		
+		<jar jarfile="${project.lib}/${service-ifz}-${impl.version}.jar">
+			
+			<fileset dir="${classes.dir}">
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/service/*Service.class" />
+			</fileset>
+			
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Specification-Title" value="${service-ifz}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+			</manifest>
+			
+		</jar>
+		
+	</target>
+	
+	<target name="service-imp-gen">
+		
+		<jar jarfile="${project.lib}/${service-imp}-${impl.version}.jar">
+			
+			<fileset dir="${classes.dir}">
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/service/*ServiceImpl.class" />
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/util/*.class" />
+				<include name="documentacion-expvirtual-service.xml" />
+				<include name="documentacion-expvirtual-tx.xml" />
+				<include name="correo.properties" />
+			</fileset>
+			
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Specification-Title" value="${service-imp}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+			</manifest>
+			
+		</jar>
+		
+	</target>
+	
+	<target name="ear-gen" depends="create, model-gen, dao-ifz-gen, dao-imp-gen, service-ifz-gen, service-imp-gen">
+		
+		<replace file="${classes.dir}/META-INF/application.xml" value="${impl.version}">
+			<replacetoken>${impl.version}</replacetoken>
+		</replace>
+		
+		<copy todir="${build.dir}">
+			<fileset dir="${classes.dir}">
+				<include name="META-INF/*.xml" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${project.lib}">
+			<fileset dir="${java.lib.dir}">
+				<include name="poi-ooxml-schemas-3.9-20121203.jar" />
+				<include name="documents4j-server-standalone-1.0.0-shaded.jar" />
+				<include name="poi-scratchpad-3.9.jar" />
+				<include name="commons-io-1.4.jar" />
+				
+				<!-- 9 AGO -->
+				<include name="zxing-core-java6-3.2.0.jar" />
+				<include name="zxing-javase-java6-3.2.0.jar" />
+				<!-- HHC - sello de tiempo -->
+				<include name="sdkSunatTSA.jar"/>
+			    <include name="framework-util-1.6.jar" />
+				<!--LLROMEROB-->
+				<include name="Jace.jar"/>
+				<include name="stax-api.jar"/>
+				<include name="xlxpScanner.jar"/>
+				<include name="xlxpScannerUtils.jar"/>
+			</fileset>
+		</copy>
+		
+		<jar jarfile="${build.dir}/${ear}-${impl.version}.ear" basedir="${build.dir}">
+			<include name="META-INF/*.xml" />
+			<include name="lib/${model}-${impl.version}.jar" />
+			<include name="lib/${dao-ifz}-${impl.version}.jar" />
+			<include name="lib/${dao-imp}-${impl.version}.jar" />
+			<include name="lib/${service-ifz}-${impl.version}.jar" />
+			<include name="lib/${service-imp}-${impl.version}.jar" />
+			<include name="lib/poi-ooxml-schemas-3.9-20121203.jar" />
+			<include name="lib/documents4j-server-standalone-1.0.0-shaded.jar" />
+			<include name="lib/poi-scratchpad-3.9.jar" />
+			<include name="lib/commons-io-1.4.jar" />
+			
+			<!-- 9 AGO -->
+			<include name="lib/zxing-core-java6-3.2.0.jar" />
+			<include name="lib/zxing-javase-java6-3.2.0.jar" />
+			<!-- hhc - sello de tiempo -->
+			<include name="lib/sdkSunatTSA.jar"/>
+			<include name="lib/framework-util-1.6.jar" />
+			<!--LLROMEROB-->
+			<include name="lib/Jace.jar"/>
+			<include name="lib/stax-api.jar"/>
+			<include name="lib/xlxpScanner.jar"/>
+			<include name="lib/xlxpScannerUtils.jar"/>
+
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Specification-Title" value="${slbear}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Extension-Name" value="${ear}"/>
+			</manifest>
+		</jar>
+		
+		<copy file="${build.dir}/${ear}-${impl.version}.ear" todir="${wls103.deploy.dir}" />
+		
+	</target>
+	
+</project>

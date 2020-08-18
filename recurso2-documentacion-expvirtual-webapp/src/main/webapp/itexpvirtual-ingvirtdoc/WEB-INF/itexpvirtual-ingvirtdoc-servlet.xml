@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<bean id="viewResolver" 
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"
+		p:viewClass="org.springframework.web.servlet.view.JstlView" />
+	
+	<bean id="jsonViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
+		<property name="order" value="1" />
+		<property name="location" value="/WEB-INF/itexpvirtual-ingvirtdoc-jsonview.xml" />
+	</bean>
+	
+	<bean id="methodEvaluacionResolver" 
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName" value="action" />
+	</bean>
+	
+	<bean id="urlHandlerMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<!-- 		<property name="interceptors"> -->
+<!-- 			<list> -->
+<!-- 				<ref bean="menuIntranetInterceptor" /> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+		<property name="mappings">
+			<value>
+				/consultaRequerim.htm=consultaRequerimientoController
+				/cargarDocumentoIt.htm=cargaDocumentoInternetController
+				/cargarDocEscritoIt.htm=cargaDocumentoEscritoITController <!-- [PAS20191U210500291]: JMC -->
+				/consultaDocEscritoIt.htm=consultaDocumentoEscritoITController  <!-- [PAS20201U210500029]: HHC -->
+				/error.htm=errorController <!-- [PAS20201U210500029]: HHC -->
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="consultaRequerimientoController" class="pe.gob.sunat.recurso2.documentacion.expvirtual.web.controller.ConsultaRequerimientoController">
+		<property name="methodNameResolver" ref="methodEvaluacionResolver" />
+		<property name="jsonView" ref="jsonView" />
+		<property name="paramService" ref="parametroService" />
+		<property name="expedienteVirtualService" ref="expedienteVirtualService" />
+		<property name="validarParametrosService" ref="validarParametrosService" />
+		<property name="configuracionExpedienteService" ref="configuracionExpedienteService" />
+		<property name="requerimientoService" ref="requerimientoService" />
+		<property name="ecmService" ref="ecmService" />
+	</bean>
+	
+	<bean id="cargaDocumentoInternetController" class="pe.gob.sunat.recurso2.documentacion.expvirtual.web.controller.CargaDocumentoInternetController">
+		<property name="methodNameResolver" ref="methodEvaluacionResolver" />
+		<property name="jsonView" ref="jsonView" />
+		<property name="paramService" ref="parametroService" />
+		<property name="expedienteVirtualService" ref="expedienteVirtualService" />
+		<property name="validarParametrosService" ref="validarParametrosService" />
+		<property name="configuracionExpedienteService" ref="configuracionExpedienteService" />
+		<property name="requerimientoService" ref="requerimientoService" />
+		<property name="catalogoService" ref="catalogoService" />
+		<property name="documentoExpedienteService" ref="documentoExpedienteService" />
+		<property name="respService" ref="respService" />
+		<!-- [PAS20191U210500291]: JMC - INI -->
+		<property name="detalleRequerimientoService" ref="detalleRequerimientoService" /> 
+		<property name="documentoItemRequerimientoService" ref="documentoItemRequerimientoService" />
+		<!-- [PAS20191U210500291]: JMC - FIN -->
+	</bean>
+	
+	<!-- [PAS20191U210500291]: JMC - INI -->
+	<bean id="cargaDocumentoEscritoITController" class="pe.gob.sunat.recurso2.documentacion.expvirtual.web.controller.CargaDocumentoEscritoITController">
+		<property name="methodNameResolver" ref="methodEvaluacionResolver" />
+		<property name="jsonView" ref="jsonView" />
+		<property name="paramService" ref="parametroService" />
+		<property name="configuracionExpedienteService" ref="configuracionExpedienteService" />
+		<property name="catalogoService" ref="catalogoService" />
+		<property name="documentoItemRequerimientoService" ref="documentoItemRequerimientoService" />
+		<property name="ecmService" ref="ecmService" />
+	</bean>
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+		
+	<bean id="uploadTempDirResource"
+		class="org.springframework.core.io.FileSystemResource">
+		<constructor-arg>
+			<value>/data0/uploads/spring</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- LLRB INICIO PAS20201U210500175-->
+		<property name="maxUploadSize" value="300000000"/> <!-- "100000000" -->
+		<!-- LLRB FIN PAS20201U210500175-->
+		<property name="uploadTempDir" ref="uploadTempDirResource"/>
+		<property name="defaultEncoding" value="utf-8"/>
+	</bean>
+	<!-- [PAS20201U210500029]: HHC - INICIO -->
+	<bean id="consultaDocumentoEscritoITController" class="pe.gob.sunat.recurso2.documentacion.expvirtual.web.controller.ConsultaDocumentoEscritoITController">
+		<property name="methodNameResolver" ref="methodEvaluacionResolver" />
+		<property name="jsonView" ref="jsonView" />
+		<property name="paramService" ref="parametroService" />
+		<property name="expedienteVirtualService" ref="expedienteVirtualService" />
+		<property name="validarParametrosService" ref="validarParametrosService" />
+ 		<property name="documentoItemRequerimientoService" ref="documentoItemRequerimientoService" />   
+		
+		<property name="configuracionExpedienteService" ref="configuracionExpedienteService" />
+		<property name="requerimientoService" ref="requerimientoService" />
+		<property name="detalleRequerimientoService" ref="detalleRequerimientoService" />
+		<property name="documentoExpedienteService" ref="documentoExpedienteService" />
+	</bean>
+	<bean id="errorController" class="pe.gob.sunat.recurso2.documentacion.expvirtual.web.controller.ErrorController">
+		<property name="methodNameResolver" ref="methodEvaluacionResolver" />
+	</bean>
+	<!-- [PAS20201U210500029]: HHC - FIN -->
+</beans>	

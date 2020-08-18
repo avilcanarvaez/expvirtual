@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T10373DocAdjReq">
+	<typeAlias alias="t10373DocAdjReqBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10373DocAdjReqBean"/>
+	
+	<resultMap id="resultBeanListaArchivos" class="java.util.HashMap">
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="numArcAdj" column="NUM_ARC_ADJ" />
+		<result property="numReq" column="NUM_REQUERIM" />
+		<result property="numItem" column="NUM_ITEM" />
+		<result property="numArcItem" column="NUM_ARC_ITEM" />		
+		<result property="nomArcAdj" column="NOM_ARC_ADJ" />
+		<result property="numArc" column="NUM_ARCHIVO" />
+		<result property="cntTamArc" column="CNT_TAM_ARC" />
+		<result property="numFolios" column="NUM_FOLIOS" />
+		<result property="codIdecm" column="COD_ID_ECM" />
+		<result property="codTipExp" column="COD_TIPEXP" />
+		<result property="codTipDoc" column="COD_TIPDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="numExpedO" column="NUM_EXPEDO" />
+		
+	</resultMap>
+	<resultMap id="resultBean" class="java.util.HashMap">
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="numArcAdj" column="NUM_ARC_ADJ" />
+		<result property="numReq" column="NUM_REQUERIM" />
+		<result property="numItem" column="NUM_ITEM" />
+		<result property="numArcItem" column="NUM_ARC_ITEM" />		
+		<result property="nomArcAdj" column="NOM_ARC_ADJ" />
+		<result property="numArc" column="NUM_ARCHIVO" />
+		<result property="cntTamArc" column="CNT_TAM_ARC" />
+		<result property="numFolios" column="NUM_FOLIOS" />
+	</resultMap>
+	
+	<!-- [PAS20191U210500291]: JMC - INI -->
+	<resultMap id="resultBean" class="T10373DocAdjReqBean" >
+		<result property="numArchAdj" column="num_arc_adj" />
+		<result property="numRequerimiento" column="num_requerim" />
+		<result property="numItem" column="num_item" />
+		<result property="numSubItem" column="num_sub_item" />
+		<result property="numArcItem" column="num_arc_item" />
+		<result property="nomArchAdj" column="nom_arc_adj" />
+		<result property="numArchivo" column="num_archivo" />
+		<result property="cntTamArch" column="cnt_tam_arc" />
+		<result property="numFolios" column="num_folios" />
+		<result property="codTipAlm" column="cod_tip_alm" />
+		<result property="codIdECM" column="cod_id_ecm" />
+		<result property="numCorDoc" column="num_cordoc" />
+		<result property="codOriDoc" column="cod_origdoc" />
+		<result property="fechaRegistro" column="fec_regis" />
+		<result property="codUsuRegis" column="cod_usuregis" />
+		<result property="fechaMod" column="fec_modif" />
+		<result property="codUsuMod" column="cod_usumodif" />			
+	</resultMap>
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+	
+	<select id="listarArcDocPorExp" parameterClass="java.util.HashMap" resultMap="resultBeanListaArchivos">
+		select b.num_cordoc,a.num_arc_adj, a.num_requerim,a.num_item, a.num_arc_item,a.nom_arc_adj,a.num_archivo, a.cnt_tam_arc,a.num_folios,a.cod_id_ecm,
+		b.cod_tipexp, cod_tipdoc,num_doc,num_expedo
+		FROM t10373docadjreq a
+		INNER join t6613docexpvirt b ON a.num_cordoc = b.num_cordoc
+		inner join  t6614expvirtual c ON b.num_expedv = c.num_expedv
+		
+		<dynamic prepend="WHERE">
+			<isNotNull property="numCorDoc" prepend="AND">
+				b.num_cordoc = #numCorDoc#
+			</isNotNull>
+	  	</dynamic>
+	  	<dynamic prepend="order by">
+	        <isEqual property="orderby" compareValue="num_cordoc">
+	            b.num_cordoc ASC
+	        </isEqual>
+
+        </dynamic>
+	</select>
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean">
+		SELECT num_cordoc,num_arc_adj, num_requerim,num_item, num_arc_item,nom_arc_adj,num_archivo, cnt_tam_arc,num_folios   
+		FROM t10373docadjreq 
+		<dynamic prepend="WHERE">
+			<isNotNull property="numCorDoc" prepend="AND">
+				num_cordoc = #numCorDoc#
+			</isNotNull>
+		</dynamic>
+			  	<dynamic prepend="order by">
+	        <isEqual property="orderby" compareValue="num_cordoc">
+	            d.num_cordoc ASC
+	        </isEqual>
+        </dynamic>
+	</select>
+		
+	<!-- [PAS20191U210500291]: JMC - INI -->
+	<select id="selectCantidadArch" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT  count(*) As cantArchivos
+		FROM t10373DocAdjReq
+		 <dynamic prepend="WHERE">
+            <isNotNull prepend="AND" property="numRequerimiento"> num_requerim  = #numRequerimiento# </isNotNull>
+            <isNotNull prepend="AND" property="numItem"> num_item = #numItem# </isNotNull>           			
+		</dynamic>
+	</select>
+	
+	<select id="listarDocAdj" parameterClass="java.util.HashMap" resultMap="resultBean">
+		SELECT  num_arc_adj, num_requerim, num_item, num_sub_item, 
+				num_arc_item, nom_arc_adj, num_archivo, cnt_tam_arc, 
+				num_folios, cod_tip_alm, cod_id_ecm, num_cordoc, 
+				cod_origdoc, cod_usuregis, fec_regis, cod_usumodif, 
+				fec_modif
+		FROM t10373DocAdjReq
+		 <dynamic prepend="WHERE">
+            <isNotNull prepend="AND" property="numRequerimiento"> num_requerim  = #numRequerimiento# </isNotNull>
+            <isNotNull prepend="AND" property="numItem"> num_item = #numItem# </isNotNull>
+            <isNotNull prepend="AND" property="numCorDoc"> num_cordoc = #numCorDoc#</isNotNull> <!-- [PAS20201U210500029] - HHC -->                			
+		</dynamic>
+	</select>
+	
+	<insert id= "insertar" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10373DocAdjReqBean">
+		INSERT INTO t10373DocAdjReq
+		(num_arc_adj, num_requerim, num_item, num_sub_item, num_arc_item, nom_arc_adj, num_archivo, cnt_tam_arc, num_folios, 
+		 cod_tip_alm, cod_id_ecm, num_cordoc, cod_origdoc, cod_usuregis, fec_regis, cod_usumodif, fec_modif)
+		VALUES (#numArchAdj#, #numRequerimiento#, #numItem#, #numSubItem#, #numArcItem#, #nomArchAdj#, #numArchivo#, #cntTamArch#, #numFolios#,
+		        #codTipAlm#, #codIdECM#, #numCorDoc#, #codOriDoc#, #codUsuRegis#, #fechaRegistro#, #codUsuMod#, #fechaMod#)
+	</insert>
+	
+	<update id="update" parameterClass="java.util.HashMap" >		
+		UPDATE t10373DocAdjReq 
+		<dynamic prepend="SET">
+			<isNotNull property="numCorDoc" prepend=",">
+				num_cordoc = #numCorDoc#
+			</isNotNull>			
+			<isNotNull property="codUsuModif" prepend=",">
+				cod_usumodif = #codUsuModif#
+			</isNotNull>			
+			<isNotNull property="fecModif" prepend=",">
+				fec_modif = #fecModif#
+			</isNotNull>		
+		</dynamic>
+		<dynamic prepend="WHERE">			
+			<isNotNull property="numRequerimiento" prepend="AND">
+				num_requerim = #numRequerimiento#
+			</isNotNull>
+			<isNotNull property="numItem" prepend="AND">
+				num_item = #numItem#
+			</isNotNull>
+		</dynamic>	
+		AND num_cordoc = 0	
+	</update>
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+</sqlMap>

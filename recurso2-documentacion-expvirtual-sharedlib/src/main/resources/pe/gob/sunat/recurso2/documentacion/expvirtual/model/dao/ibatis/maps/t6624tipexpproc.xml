@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6624TipExpProc">
+	
+	<typeAlias alias="t6624TipExpProcBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6624TipExpProcBean"/>
+	
+	<resultMap id="resultBean" class="t6624TipExpProcBean" >
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codUsuarioModificacion" column="COD_USUMODIF" />
+		<result property="fecModificacion" column="FEC_MODIF" />
+		<result property="indEliminado" column="IND_DEL" />
+	</resultMap>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean">
+		
+		SELECT cod_proc, cod_tipexp, cod_usuregis, fec_regis, cod_usumodif, fec_modif, ind_del
+		FROM T6624tipexpproc
+		<dynamic prepend="WHERE">
+			<isNotNull property="codProceso" prepend="AND">
+				cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipoExpediente" prepend="AND">
+				cod_tipexp = #codTipoExpediente#
+			</isNotNull>
+			<isNotNull property="indEliminado" prepend="AND">
+				ind_del = #indEliminado#
+			</isNotNull>
+		</dynamic>
+		
+	</select>
+	
+	<insert id="insertar" parameterClass="java.util.HashMap">
+		
+		INSERT INTO T6624tipexpproc (cod_proc, cod_tipexp, cod_usuregis, fec_regis, 
+		cod_usumodif, fec_modif, ind_del)
+		VALUES (#codProceso#, #codTipoExpediente#, #codUsuarioRegistro#, 
+		#fecRegistro#, #codUsuarioModificacion#, #fecModificacion#, #indEliminado#)
+		
+	</insert>
+	
+	<update id="actualizarMasivo" parameterClass="java.util.HashMap" >
+		
+		UPDATE T6624tipexpproc 
+		<dynamic prepend="SET">
+			<isNotNull property="codProceso" prepend=",">
+				cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codUsuarioModificacion" prepend=",">
+				cod_usumodif = #codUsuarioModificacion#
+			</isNotNull>
+			<isNotNull property="fecModificacion" prepend=",">
+				fec_modif = #fecModificacion#
+			</isNotNull>
+			<isNotNull property="indEliminado" prepend=",">
+				ind_del = #indEliminado#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="listadoTiposExpedientes">
+				<isNotEmpty prepend="AND" property="listadoTiposExpedientes">
+					cod_tipexp IN 
+					<iterate property="listadoTiposExpedientes" open="(" close=")" conjunction=",">
+						#listadoTiposExpedientes[].codTipoExpediente#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		
+	</update>
+	
+</sqlMap>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<import resource="classpath:framework-data.xml"/>
+	
+	<bean id="generalService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.GeneralServiceImpl" />
+	<!-- Inicio [nchavez 26/05/2015] -->
+	<bean id="sgs33Service" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.Sgs33ServiceImpl">
+		<property name="sgs33dao" ref="sgs33DAO" />
+		<property name="generalService" ref="generalService"/>
+	</bean>
+	<!-- Fin [nchavez 26/05/2015] -->
+	<bean id="catalogoService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.CatalogoServiceImpl">
+		<property name="generalService" ref="generalService" />
+		<property name="t01ParamDAO" ref="t01ParamDAO" />
+	</bean>
+	
+	<bean id="configuracionExpedienteService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ConfiguracionExpedienteServiceImpl">
+		<property name="generalService" ref="generalService" />
+		<property name="catalogoService" ref="catalogoService" />
+		<property name="t01ParamDAO" ref="t01ParamDAO" />
+		<property name="t6624TipExpProcDAO" ref="t6624TipExpProcDAO" />
+		<property name="t6623TipDocExpDAO" ref="t6623TipDocExpDAO" />
+		<property name="t6613DocExpVirtDAO" ref="t6613DocExpVirtDAO" />
+		<property name="resCoaDAO" ref="resCoaDAO" />
+		<property name="expCoaDAO" ref="expCoaDAO" />
+		<!-- Inicio [jjurado 26.05.2016] -->
+		<property name="ccs19DAO" ref="ccs19DAO" />
+		<!-- Fin [jjurado 26.05.2016] -->
+		<property name="expFiscaDAO" ref="expFiscaDAO" />
+		<property name="personaService" ref="personaService" />
+		<property name="documentoExpedienteService" ref="documentoExpedienteService" />
+	</bean>
+	
+	<bean id="expedienteVirtualService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualServiceImpl">
+		<property name="generalService" ref="generalService" />
+		<property name="seguiService" ref="seguiService" />
+		<property name="correosService" ref="correosService" />
+		<property name="t6613DocExpVirtDAO" ref="t6613DocExpVirtDAO" />
+		<property name="t6620RequerimDAO" ref="t6620RequerimDAO" />
+		<property name="t6614ExpVirtualDAO" ref="t6614ExpVirtualDAO" />
+		<property name="t6621RespExpVirtDAO" ref="t6621RespExpVirtDAO" />
+		<property name="t6622SeguimDAO" ref="t6622SeguimDAO" /><!-- JEFFIO 18/05/2017 -->
+		<property name="t02PerdpDAO" ref="t02PerdpDAO" />
+		<property name="t12UOrgaDAO" ref="t12UOrgaDAO" />
+		<property name="expCoaDAO" ref="expCoaDAO" />
+		<property name="catalogoService" ref="catalogoService" />
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="t01ParamDAO" ref="t01ParamDAO" />
+		<property name="validarParametrosService" ref="validarParametrosService" />
+		<property name="ecmService" ref="ecmService" />
+		<property name="personaService" ref="personaService" />
+		<property name="respService" ref="respService" />
+		<property name="t6623TipDocExpDAO" ref="t6623TipDocExpDAO" />
+		<property name="generaReporteURLService" value="http://api.sunat.peru:10021/cl-ti-iagenerador-service/GeneradorReportService?WSDL" />
+		<property name="uploadReporteURLService" value="http://api.sunat.peru:10020/cl-at-framework-unloadfile/descargaArchivoAlias?"/>
+		
+			<!-- PAS20191U210500144 Inicio 400101 RF04 PSALDARRIAGA -->
+		<property name="expFiscaDAO" ref="expFiscaDAO" />
+
+		<!-- LLRB -->
+		<property name="t10373DocAdjReqDAO" ref="t10373DocAdjReqDAO" />
+		<!-- Inicio CVG -->
+		<property name="t10458VersDocAdjDAO" ref="t10458VersDocAdjDAO" />
+		<property name="t10459AccepExpVirtDAO" ref="t10459AccepExpVirtDAO" />
+		<property name="t10461SolDesDAO" ref="t10461SolDesDAO" />
+		
+		<property name="t10460VincExpVirtDAO" ref="t10460VincExpVirtDAO" />
+		<!-- Fin CVG -->
+	</bean>
+	
+	<bean id="validarParametrosService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ValidarParametrosServiceImpl">
+		<property name="generalService" ref="generalService" />
+		<property name="t6624TipExpProcDAO" ref="t6624TipExpProcDAO" />
+		<property name="t6623TipDocExpDAO" ref="t6623TipDocExpDAO" />
+		<property name="t6614ExpVirtualDAO" ref="t6614ExpVirtualDAO" />
+		<property name="ddpDAO" ref="ddpDAO"/>
+		<property name="t6613DocExpVirtDAO" ref="t6613DocExpVirtDAO"/>
+		<property name="expCoaDAO" ref="expCoaDAO"/>
+	</bean>
+	
+	<bean id="personaService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.PersonaServiceImpl">
+		<property name="t02PerdpDAO" ref="t02PerdpDAO" />
+		<property name="t1797DepenUOrgaDAO" ref="t1797DepenUOrgaDAO" />
+	</bean>
+	
+	<bean id="requerimientoService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.RequerimientoServiceImpl">
+		<property name="respService" ref="respService" />
+		<property name="seguiService" ref="seguiService" />
+		<property name="correosService" ref="correosService" />
+		<property name="t6620RequerimDAO" ref="t6620RequerimDAO" />
+    	<!-- Inicio staype 26/12/2019 [PAS20191U210500291] -->
+		<property name="t10372DetRequerimDAO" ref="t10372DetRequerimDAO" />
+		<property name="reqOrdFisDAO" ref="reqOrdFisDAO" />
+		<property name="detReqOrdFisDAO" ref="detReqOrdFisDAO" />
+	   <!-- Fin staype 26/12/2019 [PAS20191U210500291] -->
+		<property name="t6613DocExpVirtDAO" ref="t6613DocExpVirtDAO" />
+		<property name="generalService" ref="generalService" />
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="personaService" ref="personaService" />
+		<property name="expedienteVirtualService" ref="expedienteVirtualService" />
+		<property name="catalogoService" ref="catalogoService" />
+		<!-- [nchavez] genera reporte de previsualizacion -->
+                <!-- Inicio [jjurado 27/05/2016] -->
+		<property name="validarParametrosService" ref="validarParametrosService" />
+		<!-- Fin [jjurado 27/05/2016]-->
+		<property name="generaReporteURLService" value="http://api.sunat.peru:10021/cl-ti-iagenerador-service/GeneradorReportService?WSDL" /> 
+                <!-- <property name="generaReporteURLService" value="http://localhost:7001/cl-ti-iagenerador-service/GeneradorReportService?WSDL" />  -->
+	    <!-- Inicio [avilcan] -->
+	    <property name="t01ParamDAO" ref="t01ParamDAO" />
+	    <!-- Fin [avilcan] -->
+	</bean>
+	
+	<bean id="correosService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.CorreosServiceImpl">
+		<property name="correosDAO" ref="correosDAO" />
+		<property name="correoConfig" ref="correoConfig" />
+	</bean>
+	
+	<bean id="seguiService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.SeguimientoServiceImpl">
+		<property name="t6622SeguimDAO" ref="t6622SeguimDAO" />
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="generalService" ref="generalService" />
+		<property name="catalogoService" ref="catalogoService" />
+	</bean>
+	
+	<bean id="respService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ResponsableServiceImpl">
+		<property name="t6621RespExpVirtDAO" ref="t6621RespExpVirtDAO" />
+		<property name="t02PerdpDAO" ref="t02PerdpDAO" />
+		<property name="t1797DepenUOrgaDAO" ref="t1797DepenUOrgaDAO" />
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="generalService" ref="generalService" />
+		<property name="seguiService" ref="seguiService" />
+		<property name="correosService" ref="correosService" />
+		<property name="personaService" ref="personaService" />
+		<!-- Inicio [jquispe 27/05/2016] -->
+		<property name="catalogoService" ref="catalogoService" />
+		<!-- Fin [jquispe 27/05/2016] -->
+	</bean>
+	
+	<!-- Inicio CVG -->
+	<bean id="accesoService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.AccesoExpedienteServiceImpl">
+		<property name="t02PerdpDAO" ref="t02PerdpDAO" />
+		<property name="t12UOrgaDAO" ref="t12UOrgaDAO" />
+		<property name="t1797DepenUOrgaDAO" ref="t1797DepenUOrgaDAO" />
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="generalService" ref="generalService" />
+		<property name="seguiService" ref="seguiService" />
+		<property name="correosService" ref="correosService" />
+		<property name="personaService" ref="personaService" />
+		<property name="catalogoService" ref="catalogoService" />
+		<property name="t10459AccepExpVirtDAO" ref="t10459AccepExpVirtDAO" />
+	</bean>
+	<!-- Fin CVG -->
+	
+	<bean id="parametroService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ParametroServiceImpl">
+		<property name="t01ParamDAO" ref="t01ParamDAO" />
+	</bean>
+	
+	<bean id="ecmService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.EcmServiceImpl">
+		<property name="t01ParamDAO" ref="t01ParamDAO" />
+		<property name="generalService" ref="generalService" />
+	</bean>
+	
+	<bean id="observacionExpedienteVirtualService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ObservacionExpedienteVirtualServiceImpl">
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="t6615ObsExpDAO" ref="t6615ObsExpDAO" />
+		<property name="generalService" ref="generalService" />
+		<property name="personaService" ref="personaService" />
+		<!-- Inicio [jquispe 27/05/2016] -->
+		<property name="seguiService" ref="seguiService" />
+		<property name="catalogoService" ref="catalogoService" />
+		<!-- Fin [jquispe 27/05/2016] -->
+	</bean>	
+	
+	<bean id="manttoPlanRepService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ManttoPlanRepServiceImpl">
+		<property name="t6611CabPlantiDAO" ref="t6611CabPlantiDAO" />
+		<property name="t6612DetPlantiDAO" ref="t6612DetPlantiDAO" />
+		<property name="catalogoService" ref="catalogoService" />
+		<property name="personaService" ref="personaService" />
+		<property name="generalService" ref="generalService" />
+		<property name="sequenceDAO" ref="sequenceDAO" />
+	</bean>
+	
+	<bean id="documentoExpedienteService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.DocumentoExpedienteServiceImpl">
+		<property name="t6613DocExpVirtDAO" ref="t6613DocExpVirtDAO" />
+		<property name="t6614ExpVirtualDAO" ref="t6614ExpVirtualDAO" />
+		<property name="t6622SeguimDAO" ref="t6622SeguimDAO" />
+		<property name="configuracionExpedienteService" ref="configuracionExpedienteService" />		
+		<property name="correosService" ref="correosService" />
+		<property name="t6303DetPedidoDAO" ref="t6303DetPedidoDAO" /><!-- [oachahuic][PAS20181U210400241] -->
+		<property name="t01ParamDAO" ref="t01ParamDAO" /><!-- [oachahuic][PAS20181U210400241] -->
+		<property name="docInteDAO" ref="docInteDAO" /> <!-- [etito][PAS20191U210500144] -->
+		<property name="seguiService" ref="seguiService" /> <!-- [etito][PAS20191U210500144] -->
+
+	</bean>
+	
+	<bean id="impRepService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ImpRepServiceImpl">
+		<property name="t6611CabPlantiDAO" ref="t6611CabPlantiDAO" />
+		<property name="catalogoService" ref="catalogoService" />
+		<property name="personaService" ref="personaService" />
+		<property name="t6616PedRepDAO" ref="t6616PedRepDAO" />
+		<property name="t6618RepGenExpDAO" ref="t6618RepGenExpDAO" />	
+		<property name="t6619RepGenPedDAO" ref="t6619RepGenPedDAO" />	
+	</bean>
+	
+	<bean id="expedienteTrabReporteService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteTrabReporteServiceImpl">
+		<property name="t6611CabPlantiDAO" ref="t6611CabPlantiDAO" />
+		<property name="t6612DetPlantiDAO" ref="t6612DetPlantiDAO" />
+		<property name="t6613DocExpVirtDAO" ref="t6613DocExpVirtDAO" />
+		<property name="t6614ExpVirtualDAO" ref="t6614ExpVirtualDAO" />
+		<property name="t6616PedRepDAO" ref="t6616PedRepDAO" />
+		<property name="t6617RepGenDocDAO" ref="t6617RepGenDocDAO" />
+		<property name="t6618RepGenExpDAO" ref="t6618RepGenExpDAO" />
+		<property name="t6619RepGenPedDAO" ref="t6619RepGenPedDAO" />
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="ecmService" ref="ecmService" />
+		<property name="generalService" ref="generalService" />
+		<!-- <property name="generaReporteURLService" value="http://localhost:7001/cl-ti-iagenerador-service/GeneradorReportService" /> -->
+		<property name="generaReporteURLService" value="http://api.sunat.peru:10021/cl-ti-iagenerador-service/GeneradorReportService?WSDL" />
+		<property name="configuracionExpedienteService" ref="configuracionExpedienteService" />
+		<property name="validarParametrosService" ref="validarParametrosService" />
+		<property name="WSContribuyenteService" ref="WSContribuyenteService" />
+		<property name="t10461SolDesDAO" ref="t10461SolDesDAO" /><!-- PAS20201U210500029 - HHC -->
+		<property name="t10373DocAdjReqDAO" ref="t10373DocAdjReqDAO" /><!-- PAS20201U210500029 - HHC -->
+		<property name="personaService" ref="personaService" /><!-- PAS20201U210500082 - HHC -->
+	</bean>
+
+<!-- 	<bean id="generarReporteGenericoService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.GenerarReporteGenericoServiceImpl"> -->
+<!-- 		<property name="generaReporteURLService" value="http://api.sunat.peru:10021/cl-ti-iagenerador-service/GeneradorReportService" /> -->
+<!-- 	</bean> -->
+
+	<bean id="reportesIndicadoresService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.ReportesIndicadoresServiceImpl">
+		<property name="generalService" ref="generalService" />
+		<property name="t6613DocExpVirtDAO" ref="t6613DocExpVirtDAO" />
+		<property name="t6614ExpVirtualDAO" ref="t6614ExpVirtualDAO" />
+		<property name="catalogoService" ref="catalogoService" />
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="t01ParamDAO" ref="t01ParamDAO" />
+		<property name="validarParametrosService" ref="validarParametrosService" />
+		<property name="reporteIndicadoresDAO" ref="reporteIndicadoresDAO" />		
+		<property name="personaService" ref="personaService" />
+		<property name="aduanaService" ref="aduanaService" /><!-- [oachahuic][PAS20165E210400270] -->
+	</bean>
+	
+	<bean id="generaReportePedidoService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.GeneraReportePedidoServiceImpl">
+		<property name="generalService" ref="generalService" />
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="t6616PedRepDAO" ref="t6616PedRepDAO" />
+		<property name="t6619RepGenPedDAO" ref="t6619RepGenPedDAO" />
+		<property name="t6618RepGenExpDAO" ref="t6618RepGenExpDAO" />
+	</bean>
+	
+	<bean id="WSContribuyenteService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.WSContribuyenteServiceImpl">
+		
+		<!--  Inicio [jjurado 03/07/2016] se corrige la relacion de Web Services -->	
+   		<property name="wsURLContPrincipal" value="http://api.sunat.peru/v1/contribuyente/registro/e/contribuyentes/{numRuc}?f=DATOS_PRINCIPALES" />	
+		<property name="wsURLContAdicional" value="http://api.sunat.peru/v1/contribuyente/registro/e/contribuyentes/{numRuc}?f=DATOS_SECUNDARIOS" /> 
+		<property name="wsURLDireccionCont" value="http://api.sunat.peru/v1/contribuyente/registro/e/contribuyentes/{numRuc}/domiciliofiscal" />
+		<property name="wsURLTribAfectoCont" value="http://api.sunat.peru/v1/contribuyente/registro/e/contribuyentes/{numRuc}/tributosafectos" />
+		<property name="wsURLEstAnexoCont" value="http://api.sunat.peru/v1/contribuyente/registro/e/contribuyentes/{numRuc}/establecimientosanexos" /> 
+		<property name="wsURLRepLegalCont" value="http://api.sunat.peru/v1/contribuyente/registro/e/contribuyentes/{numRuc}/representanteslegales" />
+ 		<property name="wsURLComprobantesPago" value="http://api.sunat.peru/v1/contribuyente/registro/e/contribuyentes/{numRuc}/comprobantes" /> 
+ 		<property name="wsURLDireccionNumDAM" value="http://api.sunat.peru/v1/controladuanero/ingreso/declaracion/e/rectificaciones?numRuc={numRuc}&amp;numDAM={numDAM}" />
+ 		
+ 	 	<!-- <property name="wsURLContPrincipal" value="http://192.168.56.13:30000/v1/contribuyente/registro/e/contribuyentes/{numRuc}?f=DATOS_PRINCIPALES" />	
+		<property name="wsURLContAdicional" value="http://192.168.56.13:30000/v1/contribuyente/registro/e/contribuyentes/{numRuc}?f=DATOS_SECUNDARIOS" /> 
+		<property name="wsURLDireccionCont" value="http://192.168.56.13:30000/v1/contribuyente/registro/e/contribuyentes/{numRuc}/domiciliofiscal" />
+		<property name="wsURLTribAfectoCont" value="http://192.168.56.13:30000/v1/contribuyente/registro/e/contribuyentes/{numRuc}/tributosafectos" />
+		<property name="wsURLEstAnexoCont" value="http://192.168.56.13:30000/v1/contribuyente/registro/e/contribuyentes/{numRuc}/establecimientosanexos" /> 
+		<property name="wsURLRepLegalCont" value="http://192.168.56.13:30000/v1/contribuyente/registro/e/contribuyentes/{numRuc}/representanteslegales" />
+ 		<property name="wsURLComprobantesPago" value="http://192.168.56.13:30000/v1/contribuyente/registro/e/contribuyentes/{numRuc}/comprobantes" /> 
+ 		 -->
+ 		<!--  Fin [jjurado 03/07/2016] se corrige la relacion de Web Services -->	
+	</bean>
+	
+	<!-- Inicio [jquispe 01/06/2016] -->
+	<bean id="indiceExpedienteVirtualService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.IndiceExpedienteVirtualServiceImpl">	    
+	    <property name="ecmService" ref="ecmService" />
+<!-- 	    <property name="generaReporteURLService" value="http://localhost:7001/cl-ti-iagenerador-service/GeneradorReportService" /> -->
+	     <property name="generaReporteURLService" value="http://api.sunat.peru:10021/cl-ti-iagenerador-service/GeneradorReportService" />
+	    <property name="generalService" ref="generalService" />
+	    <property name="sequenceDAO" ref="Framework.sequenceDef" />	   
+	    <property name="t7731DocAdiExpVirtDAO" ref="t7731DocAdiExpVirtDAO" />
+	</bean>
+	<!-- Fin [jquispe 01/06/2016] -->
+	
+	<!-- Inicio [jjurado 18/08/2016] -->
+	<bean id="representacionImpresaService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.RepresentacionImpresaServiceImpl">	    
+	    <property name="generalService" ref="generalService" />
+	    <property name="t6625repimpexpvirtDAO" ref="t6625repimpexpvirtDAO" />
+	    <property name="t6626seguirepimpDAO" ref="t6626seguirepimpDAO" />
+	    <property name="sequenceDAO" ref="sequenceDAO" />
+	</bean>
+	<!-- Fin [jquispe 18/08/2016] -->
+
+	<!-- Inicio [oachahuic][PAS20165E210400270] -->
+	<bean id="aduanaService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.AduanaServiceImpl">	    
+	    <property name="tabDepDAO" ref="tabDepDAO" />
+	    <property name="circunOceDAO" ref="circunOceDAO" />
+	    <property name="t6613DocExpVirtDAO" ref="t6613DocExpVirtDAO" />
+	    <property name="t6620RequerimDAO" ref="t6620RequerimDAO" />
+	    <property name="dataCatalogoDAO" ref="dataCatalogoDAO" />
+	</bean>
+	<!-- Fin [oachahuic][PAS20165E210400270] -->
+	
+	<!-- Inicio [oachahuic][PAS20181U210400213] -->
+	<bean id="cobranzaCoactivaService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.CobranzaCoactivaServiceImpl">	    
+	    <property name="accExpDAO" ref="accExpDAO" />
+	    <property name="t6614ExpVirtualDAO" ref="t6614ExpVirtualDAO" />
+	</bean>
+	<!-- Fin [oachahuic][PAS20181U210400213] -->
+	
+	<!-- [PAS20191U210500291]: JMC - INI -->
+	<bean id="detalleRequerimientoService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.DetalleRequerimientoServiceImpl">
+		<property name="t10372DetRequerimDAO" ref="t10372DetRequerimDAO" />
+        <property name="t10373DocAdjReqDAO" ref="t10373DocAdjReqDAO" />
+		     <property name="recAudDAO" ref="recAudDAO" />
+		<property name="t02PerdpDAO" ref="t02PerdpDAO" />
+	</bean>
+	
+	<bean id="documentoItemRequerimientoService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.DocumentoItemRequerimientoServiceImpl">
+		<property name="respService" ref="respService" />
+		<property name="correosService" ref="correosService" />
+		<property name="t6620RequerimDAO" ref="t6620RequerimDAO" />
+		<property name="t6613DocExpVirtDAO" ref="t6613DocExpVirtDAO" />
+		<property name="sequenceDAO" ref="Framework.sequenceDef" />
+		<property name="generaReporteURLService" value="http://api.sunat.peru:10021/cl-ti-iagenerador-service/GeneradorReportService?WSDL" /> 
+                <!-- <property name="generaReporteURLService" value="http://localhost:7001/cl-ti-iagenerador-service/GeneradorReportService?WSDL" />  -->
+		<property name="ecmService" ref="ecmService" />
+		<property name="t10372DetRequerimDAO" ref="t10372DetRequerimDAO" />
+        <property name="t10373DocAdjReqDAO" ref="t10373DocAdjReqDAO" />        
+        <property name="dualDAO" ref="dualDAO" />
+        <property name="uploadReporteURLService" value="http://api.sunat.peru:10020/cl-at-framework-unloadfile/descargaArchivoAlias?"/>
+        <property name="expediDAO" ref="expediDAO" />
+        <property name="seguimDAO" ref="seguimDAO" />
+		<property name="t02PerdpDAO" ref="t02PerdpDAO" />
+        <!-- HHC [PAS20201U210500029] - INI -->    
+        <property name="catalogoService" ref="catalogoService" />
+        <property name="validarParametrosService" ref="validarParametrosService" />
+		<property name="t01ParamDAO" ref="t01ParamDAO" />
+        <!-- HHC [PAS20201U210500029] - FIN -->
+	</bean>
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+	
+</beans>

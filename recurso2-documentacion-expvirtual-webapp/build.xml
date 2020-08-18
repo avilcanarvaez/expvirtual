@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="recurso2-documentacion-expvirtual-webapp" default="ear-gen" basedir=".">
+	
+	<property file="ant-proy-config.properties"/>
+	
+	<tstamp>
+		<format property="fechaHoy" pattern="dd-MM-yyyy" />
+	</tstamp>
+	
+	<!-- Crear carpetas -->
+	<target name="create">
+		<mkdir dir="${build.dir}/lib"/>
+	</target>
+	
+	<!-- A comentar -->
+	
+	<!--target name="classes-gen">
+		<tstamp>
+			<format property="TODAY" pattern="dd-MM-yyyy" />
+		</tstamp>
+		
+		<jar jarfile="${project.lib}/classes.jar">
+			
+			<fileset dir="${classes.dir}">
+				<include name="**/pe/gob/sunat/tecnologia/menu/sso/bean/*.class" />
+				<include name="**/pe/gob/sunat/tecnologia/menu/sso/web/controller/*.class" />
+			</fileset>
+			
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Specification-Title" value="classes.jar"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+			</manifest>
+		</jar>
+	</target-->
+	<!-- A comentar -->
+	
+	<target name="controller-gen">
+		
+		<jar jarfile="${project.lib}/${controller}-${impl.version}.jar">
+			
+			<fileset dir="${classes.dir}">
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/util/*.class"/>				
+				<include name="pe/gob/sunat/recurso2/documentacion/expvirtual/web/**/*.class"/>
+				<include name="recurso2-documentacion-beanRefContext.xml" />
+				<include name="recurso2-documentacion-service.xml" />
+			</fileset>
+			
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Specification-Title" value="${controller}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+			</manifest>
+			
+		</jar>
+		
+	</target>
+	
+	<target name="iawar01-gen">
+		
+		<jar jarfile="${build.dir}/${iawar01}-${impl.version}.war" basedir="${webapp.dir}/${iawar01}">
+			<include name="**/*.htm" />
+			<include name="**/*.html" />
+			<include name="**/*.jsp" />
+			<include name="**/*.tld" />
+			<include name="WEB-INF/*.xml" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Specification-Title" value="${iawar01}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="${iawar01}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+	</target>
+	
+	<target name="iawar02-gen">
+		
+		<jar jarfile="${build.dir}/${iawar02}-${impl.version}.war" basedir="${webapp.dir}/${iawar02}">
+			<include name="**/*.htm" />
+			<include name="**/*.html" />
+			<include name="**/*.jsp" />
+			<include name="**/*.tld" />
+			<include name="WEB-INF/*.xml" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Specification-Title" value="${iawar02}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="${iawar02}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+	</target>
+	
+	<target name="iawar03-gen">
+		
+		<jar jarfile="${build.dir}/${iawar03}-${impl.version}.war" basedir="${webapp.dir}/${iawar03}">
+			<include name="**/*.htm" />
+			<include name="**/*.html" />
+			<include name="**/*.jsp" />
+			<include name="**/*.tld" />
+			<include name="WEB-INF/*.xml" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Specification-Title" value="${iawar03}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="${iawar03}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+	</target>
+	
+	<target name="iawar04-gen">
+		
+		<jar jarfile="${build.dir}/${iawar04}-${impl.version}.war" basedir="${webapp.dir}/${iawar04}">
+			<include name="**/*.htm" />
+			<include name="**/*.html" />
+			<include name="**/*.jsp" />
+			<include name="**/*.tld" />
+			<include name="WEB-INF/*.xml" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Specification-Title" value="${iawar04}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="${iawar04}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+	</target>
+	
+	<target name="iawar05-gen">
+		
+		<jar jarfile="${build.dir}/${iawar05}-${impl.version}.war" basedir="${webapp.dir}/${iawar05}">
+			<include name="**/*.htm" />
+			<include name="**/*.html" />
+			<include name="**/*.jsp" />
+			<include name="**/*.tld" />
+			<include name="WEB-INF/*.xml" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Specification-Title" value="${iawar05}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="${iawar05}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+	</target>
+	
+	<target name="iawar06-gen">
+		
+		<jar jarfile="${build.dir}/${iawar06}-${impl.version}.war" basedir="${webapp.dir}/${iawar06}">
+			<include name="**/*.htm" />
+			<include name="**/*.html" />
+			<include name="**/*.jsp" />
+			<include name="**/*.tld" />
+			<include name="WEB-INF/*.xml" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Specification-Title" value="${iawar06}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="${iawar06}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+	</target>
+	
+	<target name="iawar07-gen">
+		
+		<jar jarfile="${build.dir}/${iawar07}-${impl.version}.war" basedir="${webapp.dir}/${iawar07}">
+			<include name="**/*.htm" />
+			<include name="**/*.html" />
+			<include name="**/*.jsp" />
+			<include name="**/*.tld" />
+			<include name="**/*.jar" />
+			<include name="WEB-INF/*.xml" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Build-Jdk" value="${java.version}"/>
+				<attribute name="Specification-Title" value="${iawar07}"/>
+				<attribute name="Specification-Version" value="${spec.version}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="${iawar07}"/>
+				<attribute name="Implementation-Version" value="${impl.version}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+	</target>
+	
+	<target name="iawar08-gen">
+			
+			<jar jarfile="${build.dir}/${iawar08}-${impl.version}.war" basedir="${webapp.dir}/${iawar08}">
+				<include name="**/*.htm" />
+				<include name="**/*.html" />
+				<include name="**/*.jsp" />
+				<include name="**/*.tld" />
+				<include name="**/*.jar" />
+				<include name="images/*.gif" />
+				<include name="WEB-INF/*.xml" />
+				<manifest>
+					<attribute name="Built-By" value="${user.name}"/>
+					<attribute name="Build-Jdk" value="${java.version}"/>
+					<attribute name="Specification-Title" value="${iawar08}"/>
+					<attribute name="Specification-Version" value="${spec.version}"/>
+					<attribute name="Specification-Vendor" value="${vendor}"/>
+					<attribute name="Implementation-Title" value="${iawar08}"/>
+					<attribute name="Implementation-Version" value="${impl.version}"/>
+					<attribute name="Implementation-Vendor" value="${vendor}"/>
+				</manifest>
+			</jar>
+			
+		</target>
+		<target name="iawar09-gen">
+					
+					<jar jarfile="${build.dir}/${iawar09}-${impl.version}.war" basedir="${webapp.dir}/${iawar09}">
+						<include name="**/*.htm" />
+						<include name="**/*.html" />
+						<include name="**/*.jsp" />
+						<include name="**/*.tld" />
+						<include name="**/*.jar" />
+						<include name="images/*.gif" />
+						<include name="WEB-INF/*.xml" />
+						<manifest>
+							<attribute name="Built-By" value="${user.name}"/>
+							<attribute name="Build-Jdk" value="${java.version}"/>
+							<attribute name="Specification-Title" value="${iawar09}"/>
+							<attribute name="Specification-Version" value="${spec.version}"/>
+							<attribute name="Specification-Vendor" value="${vendor}"/>
+							<attribute name="Implementation-Title" value="${iawar09}"/>
+							<attribute name="Implementation-Version" value="${impl.version}"/>
+							<attribute name="Implementation-Vendor" value="${vendor}"/>
+						</manifest>
+					</jar>
+					
+		</target>
+	<!-- <target name="ear-gen" depends="create, classes-gen, controller-gen, iawar01-gen, iawar02-gen, iawar03-gen, iawar04-gen, iawar05-gen, iawar06-gen, iawar07-gen, iawarws-gen">-->
+	
+	<target name="ear-gen" depends="create, controller-gen, iawar01-gen, iawar02-gen, iawar03-gen, iawar04-gen, iawar05-gen, iawar06-gen, iawar07-gen, iawar08-gen, iawar09-gen">
+		
+		<replace file="${classes.dir}/META-INF/application.xml" value="${impl.version}">
+			<replacetoken>${impl.version}</replacetoken>
+		</replace>
+		
+		<copy todir="${build.dir}">
+			<fileset dir="${classes.dir}">
+				<include name="META-INF/*.xml" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${webapp.dir}/iaexpvirtual-repexptrab/jars">
+			<fileset dir="${java.lib.dir}/exp-virtual">
+				<include name="recurso2-documentacion-expvirtual-appletprint.jar" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${project.lib}">
+			<fileset dir="${java.lib.dir}">
+				<include name="framework-core-1.6.jar" />
+				<include name="framework-util-1.6.jar" />
+				<include name="framework-web-1.2.jar" />
+				<include name="bcprov-jdk14-138.jar" />
+			</fileset>
+		</copy>
+		<!--<copy todir="${project.lib}">
+			<fileset dir="${java.lib.test.dir}">
+				<include name="menu-test.jar" />
+			</fileset>
+		</copy>-->
+		<jar jarfile="${build.dir}/${ear}-${impl.version}.ear" basedir="${build.dir}">
+			<include name="${iawar01}-${impl.version}.war" />
+			<include name="${iawar02}-${impl.version}.war" />
+			<include name="${iawar03}-${impl.version}.war" />
+			<include name="${iawar04}-${impl.version}.war" />
+			<include name="${iawar05}-${impl.version}.war" />
+			<include name="${iawar06}-${impl.version}.war" />
+			<include name="${iawar07}-${impl.version}.war" />
+			<include name="${iawar08}-${impl.version}.war" />
+			<include name="${iawar09}-${impl.version}.war" />
+			<include name="lib/${controller}-${impl.version}.jar" />
+			<include name="META-INF/*.xml" />
+			<!-- A comentar -->
+			<include name="lib/classes.jar" />
+			<include name="lib/framework-core-1.6.jar" />
+			<include name="lib/framework-util-1.6.jar" />
+			<include name="lib/framework-web-1.2.jar" />
+			<include name="lib/bcprov-jdk14-138.jar" />
+			<!--<include name="lib/menu-test.jar" />-->
+			<!--include name="lib/menu-cliente-1.2.jar" /-->
+			<!-- A comentar -->
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Developed-By" value="${impl.autor}"/>
+				<attribute name="Extension-Name" value="${ear}"/>
+				<attribute name="Weblogic-Application-Version" value="${impl.version}"/>
+				<attribute name="Specification-Title" value="${ear}"/>
+				<attribute name="Specification-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="${ear}"/>
+				<attribute name="Implementation-Date" value="${fechaHoy}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+		<copy file="${build.dir}/${ear}-${impl.version}.ear" todir="${wls103.deploy.dir}" />
+		
+	</target>
+	
+</project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6619RepGenPed">
+	
+	<typeAlias alias="t6619RepGenPedBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6619RepGenPedBean"/>
+	
+	<insert id= "insertar" parameterClass="java.util.HashMap" >
+		INSERT INTO t6619repgenped(num_repped,num_pedido,num_ruc,cod_usuresp,fec_genera,cod_est,cod_usumodif,fec_modif)
+		VALUES (#numRepPedido#, #numPedido#, #numRuc#, #codUsuarioResp#, #fecGenera#, #estado#, #codUsuModif#, #fecModif#)
+	</insert>
+	
+	<update id="actualizar" parameterClass="java.util.HashMap" >		
+		UPDATE t6619repgenped 
+		<dynamic prepend="SET">			
+			<isNotNull property="codEstado" prepend=",">
+				cod_est = #codEstado#
+			</isNotNull>
+			<isNotNull property="codUsuModif" prepend=",">
+				cod_usumodif = #codUsuModif#
+			</isNotNull>
+			<isNotNull property="fecModif" prepend=",">
+				fec_modif = #fecModif#
+			</isNotNull>
+			<isNotNull property="fecGenera" prepend=",">
+				fec_genera = #fecGenera#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRepPed" prepend="AND">
+				num_repped = #numRepPed#
+			</isNotNull>			
+		</dynamic>
+	</update>
+</sqlMap>

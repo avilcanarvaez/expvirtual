@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T10459accepexpvirt">
+	
+	<typeAlias alias="t10459accepexpvirtBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10459AccepExpVirtBean"/>
+	
+	<resultMap id="resultBean" class="t10459AccepExpVirtBean" >
+		<result property="numSoli" column="num_soli" />
+		<result property="numExpedienteVirtual" column="num_expedv" />
+		<result property="codColaborador" column="cod_colab" />
+		<result property="codMotivo" column="cod_motsoli" />
+		<result property="tipSensib" column="cod_tipsens" />
+		<result property="codPeriodo" column="cod_peri" />
+		<result property="codEstado" column="cod_est" />
+		<result property="fecInicio" column="fec_ini" />
+		<result property="fecFinal" column="fec_fin" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="fecSoli" column="fec_soli" />
+		<result property="codUsuarioModificacion" column="COD_USUMODIF" />
+		<result property="fecModificacion" column="FEC_MODIF" />
+
+	</resultMap>
+	
+	<resultMap id="resultMapRespExpVirt" class="java.util.HashMap" >
+		<result property="numSoli" column="NUM_SOLI" />
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="codColaborador" column="COD_COLAB" />
+		<result property="codMotivo" column="COD_MOTSOLI" />
+		<result property="tipSensib" column="COD_TIPSENS" />
+		<result property="codPeriodo" column="cod_peri" />
+		<result property="codEstado" column="COD_EST" />
+		<result property="fecInicio" column="FEC_INI" />
+		<result property="fecFinal" column="FEC_FIN" />
+		<result property="codUsuRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="fecSoli" column="fec_soli" />
+		<result property="codUsuModifica" column="COD_USUMODIF" />
+		<result property="fecModifica" column="FEC_MODIF" />
+	</resultMap>
+	
+	<insert id="insertar" parameterClass="java.util.HashMap">	
+		INSERT INTO T10459accepexpvirt
+		(num_soli, num_expedv, cod_colab, cod_motsoli, cod_tipsens, cod_peri, cod_est, fec_ini, fec_fin,cod_usuregis, fec_regis, fec_soli)
+		VALUES (#numSoli#, #numExpedienteVirtual#, #codColaborador#, #codMotivo#,#codTipo#, #codPeriodo#, #codEstado#, #fecInicio#,#fecFin#,#codUsuarioRegistro#,#fecRegistro#,#fecSoli#)	
+	</insert>
+
+	<update id="actualizar" parameterClass="java.util.HashMap">
+		UPDATE T10459accepexpvirt
+		<dynamic prepend="SET">
+			<isNotNull property="codColaborador" prepend=",">
+				cod_colab = #codColaborador#
+			</isNotNull>
+			<isNotNull property="codUsuModifica" prepend=",">
+				cod_usumodif = #codUsuModifica#
+			</isNotNull>
+			<isNotNull property="fecModifica" prepend=",">
+				fec_modif = #fecModifica#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numCorresp" prepend="AND">
+				num_soli = #numSoli#
+			</isNotNull>
+		</dynamic>	
+	</update>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		SELECT num_soli, num_expedv, cod_colab, cod_motsoli, cod_tipsens, cod_peri, cod_est, fec_ini, fec_fin,cod_usuregis, fec_soli, fec_regis, cod_usumodif, fec_modif
+		FROM T10459accepexpvirt
+		<dynamic prepend="WHERE">
+		  	<isNotNull property="numExpedienteVirtual" prepend="AND">
+				num_expedv = #numExpedienteVirtual#
+			</isNotNull>
+			<isNotNull property="codEstado" prepend="AND" >
+				cod_est = #codEstado#
+			</isNotNull>
+	  	</dynamic>
+	  	order by fec_regis desc
+	</select>
+	
+	<update id="actualizarMasivo" parameterClass="java.util.HashMap" >
+		UPDATE T10459accepexpvirt 
+		<dynamic prepend="SET">
+			<isNotNull property="codUsuarioModificacion" prepend=",">
+				cod_usumodif = #codUsuarioModificacion#
+			</isNotNull>
+			<isNotNull property="fecModificacion" prepend=",">
+				fec_modif = #fecModificacion#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numExpedienteVirtual" prepend="AND">
+				num_expedv = #numExpedienteVirtual#
+			</isNotNull>
+			<isNotNull property="listadoResponsables">
+				<isNotEmpty prepend="AND" property="listadoResponsables">
+					cod_colab IN 
+					<iterate property="listadoResponsables" open="(" close=")" conjunction=",">
+						#listadoResponsables[].codColaborador#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		
+	</update>
+	
+	<select id="verificarNumSoli" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT count(*) as acceso
+		FROM T10459accepexpvirt
+		<dynamic prepend="WHERE">
+					cod_est != '02' AND
+                    <isNotNull property="nroExpVirtual" prepend="AND">
+                           num_expedv = #nroExpVirtual#
+                    </isNotNull>
+                    <isNotNull property="numSoli" prepend="AND">
+                           num_soli = #numSoli#
+                    </isNotNull>
+              </dynamic>
+	</select>
+	
+	<select id="getRespExpVirt" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		SELECT num_soli, num_expedv, cod_colab, cod_motsoli, cod_tipsens, cod_peri, cod_est, fec_ini, fec_fin,cod_usuregis, fec_soli, fec_regis, cod_usumodif, fec_modif FROM T10459accepexpvirt
+		<dynamic prepend="WHERE">
+		  	<isNotNull property="num_expedv_par" prepend="AND"> num_expedv = #num_expedv_par#</isNotNull>
+			<isNotNull property="cod_colab_par" prepend="AND"> cod_colab = #cod_colab_par#</isNotNull>
+			<isNotNull property="ind_del_par" prepend="AND" > ind_del = #ind_del_par#</isNotNull>
+	  	</dynamic>
+	</select>
+
+	<resultMap id="resultCodigosColaboradores" class="java.lang.String" >		
+		<result property="codColaborador" column="COD_COLAB" />		
+	</resultMap>
+	
+	<select id="listarCodigosColaboradores" parameterClass="java.util.HashMap" resultClass="java.lang.String" >
+		SELECT
+			cod_colab
+		FROM T10459accepexpvirt
+		<dynamic prepend="WHERE">
+		  	<isNotNull property="numExpeDv" prepend="AND"> num_expedv = #numExpeDv#</isNotNull>
+	  	</dynamic>
+	</select>
+	
+	<update id="eliminar" parameterClass="java.util.HashMap">
+		UPDATE T10459accepexpvirt
+		<dynamic prepend="SET">
+			<isNotNull property="codEstado" prepend=",">
+				cod_est = #codEstado#
+			</isNotNull>
+			<isNotNull property="codUsuModifica" prepend=",">
+				cod_usumodif = #codUsuModifica#
+			</isNotNull>
+			<isNotNull property="fecModifica" prepend=",">
+				fec_modif = #fecModifica#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numSoli" prepend="AND">
+				num_soli = #numSoli#
+			</isNotNull>
+		</dynamic>	
+	</update>
+	
+	
+	<!-- INICIO: LLRB - INI -->
+	<select id="obtenerNroExpediente" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT count(*) as acceso
+		FROM T10459accepexpvirt
+		<dynamic prepend="WHERE">
+                    cod_est != '02' AND
+                    <isNotNull property="nroExpVirtual" prepend="AND">
+                           num_expedv = #nroExpVirtual#
+                    </isNotNull>
+                    <isNotNull property="codUsuregis" prepend="AND">
+                           cod_colab = #codUsuregis#
+                    </isNotNull>
+              </dynamic>
+	</select>
+	<!-- FIN: LLRB- INI -->
+
+</sqlMap>

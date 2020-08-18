@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T10461SolDes">	
+
+	<!--PAS20201U210500029 - HHC INI-->
+	<typeAlias alias="t10461SolDesBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10461SolDesBean"/>
+	
+	<resultMap id="resultSolicitudDescargaBean" class="java.util.HashMap">
+		<result property="numSolDescarga" column="NUM_SOL_DES" />
+		<result property="numExpdVirtual" column="NUM_EXPEDV" />
+		<result property="fecGeneracionIni" column="FEC_GEN_INI" />
+		<result property="fecGeneracionFin" column="FEC_GEN_FIN" />
+		<result property="codEstadoSol" column="COD_EST_SOL" />
+		<result property="codUsuarioReg" column="COD_USUREG" />
+	</resultMap>
+	<resultMap id="resultPedidosSolicitudBean" class="t10461SolDesBean">
+		<result property="numSolDescarga" column="NUM_SOL_DES" />
+		<result property="numExpdVirtual" column="NUM_EXPEDV" />
+		<result property="fecGeneracionIni" column="FEC_GEN_INI" />
+		<result property="fecGeneracionFin" column="FEC_GEN_FIN" />
+		<result property="codEstadoSol" column="COD_EST_SOL" />
+		<result property="codUsuarioReg" column="COD_USUREG" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+	</resultMap>	
+	
+	<select id="listarSolicitudDescarga" parameterClass="java.util.HashMap" resultMap="resultSolicitudDescargaBean" >
+		SELECT a.num_sol_des,a.num_expedv,a.fec_gen_ini,a.fec_gen_fin,a.cod_est_sol,a.cod_usureg 
+		FROM t10461soldes a INNER JOIN t6614expvirtual b on a.num_expedv=b.num_expedv
+		<dynamic prepend="WHERE">			
+			<isNotNull property="numSolicitudDes" prepend="AND">
+				a.num_sol_des = #numSolicitudDes#
+			</isNotNull>
+			<isNotNull property="codEstadoSol" prepend="AND">
+				a.cod_est_sol = #codEstadoSol#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				b.cod_proc = #codProceso#
+			</isNotNull>	
+			<isNotNull property="codTipExpediente" prepend="AND">
+				b.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					 a.fec_reg BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>	 	
+			</isNotNull>		
+		</dynamic>		
+	</select>
+	
+	<select id="listarPedidosSolicitud" parameterClass="java.util.HashMap" resultMap="resultPedidosSolicitudBean" >
+		SELECT a.num_sol_des,a.num_expedv,a.fec_gen_ini,a.fec_gen_fin,a.cod_est_sol,a.cod_usureg, b.num_expedo
+		FROM t10461soldes a INNER JOIN t6614expvirtual b on a.num_expedv=b.num_expedv
+		<dynamic prepend="WHERE">			
+			<isNotNull property="numSolicitudDes" prepend="AND">
+				a.num_sol_des = #numSolicitudDes#
+			</isNotNull>
+			<isNotNull property="codEstadoSol" prepend="AND">
+				a.cod_est_sol = #codEstadoSol#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				b.cod_proc = #codProceso#
+			</isNotNull>	
+			<isNotNull property="codTipExpediente" prepend="AND">
+				b.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="listIndEstado">
+				<isNotEmpty property="listIndEstado" prepend="AND" >
+					a.cod_est_sol IN 
+					<iterate property="listIndEstado" open="(" close=")" conjunction=",">
+						#listIndEstado[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					 a.fec_reg BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>	 	
+			</isNotNull>
+			<isNotNull property="codUsuarioRegistro" prepend="AND">
+					 a.cod_usureg = #codUsuarioRegistro#
+			</isNotNull>
+			<isNotNull property="fecModif" prepend="AND">
+					 date(a.fec_modif)= #fecModif#
+			</isNotNull>		
+		</dynamic>		
+	</select>
+	<update id="actualizar" parameterClass="java.util.HashMap">
+		UPDATE t10461soldes 
+		<dynamic prepend="SET">
+			<isNotNull property="codEstadoSol" prepend=",">
+				cod_est_sol = #codEstadoSol#
+			</isNotNull>
+			<isNotNull property="codUsuarioModif" prepend=",">
+				cod_usumodif = #codUsuarioModif#
+			</isNotNull>
+			<isNotNull property="fechaModif" prepend=",">
+				fec_modif = #fechaModif#
+			</isNotNull>
+			<isNotNull property="desRuta" prepend=",">
+				des_ruta = #desRuta#
+			</isNotNull>
+			<isNotNull property="cantFolio" prepend=",">
+				cnt_folio = #cantFolio#
+			</isNotNull>
+			<isNotNull property="numTamanioArch" prepend=",">
+				num_tam_arch = #numTamanioArch#
+			</isNotNull>
+			<isNotNull property="fecDescarga" prepend=",">
+				fec_descarga = #fecDescarga#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numSolDescarga" prepend="AND">
+				num_sol_des = #numSolDescarga#
+			</isNotNull>
+		</dynamic>		
+	</update>
+    <!--PAS20201U210500029 -HHC- Fin -->
+    
+	<insert id= "insertar" parameterClass="java.util.HashMap">
+		INSERT INTO t10461soldes
+		(num_sol_des,  num_expedv, cod_usu_resp, cod_est_sol, fec_gen_ini, fec_gen_fin,cod_usureg,fec_reg,cod_usumodif, fec_modif)
+		VALUES (#numSeq#,#numExpe#,#codUsuRegis#,#codEstado#, #fecRegIni#,#fecRegFin#,#codUsuRegis#,#fecRegIni#,#codUsuModif#,#fecModif#)
+	</insert>
+	<select id="obtenerNroSolicitud" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT count(*)as numSolicitud
+		FROM t10461soldes
+		<dynamic prepend="WHERE">
+			cod_est_sol != '02' AND
+			<isNotNull property="nroExpVirtual" prepend="AND">
+				num_expedv = #nroExpVirtual#
+			</isNotNull>
+			<isNotNull property="codUsuRegis" prepend="AND">
+				cod_usureg = #codUsuRegis#
+			</isNotNull>
+			<isNotNull property="fecRegIni" prepend="AND">
+				to_char(extend(fec_reg, year to day),'%d/%m/%Y')= #fecRegIni#
+			</isNotNull>
+
+	  	</dynamic>
+	</select>
+</sqlMap>

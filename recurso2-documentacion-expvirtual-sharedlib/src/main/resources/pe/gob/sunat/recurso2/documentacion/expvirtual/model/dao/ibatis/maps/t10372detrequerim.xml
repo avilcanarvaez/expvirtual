@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- Incicio staype 26/12/2019 -->
+<sqlMap namespace="t10372detrequerim">
+
+	<typeAlias alias="T10372DetRequerimBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10372DetRequerimBean"/>
+	
+	<resultMap id="resultBean" class="T10372DetRequerimBean" >
+		<result property="numReq" column="num_requerim" />
+		<result property="item" column="num_item" />
+		<result property="subitem" column="num_sub_item" />
+		<result property="textitem" column="des_item" />
+		<result property="estItem" column="cod_est" />
+		<result property="descElim" column="des_eliitem" />
+		<result property="numCorDoc" column="num_cordoc" />
+		<result property="usuReg" column="cod_usuregis" />
+		<result property="fecReg" column="fec_regis" />
+		<result property="usuMod" column="cod_usumodif" />
+		<result property="fecMod" column="fec_modif" />			
+	</resultMap>
+	
+		
+	<insert id= "insertarManualDetRet"  parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10372DetRequerimBean">
+		INSERT INTO T10372detrequerim (num_requerim,num_item,num_sub_item,des_item,cod_est,des_eliitem,num_cordoc,cod_usuregis,fec_regis,cod_usumodif,fec_modif)
+		VALUES (#numReq#,#item#,#subitem#,#textitem#,#estItem#,#descElim#,#numCorDoc#,#usuReg#,#fecReg#,#usuMod#,#fecMod#)
+	</insert>
+
+	<!-- Fin staype 26/12/2019 -->
+
+	<!-- [PAS20191U210500291]: JMC - INI -->
+	<select id="listarItems" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		<!-- [PAS20201U210500029] - HHC , Se agrega el distinct-->		
+		SELECT DISTINCT a.NUM_REQUERIM, 
+				a.NUM_ITEM, 
+				a.NUM_SUB_ITEM, 
+				a.DES_ITEM, 
+				a.COD_EST, 
+				a.DES_ELIITEM, 
+				a.NUM_CORDOC,
+				a.COD_USUREGIS, 
+				a.FEC_REGIS,
+				a.COD_USUMODIF,
+				a.FEC_MODIF
+		FROM t10372detrequerim a
+		INNER JOIN t6620requerim b on a.num_requerim=b.num_requerim
+		LEFT  JOIN t10373docadjreq c on a.num_requerim=c.num_requerim 
+		      AND  a.num_item=c.num_item AND a.num_sub_item=c.num_sub_item AND  c.NUM_CORDOC =a.NUM_CORDOC <!-- [PAS20201U210500029] - HHC -->
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRequerimiento" prepend="AND">
+				a.NUM_REQUERIM = #numRequerimiento#
+			</isNotNull>
+			<isNotNull property="numCorDoc" prepend="AND"> <!--[PAS20201U210500029] HHC --> 
+				c.NUM_CORDOC = #numCorDoc#
+			</isNotNull>
+			<isNotNull property="codEstReqDifEli" prepend="AND">
+				cod_estreq != #codEstReqDifEli#
+			</isNotNull>			
+		</dynamic>
+		ORDER BY a.NUM_ITEM, a.NUM_SUB_ITEM
+	</select>
+	
+	<update id="update" parameterClass="java.util.HashMap" >		
+		UPDATE t10372detrequerim 
+		<dynamic prepend="SET">
+			<isNotNull property="codEstadoItemReq" prepend=",">
+				cod_est = #codEstadoItemReq#
+			</isNotNull>
+			<isNotNull property="numCorDoc" prepend=",">
+				num_cordoc = #numCorDoc#
+			</isNotNull>			
+			<isNotNull property="codUsuModif" prepend=",">
+				cod_usumodif = #codUsuModif#
+			</isNotNull>			
+			<isNotNull property="fecModif" prepend=",">
+				fec_modif = #fecModif#
+			</isNotNull>		
+		</dynamic>
+		<dynamic prepend="WHERE">			
+			<isNotNull property="numRequerimiento" prepend="AND">
+				num_requerim = #numRequerimiento#
+			</isNotNull>
+			<isNotNull property="numItem" prepend="AND">
+				num_item = #numItem#
+			</isNotNull>
+		</dynamic>		
+	</update>
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+</sqlMap>
