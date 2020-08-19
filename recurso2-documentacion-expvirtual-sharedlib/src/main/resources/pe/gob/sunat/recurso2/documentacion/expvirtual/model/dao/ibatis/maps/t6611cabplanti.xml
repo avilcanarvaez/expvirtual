@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6611CabPlanti">
+<typeAlias alias="t6611CabPlantiBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6611CabPlantiBean"/>
+
+	<resultMap id="resultBean" class="t6611CabPlantiBean" >
+		<result property="numPlantilla" column="NUM_PLANTI" />
+		<result property="desPlantilla" column="DES_PLANTI" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="codEstadoPlanti" column="COD_ESTPLANT" />
+		<result property="codUsuRegistro" column="COD_USUREGIS" />
+		<result property="fechaRegistro" column="FEC_REGIS" />
+		<result property="codUsuModifica" column="COD_USUMODIF" />
+		<result property="fechaModifica" column="FEC_MODIF" />
+		<result property="codUsuBaja" column="COD_USUBAJA" />
+		<result property="fechaBaja" column="FEC_BAJA" />
+		<result property="indRepTrib" column="IND_REPTRIP" />
+	</resultMap>
+
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		select num_planti,des_planti,cod_proc,cod_tipexp,cod_estplant,cod_usuregis,fec_regis,cod_usumodif,fec_modif,cod_usubaja,fec_baja,ind_reptrip
+		from t6611cabplanti
+		<dynamic prepend="WHERE">
+			<isNotNull property="numPlantilla" prepend="AND">
+				num_planti = #numPlantilla#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipoExp" prepend="AND">
+				cod_tipexp = #codTipoExp#
+			</isNotNull>
+			<isNotNull property="indEstado" prepend="AND">
+				cod_estplant = #indEstado#
+			</isNotNull>
+			<isNotNull property="fechaDesde">
+				<isNotNull property="fechaHasta" prepend="AND">
+					 fec_regis BETWEEN #fechaDesde# AND #fechaHasta#
+				</isNotNull>	 	
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<update id="actualizar" parameterClass="java.util.HashMap" >
+		
+		UPDATE t6611cabplanti 
+		<dynamic prepend="SET">
+			<isNotNull property="estadoPlant" prepend=",">
+				cod_estplant = #estadoPlant#
+			</isNotNull>
+			<isNotNull property="codUsuBaja" prepend=",">
+				cod_usubaja = #codUsuBaja#
+			</isNotNull>
+			<isNotNull property="fechaBaja" prepend=",">
+				fec_baja = #fechaBaja#
+			</isNotNull>
+			<isNotNull property="indRepTrib" prepend=",">
+				ind_reptrip = #indRepTrib#
+			</isNotNull>
+			<isNotNull property="codUsuModifica" prepend=",">
+				cod_usumodif = #codUsuModifica#
+			</isNotNull>
+			<isNotNull property="fechaModifica" prepend=",">
+				fec_modif = #fechaModifica#
+			</isNotNull>
+			<isNotNull property="desPlantilla" prepend=",">
+				des_planti = #desPlantilla#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numPlantilla" prepend="AND">
+				num_planti = #numPlantilla#
+			</isNotNull>
+		</dynamic>		
+	</update>
+		
+	<insert id= "insertar" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6611CabPlantiBean">
+		INSERT INTO t6611CabPlanti
+		(num_planti, des_planti, cod_proc, cod_tipexp, cod_estplant, cod_usuregis, fec_regis, cod_usumodif,	fec_modif, cod_usubaja, fec_baja, ind_reptrip)
+		VALUES (#numPlantilla#, #desPlantilla#, #codProceso#, #codTipoExpediente#, #codEstadoPlanti#, #codUsuRegistro#, #fechaRegistro#,#codUsuModifica#,#fechaModifica#,#codUsuBaja#,#fechaBaja#, #indRepTrib#);
+	</insert> 
+</sqlMap>

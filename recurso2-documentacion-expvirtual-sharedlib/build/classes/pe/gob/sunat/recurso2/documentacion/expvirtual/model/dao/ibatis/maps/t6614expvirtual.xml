@@ -1,0 +1,985 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6614ExpVirtual">
+	
+	<typeAlias alias="t6614ExpVirtualBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6614ExpVirtualBean"/>
+	
+	<resultMap id="resultBean" class="t6614ExpVirtualBean" >
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="desExpedienteVirtual" column="DES_EXPEDV" />
+		<result property="codEstado" column="COD_ESTADO" />
+		<result property="codOrigen" column="COD_ORIGEN" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="codOrigenCierre" column="COD_ORICIERR" />
+		<result property="codEstadoCierre" column="COD_ESTCIERR" />
+		<result property="desMotivoCierre" column="DES_MOTCIERR" />
+		<result property="desSumilla" column="DES_SUMILLA" />
+		<result property="codUsuarioCierre" column="COD_USUCIERR" />
+		<result property="fecCierre" column="FEC_CIERRE" />
+		<result property="codRetornoServicio" column="COD_RETSERV" />
+		<result property="indicadorAcumulado" column="IND_ACU" />
+	</resultMap>
+	
+	<resultMap id="resultEspedientePorRucBean" class="t6614ExpVirtualBean" >
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="desExpedienteVirtual" column="DES_EXPEDV" />
+		<result property="codEstado" column="COD_ESTADO" />
+		<result property="codOrigen" column="COD_ORIGEN" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="codOrigenCierre" column="COD_ORICIERR" />
+		<result property="codEstadoCierre" column="COD_ESTCIERR" />
+		<result property="desMotivoCierre" column="DES_MOTCIERR" />
+		<result property="desSumilla" column="DES_SUMILLA" />
+		<result property="codUsuarioCierre" column="COD_USUCIERR" />
+		<result property="fecCierre" column="FEC_CIERRE" />
+		<result property="codRetornoServicio" column="COD_RETSERV" />
+	</resultMap>
+	
+	<resultMap id="resultBeanDocumentoExpediente" class="t6614ExpVirtualBean" >
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="desExpedienteVirtual" column="DES_EXPEDV" />
+		<result property="codEstado" column="COD_ESTADO" />
+		<result property="codOrigen" column="COD_ORIGEN" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="codOrigenCierre" column="COD_ORICIERR" />
+		<result property="codEstadoCierre" column="COD_ESTCIERR" />
+		<result property="desMotivoCierre" column="DES_MOTCIERR" />
+		<result property="desSumilla" column="DES_SUMILLA" />
+		<result property="codUsuarioCierre" column="COD_USUCIERR" />
+		<result property="fecCierre" column="FEC_CIERRE" />
+		<result property="codRetornoServicio" column="COD_RETSERV" />
+		<result property="fechaDocumentoOrigen" column="FEC_DOC" />
+		<result property="codOrigenDoc" column="COD_ORIGDOC" />
+	</resultMap>
+		<!-- Inicio [eaguilar 26/05/2016] -->
+		<resultMap id="resultBeanDocumentoExpedienteAcu" class="t6614ExpVirtualBean" >
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="desExpedienteVirtual" column="DES_EXPEDV" />
+		<result property="codEstado" column="COD_ESTADO" />
+		<result property="codOrigen" column="COD_ORIGEN" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="codOrigenCierre" column="COD_ORICIERR" />
+		<result property="codEstadoCierre" column="COD_ESTCIERR" />
+		<result property="desMotivoCierre" column="DES_MOTCIERR" />
+		<result property="desSumilla" column="DES_SUMILLA" />
+		<result property="codUsuarioCierre" column="COD_USUCIERR" />
+		<result property="fecCierre" column="FEC_CIERRE" />
+		<result property="codRetornoServicio" column="COD_RETSERV" />
+		<result property="fechaDocumentoOrigen" column="FEC_DOC" />
+		<result property="codOrigenDoc" column="COD_ORIGDOC" />
+		<result property="indicadorAcumulado" column="IND_ACU" />
+		<result property="numExpedienteAcumulador" column="NUM_ACU" /> 
+	</resultMap>
+	<!-- Fin [eaguilar 26/05/2016] -->
+	<resultMap id="resultBeanDocumentoExpedienteResp" class="t6614ExpVirtualBean" >
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="desExpedienteVirtual" column="DES_EXPEDV" />
+		<result property="codEstado" column="COD_ESTADO" />
+		<result property="codOrigen" column="COD_ORIGEN" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="codOrigenCierre" column="COD_ORICIERR" />
+		<result property="codEstadoCierre" column="COD_ESTCIERR" />
+		<result property="desMotivoCierre" column="DES_MOTCIERR" />
+		<result property="desSumilla" column="DES_SUMILLA" />
+		<result property="codUsuarioCierre" column="COD_USUCIERR" />
+		<result property="fecCierre" column="FEC_CIERRE" />
+		<result property="codRetornoServicio" column="COD_RETSERV" />
+		<result property="fechaDocumentoOrigen" column="FEC_DOC" />
+		<result property="codOrigenDoc" column="COD_ORIGDOC" />
+		<result property="indicadorAcumulado" column="IND_ACU" />
+		<result property="numExpedienteAcumulador" column="NUM_ACU" />
+		<!-- Ini [oachahuic][PAS20175E210400016] -->
+		<result property="fecNotifOrigen" column="FEC_NOTIF" />
+		<result property="codForNotifOrigen" column="COD_FOR_NOTIF" />
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</resultMap>
+	<!-- Inicio Jeffio 20/06/2017 -->
+	<resultMap id="resultBeanDocumentoExpedienteRespDoc" class="t6614ExpVirtualBean" >
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="desExpedienteVirtual" column="DES_EXPEDV" />
+		<result property="codEstado" column="COD_ESTADO" />
+		<result property="codOrigen" column="COD_ORIGEN" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="codOrigenCierre" column="COD_ORICIERR" />
+		<result property="codEstadoCierre" column="COD_ESTCIERR" />
+		<result property="desMotivoCierre" column="DES_MOTCIERR" />
+		<result property="desSumilla" column="DES_SUMILLA" />
+		<result property="codUsuarioCierre" column="COD_USUCIERR" />
+		<result property="fecCierre" column="FEC_CIERRE" />
+		<result property="codRetornoServicio" column="COD_RETSERV" />
+		<result property="fechaDocumentoOrigen" column="FEC_DOC" />
+		<result property="codOrigenDoc" column="COD_ORIGDOC" />
+		<result property="codResponsable" column="COD_COLAB" />
+		<result property="indicadorAcumulado" column="IND_ACU" />
+		<result property="numExpedienteAcumulador" column="NUM_ACU" />
+		<!-- Ini [oachahuic][PAS20175E210400016] -->
+		<result property="fecNotifOrigen" column="FEC_NOTIF" />
+		<result property="codForNotifOrigen" column="COD_FOR_NOTIF" />
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</resultMap>
+	<!-- Fin Jeffio 20/06/2017 -->
+	<resultMap id="resultBeanExpedientesDelAcumulado" class="t6614ExpVirtualBean" >
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="desExpedienteVirtual" column="DES_EXPEDV" />
+		<result property="codEstado" column="COD_ESTADO" />
+		<result property="codOrigen" column="COD_ORIGEN" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="codOrigenCierre" column="COD_ORICIERR" />
+		<result property="codEstadoCierre" column="COD_ESTCIERR" />
+		<result property="desMotivoCierre" column="DES_MOTCIERR" />
+		<result property="desSumilla" column="DES_SUMILLA" />
+		<result property="codUsuarioCierre" column="COD_USUCIERR" />
+		<result property="fecCierre" column="FEC_CIERRE" />
+		<result property="codRetornoServicio" column="COD_RETSERV" />
+		<result property="indicadorAcumulado" column="IND_ACU" />
+		<result property="numExpedienteAcumulador" column="NUM_ACU" />
+	</resultMap>  
+	
+	<resultMap id="resultMapAcumExpVirtual" class="java.util.HashMap">
+		<result property="numExpedv" column="NUM_EXPEDV" />
+		<result property="numExpedo" column="NUM_EXPEDO" />
+	</resultMap>
+	
+	<resultMap id="resultMapAcumExpVirtualCierre" class="java.util.HashMap">
+		<result property="numExpedv" column="NUM_EXPEDV" />
+		<result property="numExpedo" column="NUM_EXPEDO" />
+	</resultMap>
+	
+	<resultMap id="resultExpedienteTrabBean" class="java.util.HashMap">
+		<result property="numExpedv" column="NUM_EXPEDV" />
+		<result property="numExpedo" column="NUM_EXPEDO" />
+		<result property="codProc" column="COD_PROC" />
+		<result property="codTipExp" column="COD_TIPEXP" />
+		<result property="codDep" column="COD_DEP" />
+	</resultMap>
+	
+	<!-- INICIO: LLRB - INI -->
+	<resultMap id="resultExpedienteBean" class="java.util.HashMap">
+		<result property="numExpedv" column="NUM_EXPEDV" />	
+		<result property="codProc" column="COD_PROC" />	
+		<result property="codTipExp" column="COD_TIPEXP" />	
+	</resultMap>
+	<!-- FIN: LLRB - FIN -->
+	<!-- PAS20201U210500029 HHC- Ini -->
+	<resultMap id="resultBeanDocumentoExpedConReq" class="t6614ExpVirtualBean" >
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="desExpedienteVirtual" column="DES_EXPEDV" />
+		<result property="codEstado" column="COD_ESTADO" />
+		<result property="codOrigen" column="COD_ORIGEN" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="codOrigenCierre" column="COD_ORICIERR" />
+		<result property="codEstadoCierre" column="COD_ESTCIERR" />
+		<result property="desMotivoCierre" column="DES_MOTCIERR" />
+		<result property="desSumilla" column="DES_SUMILLA" />
+		<result property="codUsuarioCierre" column="COD_USUCIERR" />
+		<result property="fecCierre" column="FEC_CIERRE" />
+		<result property="codRetornoServicio" column="COD_RETSERV" />
+		<result property="fechaDocumentoOrigen" column="FEC_DOC" />
+		<result property="codOrigenDoc" column="COD_ORIGDOC" />
+		<result property="codResponsable" column="COD_COLAB" />
+		<result property="indicadorAcumulado" column="IND_ACU" />
+		<result property="numExpedienteAcumulador" column="NUM_ACU" />
+		<result property="fecNotifOrigen" column="FEC_NOTIF" />
+		<result property="codForNotifOrigen" column="COD_FOR_NOTIF" />
+	</resultMap>
+	<!-- PAS20201U210500029 HHC - Fin -->
+		
+	<select id="obtener" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		
+		SELECT num_expedv, num_expedo, cod_proc, cod_tipexp, num_ruc, des_expedv, 
+		cod_estado, cod_origen, cod_usuregis, fec_regis, cod_dep, cod_oricierr, 
+		cod_estcierr, des_motcierr, des_sumilla, cod_usucierr, fec_cierre, cod_retserv, ind_acu
+		FROM t6614expvirtual
+		<dynamic prepend="WHERE">
+			cod_estado != '03' AND
+			<isNotNull property="numExpedienteVirtual" prepend="AND">
+				num_expedv = #numExpedienteVirtual#
+			</isNotNull>
+			<isNotNull property="numExpedienteOrigen" prepend="AND">
+				num_expedo = #numExpedienteOrigen#
+			</isNotNull>
+		</dynamic>
+		
+	</select>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		
+		SELECT num_expedv, num_expedo, cod_proc, cod_tipexp, num_ruc, des_expedv, 
+		cod_estado, cod_origen, cod_usuregis, fec_regis, cod_dep, cod_oricierr, 
+		cod_estcierr, des_motcierr, des_sumilla, cod_usucierr, fec_cierre, cod_retserv, ind_acu
+		FROM t6614expvirtual
+		<dynamic prepend="WHERE">
+			cod_estado != '03' AND
+			<isNotNull property="numRuc" prepend="AND">
+				num_ruc = #numRuc#
+			</isNotNull>
+			<isNotNull property="codProc" prepend="AND">
+				cod_proc = #codProc#
+			</isNotNull>
+			<isNotNull property="codTipexp" prepend="AND">
+				cod_tipexp = #codTipexp#
+			</isNotNull>
+			<isNotNull property="codDep" prepend="AND">
+				cod_dep = #codDep#
+			</isNotNull>
+			<isNotNull property="codEstado" prepend="AND">
+				cod_estado = #codEstado#
+			</isNotNull>
+			<isNotNull property="numExpedo" prepend="AND">
+				num_expedo = #numExpedo#
+			</isNotNull>
+			<isNotNull property="numExpedv" prepend="AND">
+				num_expedv = #numExpedv#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>	 	
+			</isNotNull>
+		</dynamic>
+				
+	</select>
+	
+	<select id="obtenerDatosExpediente" parameterClass="java.util.HashMap" resultMap="resultBeanDocumentoExpedienteAcu" >
+		
+		SELECT 
+		e.num_expedv, e.num_expedo, e.cod_proc, e.cod_tipexp, e.num_ruc, e.des_expedv, 
+		e.cod_estado, e.cod_origen, e.cod_usuregis, e.fec_regis, e.cod_dep, e.cod_oricierr, 
+		e.cod_estcierr, e.des_motcierr, e.des_sumilla, e.cod_usucierr, e.fec_cierre, e.cod_retserv, d.fec_doc, d.cod_origdoc,
+		e.ind_acu, e.num_acu
+		FROM t6614expvirtual e, t6613docexpvirt d 
+		<dynamic prepend="WHERE">
+			e.num_expedv = d.num_expedv AND
+			e.cod_estado != '03' AND 
+			<isNotNull property="numExpedienteVirtual" prepend="AND">
+				e.num_expedv = #numExpedienteVirtual#
+			</isNotNull>
+			<isNotNull property="numExpedienteOrigen" prepend="AND">
+				e.num_expedo = #numExpedienteOrigen#
+			</isNotNull>
+			<isNotNull property="tipDocSust" prepend="AND">
+				d.cod_tipdocsust = #tipDocSust#
+			</isNotNull>
+		</dynamic>
+		
+	</select>
+	
+	<select id="listarDocumentoExpediente" parameterClass="java.util.HashMap" resultMap="resultBeanDocumentoExpedienteRespDoc" >
+		
+		SELECT
+<!-- Inicio [jquispe 27/05/2016] Obtiene como maximo 100 registros. -->
+<!-- 			<dynamic> -->
+<!-- 				<isEqual property="flagCargaInicial"  compareValue="true"  prepend="FIRST"> -->
+<!-- 					100 -->
+<!-- 				</isEqual>				 -->
+<!-- 			</dynamic> -->
+<!-- Fin [jquispe 27/05/2016] -->
+		 		 a.num_expedv, 
+				 a.num_expedo, 
+				 a.cod_proc, 
+				 a.cod_tipexp, 
+				 a.num_ruc, 
+				 a.des_expedv, 
+				 a.cod_estado, 
+				 a.cod_origen, 
+				 a.cod_usuregis, 
+				 a.fec_regis, 
+				 a.cod_dep, 
+				 a.cod_oricierr, 
+				 a.cod_estcierr, 
+				 a.des_motcierr, 
+				 a.des_sumilla, 
+				 a.cod_usucierr, 
+				 a.fec_cierre, 
+				 a.cod_retserv,
+				 b.fec_doc,
+				 b.cod_origdoc,
+				 c.cod_colab,
+				 a.ind_acu,
+				 a.num_acu,
+				 <!-- Ini [oachahuic][PAS20175E210400016] -->
+				 b.fec_notif,
+				 b.cod_for_notif
+				 <!-- Fin [oachahuic][PAS20175E210400016] -->
+		FROM t6614expvirtual a
+		INNER JOIN t6613docexpvirt b on a.num_expedv=b.num_expedv
+		INNER JOIN T6621respexpvirt c 
+			on 	a.num_expedv = c.num_expedv 
+			and c.ind_resp = 1 
+			and c.ind_del = 0
+		<dynamic>
+		    <isEqual property="flagConsObsAvanzada"  compareValue="true" prepend="INNER JOIN">
+		       (SELECT num_expedv FROM t6615obsexp GROUP BY num_expedv) d
+               on a.num_expedv = d.num_expedv
+		    </isEqual>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="tipDocSust" prepend="AND">
+				b.cod_tipdocsust = #tipDocSust#
+			</isNotNull>
+			<isNotNull property="numeroRuc" prepend="AND">
+				a.num_ruc = #numeroRuc#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="numExpedOrigen" prepend="AND">
+				a.num_expedo = #numExpedOrigen#
+			</isNotNull>
+		  	<isNotNull property="numExpedVirtual" prepend="AND">
+				a.num_expedv = #numExpedVirtual#
+			</isNotNull>
+			<isNotNull property="numAcumulador" prepend="AND">
+				a.num_acu = #numAcumulador#
+			</isNotNull>
+			<isNotNull property="codEstado" prepend="AND">
+				a.cod_estado = #codEstado#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					 a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>	 	
+			</isNotNull>
+			<isNotNull property="fecDocIni">
+				<isNotNull property="fecDocFin" prepend="AND">
+				 	 b.fec_doc BETWEEN #fecDocIni# AND #fecDocFin#
+				 </isNotNull>	
+			</isNotNull>
+			<isNotNull property="listCodTipExp">
+				<isNotEmpty prepend="AND" property="listCodEstReq">
+					a.cod_tipexp IN 
+					<iterate property="listCodTipExp" open="(" close=")" conjunction=",">
+						#listCodTipExp[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep like #codDependencia#||'%'
+			</isNotNull>
+			<!-- Inicio [jquispe 27/05/2016] Ordena por fecha en la carga Inicial. -->			
+			<!-- <isEqual property="flagCargaInicial"  compareValue="true"  prepend="ORDER BY"> -->
+			<!-- b.fec_doc DESC -->
+			<!-- </isEqual> -->
+			<!-- Fin [jquispe 27/05/2016] -->
+			<!-- Inicio [jjurado 21/07/2016] se quita que sea responsable principal. -->
+				and EXISTS (select d.num_expedv from t6621respexpvirt d where a.num_expedv=d.num_expedv and d.ind_del = '0'
+			<isNotNull property="codColab" prepend="AND">
+				d.cod_colab = #codColab#
+			</isNotNull>
+				)
+			<!-- Fin [jjurado 21/07/2016]. -->		
+		</dynamic>
+		
+	</select>
+	
+	<!-- Inicio [jquispe 27/05/2016] Obtiene el numero total de expediente virtual. -->
+	<select id="obtenerNumDocumentoExpediente" parameterClass="java.util.HashMap" resultClass="int" >
+		
+		SELECT COUNT(*)
+		FROM t6614expvirtual a
+		INNER JOIN t6613docexpvirt b on a.num_expedv=b.num_expedv
+		INNER JOIN T6621respexpvirt c 
+			on 	a.num_expedv = c.num_expedv 
+			and c.ind_resp = 1
+			and c.ind_del = 0
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="tipDocSust" prepend="AND">
+				b.cod_tipdocsust = #tipDocSust#
+			</isNotNull>
+			<isNotNull property="numeroRuc" prepend="AND">
+				a.num_ruc = #numeroRuc#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="numExpedOrigen" prepend="AND">
+				a.num_expedo = #numExpedOrigen#
+			</isNotNull>
+		  	<isNotNull property="numExpedVirtual" prepend="AND">
+				a.num_expedv = #numExpedVirtual#
+			</isNotNull>
+			<isNotNull property="numAcumulador" prepend="AND">
+				a.num_acu = #numAcumulador#
+			</isNotNull>
+			<isNotNull property="codEstado" prepend="AND">
+				a.cod_estado = #codEstado#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					 a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>	 	
+			</isNotNull>		
+			<isNotNull property="fecDocIni">
+				<isNotNull property="fecDocFin" prepend="AND">
+				     b.fec_doc BETWEEN #fecDocIni# AND #fecDocFin#
+				 </isNotNull>	
+			</isNotNull>			
+			<isNotNull property="codColab" prepend="AND">
+				c.cod_colab = #codColab#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep like #codDependencia#||'%'
+			</isNotNull>
+		</dynamic>
+		
+	</select>
+	<!-- Fin [jquispe 27/05/2016] -->
+	
+	<select id="listarRegDocExpediente" parameterClass="java.util.HashMap" resultMap="resultBeanDocumentoExpedienteResp" >
+		
+		SELECT 	a.num_expedv, 
+				a.num_expedo, 
+				a.cod_proc, 
+				a.cod_tipexp, 
+				a.num_ruc, 
+				a.des_expedv, 
+				a.cod_estado, 
+				a.cod_origen, 
+				a.cod_usuregis, 
+				a.fec_regis, 
+				a.cod_dep, 
+				a.cod_oricierr, 
+				a.cod_estcierr, 
+				a.des_motcierr, 
+				a.des_sumilla, 
+				a.cod_usucierr, 
+				a.fec_cierre, 
+				a.cod_retserv,
+				b.fec_doc,
+				b.cod_origdoc,
+				a.ind_acu,
+				a.num_acu,
+				<!-- Ini [oachahuic][PAS20175E210400016] -->
+				b.fec_notif,
+				b.cod_for_notif
+				<!-- Fin [oachahuic][PAS20175E210400016] -->
+		FROM t6614expvirtual a
+		INNER JOIN t6613docexpvirt b on a.num_expedv=b.num_expedv		
+		<isNotEmpty property="codColab" >
+		   INNER JOIN T6621respexpvirt c on a.num_expedv = c.num_expedv and c.ind_del = 0
+		</isNotEmpty>
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="tipDocSust" prepend="AND">
+				b.cod_tipdocsust = #tipDocSust#
+			</isNotNull>
+			<isNotNull property="numeroRuc" prepend="AND">
+				a.num_ruc = #numeroRuc#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="numExpedOrigen" prepend="AND">
+				a.num_expedo = #numExpedOrigen#
+			</isNotNull>
+		  	<isNotNull property="numExpedVirtual" prepend="AND">
+				a.num_expedv = #numExpedVirtual#
+			</isNotNull>
+			<isNotNull property="codEstado" prepend="AND">
+				a.cod_estado = #codEstado#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					 a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>	 	
+			</isNotNull>
+			<isNotNull property="fecDocIni">
+				<isNotNull property="fecDocFin" prepend="AND">
+				 	 b.fec_doc BETWEEN #fecDocIni# AND #fecDocFin#
+				 </isNotNull>	
+			</isNotNull>			 
+			<isNotNull property="codColab" prepend="AND">
+				c.cod_colab = #codColab#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep like #codDependencia#||'%'
+			</isNotNull>
+		</dynamic>
+		
+	</select>
+	
+	<select id="listaExpedientePorRuc" parameterClass="java.util.HashMap" resultMap="resultEspedientePorRucBean" >
+		
+		SELECT num_expedv, num_expedo, cod_proc, cod_tipexp, num_ruc, des_expedv, 
+		cod_estado, cod_origen, cod_usuregis, fec_regis, cod_dep, cod_oricierr, 
+		cod_estcierr, des_motcierr, des_sumilla, cod_usucierr, fec_cierre, cod_retserv
+		FROM t6614expvirtual
+		<dynamic prepend="WHERE">
+			cod_estado != '03' AND
+			<isNotNull property="numeroRuc" prepend="AND">
+				num_ruc = #numeroRuc#
+			</isNotNull>
+			<!-- INICIO  [ATORRESCH 20170406]  -->
+			<isNotNull property="aryNumeroRuc">
+				<isNotEmpty prepend="AND" property="aryNumeroRuc">
+					num_ruc IN 
+					<iterate property="aryNumeroRuc" open="(" close=")" conjunction=",">
+						#aryNumeroRuc[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="aryNumeroExpOri">
+				<isNotEmpty prepend="AND" property="aryNumeroExpOri">
+					num_expedo IN 
+					<iterate property="aryNumeroExpOri" open="(" close=")" conjunction=",">
+						#aryNumeroExpOri[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<!-- FIN  [ATORRESCH 20170406]  -->
+			<isNotNull property="codEstado" prepend="AND">
+				cod_estado = #codEstado#
+			</isNotNull>
+			<isNotNull property="numExpedo" prepend="AND">
+				num_expedo = #numExpedo#
+			</isNotNull>
+			<isNotNull property="numExpedv" prepend="AND">
+				num_expedv = #numExpedv#
+			</isNotNull>
+            <!-- //PAS20191U210500144 Inicio 400101 RF25 PSALDARRIAGA -->
+			<isNotNull property="aryNumExpOri" prepend="AND">
+			cod_estado = '01'
+				<isNotEmpty prepend="AND" property="aryNumExpOri">
+					num_expedo IN 
+					<iterate property="aryNumExpOri" open="(" close=")" conjunction=",">
+						#aryNumExpOri[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<!-- //PAS20191U210500144 Fin 400101 RF25 PSALDARRIAGA -->
+		</dynamic>
+				
+	</select>
+	
+	<select id="obtenerNumAcumExpVirtual" parameterClass="java.util.HashMap" resultClass="int" >
+		
+		SELECT COUNT(*)
+		FROM t6614expvirtual
+		<dynamic prepend="WHERE">
+			cod_estado != '03' AND
+			<isNotNull property="indAcu" prepend="AND">
+				ind_acu = #indAcu#
+			</isNotNull>
+			<isNotNull property="numExpedv" prepend="AND">
+				num_expedv = #numExpedv#
+			</isNotNull>			
+		</dynamic>
+				
+	</select>
+	
+	<select id="listarAcumuladosExpVirtual" parameterClass="java.util.HashMap" resultMap="resultMapAcumExpVirtual" >
+			SELECT num_expedv, num_expedo
+			FROM t6614expvirtual
+			<dynamic prepend="WHERE">
+				cod_estado != '03' AND
+				<isNotNull property="indAcu" prepend="AND">
+					ind_acu = #indAcu#
+				</isNotNull>
+				<isNotNull property="numAcu" prepend="AND">
+					num_acu = #numAcu#
+				</isNotNull>
+				<isNotNull property="listExpOri">
+					<isNotEmpty prepend="AND" property="listExpOri">
+						num_expedo IN 
+						<iterate property="listExpOri" open="(" close=")" conjunction=",">
+							#listExpOri[].num_exp_ori#
+						</iterate>
+					</isNotEmpty>
+				</isNotNull>	
+			</dynamic>					
+	</select>
+	
+	<select id="listarAcumuladosExpVirtualCierre" parameterClass="java.util.HashMap" resultMap="resultMapAcumExpVirtualCierre">			
+			SELECT num_expedv, num_expedo
+			FROM t6614expvirtual
+			<dynamic prepend="WHERE">
+				cod_estado != '03' AND
+				<isNotNull property="codEstado" prepend="AND">
+					cod_estado = #codEstado#
+				</isNotNull>
+				<isNotNull property="numAcu" prepend="AND">
+					num_acu = #numAcu#
+				</isNotNull>					
+			</dynamic>					
+	</select>
+	
+	<insert id= "insertar" parameterClass="java.util.HashMap" >
+		INSERT INTO T6614expvirtual
+		(num_expedv, num_expedo, cod_proc, cod_tipexp, num_ruc, des_expedv, cod_estado, cod_origen, 
+		cod_usuregis, fec_regis, cod_dep, cod_oricierr, cod_estcierr, des_motcierr, des_sumilla, 
+		cod_usucierr, fec_cierre, cod_retserv, ind_acu, num_acu, des_eliexp, cod_usumodif, fec_modif)
+		VALUES (#numExpeDv#, #numExpedo#, #codProc#, #codTipexp#, #numRuc#, #desExpedv#, #codEstado#, #codOrigen#, #codUsuRegis#, 
+			 #fecRegis#, #codDep#, #codOriCierr#, #codEstCierr#, #desMotCierr#, #desSumilla#, #codUsuCierr#, #fecCierre#, #codRetserv#,
+			 #indAcu#, #numAcu# , #desEliExp#, #codUsuModif#, #fecModif#)
+	</insert>
+		
+	<update id="actualizar" parameterClass="java.util.HashMap" >
+		
+		UPDATE T6614expvirtual 
+		<dynamic prepend="SET">
+			<isNotNull property="codEstado" prepend=",">
+				cod_estado = #codEstado#
+			</isNotNull>
+			<isNotNull property="codOrigenCierre" prepend=",">
+				cod_oricierr = #codOrigenCierre#
+			</isNotNull>
+			<isNotNull property="codEstadoCierre" prepend=",">
+				cod_estcierr = #codEstadoCierre#
+			</isNotNull>
+			<isNotNull property="desMotivoCierre" prepend=",">
+				des_motcierr = #desMotivoCierre#
+			</isNotNull>
+			<isNotNull property="desSumilla" prepend=",">
+				des_sumilla = #desSumilla#
+			</isNotNull>
+			<isNotNull property="codUsuarioCierre" prepend=",">
+				cod_usucierr = #codUsuarioCierre#
+			</isNotNull>
+			<isNotNull property="fecCierre" prepend=",">
+				fec_cierre = #fecCierre#
+			</isNotNull>
+			<isNotNull property="numAcu" prepend=",">
+				num_acu = #numAcu#
+			</isNotNull>
+			<isNotNull property="indAcu" prepend=",">
+				ind_acu = #indAcu#
+			</isNotNull>
+<!-- 		Inicio - [oachahuic][PAS20175E210400016] -->			
+			<isNotNull property="desEliExp" prepend=",">
+				des_eliexp = #desEliExp#
+			</isNotNull>
+			<isNotNull property="codUsuModif" prepend=",">
+				cod_usumodif = #codUsuModif#
+			</isNotNull>
+			<isNotNull property="fecModif" prepend=",">
+				fec_modif = #fecModif#
+			</isNotNull>
+<!-- 		Fin - [oachahuic][PAS20175E210400016] -->
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numExpedienteVirtual" prepend="AND">
+				num_expedv = #numExpedienteVirtual#
+			</isNotNull>
+<!-- 		Inicio - [oachahuic][PAS20175E210400016] -->			
+<!-- 			<isNotNull property="numExpedo" prepend="AND"> -->
+<!-- 				num_expedo = #numExpedo# -->
+<!-- 			</isNotNull> -->
+<!-- 		Fin - [oachahuic][PAS20175E210400016] -->
+			<isNotNull property="numAcuW" prepend="AND">
+				num_acu = #numAcuW#
+			</isNotNull>
+			<isNotNull property="listadoAcumulados">
+				<isNotEmpty prepend="AND" property="listadoAcumulados">
+					num_expedv IN 
+					<iterate property="listadoAcumulados" open="(" close=")" conjunction=",">
+						#listadoAcumulados[].numExpedv#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<!-- Inicio nchavez 07/07/2016 -->
+			<isNotNull property="listaNumExpevirNotIn">
+				<isNotEmpty prepend="AND" property="listaNumExpevirNotIn">
+					num_expedv NOT IN 
+					<iterate property="listaNumExpevirNotIn" open="(" close=")" conjunction=",">
+						#listaNumExpevirNotIn[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<!-- Fin nchavez 07/07/2016 -->
+		</dynamic>
+		
+	</update>
+	
+		
+	<select id="listarExpedientesDelAcumulado" parameterClass="java.util.HashMap" resultMap="resultBeanExpedientesDelAcumulado" >
+		SELECT 	a.num_expedv, 
+				a.num_expedo, 
+				a.cod_proc, 
+				a.cod_tipexp, 
+				a.num_ruc, 
+				a.des_expedv, 
+				a.cod_estado, 
+				a.cod_origen, 
+				a.cod_usuregis, 
+				a.fec_regis, 
+				a.cod_dep, 
+				a.cod_oricierr, 
+				a.cod_estcierr, 
+				a.des_motcierr, 
+				a.des_sumilla, 
+				a.cod_usucierr, 
+				a.fec_cierre, 
+				a.cod_retserv,
+				a.ind_acu,
+				a.num_acu
+		FROM t6614expvirtual a
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="numExpedienteAcumulador" prepend="AND">
+				a.num_acu = #numExpedienteAcumulador#
+			</isNotNull>
+		</dynamic>
+		
+	</select>
+	
+	<select id="listarExpedienteTrab" parameterClass="java.util.HashMap" resultMap="resultExpedienteTrabBean" >
+		SELECT num_expedv, num_expedo, cod_proc, cod_tipexp, cod_dep
+		FROM t6614expvirtual
+		<dynamic prepend="WHERE">
+			cod_estado != '03' AND
+			<isNotNull property="numRUC" prepend="AND">
+				num_ruc = #numRUC#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				cod_tipexp = #codTipExpediente#
+			</isNotNull>
+		</dynamic>
+	</select>	
+	<!-- INICIO JEFFIO  22/02/2017-->
+	<update id="reapertura" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6614ExpVirtualBean" >
+            UPDATE t6614expvirtual 
+         	<dynamic prepend="SET">
+               <isNotNull property="codEstado" prepend=",">
+					cod_estado = #codEstado#
+               </isNotNull>
+				<isNotNull property="codOrigenCierre" prepend=",">
+					cod_oricierr = #codOrigenCierre#
+				</isNotNull>
+				<isNotNull property="codEstadoCierre" prepend=",">
+					cod_estcierr = #codEstadoCierre#
+				</isNotNull>
+				<isNotNull property="desMotivoCierre" prepend=",">
+					des_motcierr = #desMotivoCierre#
+				</isNotNull>
+				<isNotNull property="desSumilla" prepend=",">
+					des_sumilla = #desSumilla#
+				</isNotNull>
+				<isNotNull property="codUsuarioCierre" prepend=",">
+					cod_usucierr = #codUsuarioCierre#
+				</isNotNull>
+				<isNotNull property="fecCierre" prepend=",">
+					fec_cierre = #fecCierre#
+				</isNotNull>
+               
+			   <isNotNull property="fecModif" prepend=",">
+	                fec_modif = #fecModif#
+               </isNotNull>
+               <isNotNull property="codUsuModif" prepend=",">
+	                cod_usumodif = #codUsuModif#
+               </isNotNull>
+    	    </dynamic>
+            <dynamic prepend="WHERE">
+               <isNotNull property="numExpedienteVirtual" prepend="OR">
+                       num_expedv = #numExpedienteVirtual#
+               </isNotNull>
+               <isNotNull property="numExpedienteVirtual" prepend="OR">
+                       num_acu = #numExpedienteVirtual#
+               </isNotNull>
+               <isNotNull property="numExpedienteOrigen" prepend="OR">
+                       num_acu = #numExpedienteOrigen#
+               </isNotNull>
+            </dynamic>                    
+     </update>
+     <update id="eliminarExpediente" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6614ExpVirtualBean" >
+            UPDATE t6614expvirtual 
+         	<dynamic prepend="SET">
+               <isNotNull property="codEstado" prepend=",">
+	                   cod_estado = #codEstado#
+               </isNotNull>
+               <isNotNull property="desEliExp" prepend=",">
+	                   des_eliexp = #desEliExp#
+               </isNotNull>
+			   <isNotNull property="fecModif" prepend=",">
+	                   fec_modif = #fecModif#
+               </isNotNull>
+               <isNotNull property="codUsuModif" prepend=",">
+	                   cod_usumodif = #codUsuModif#
+               </isNotNull>
+    	    </dynamic>
+            <dynamic prepend="WHERE">
+               <isNotNull property="numExpedienteVirtual" prepend="OR">
+                       num_expedv = #numExpedienteVirtual#
+               </isNotNull>
+            </dynamic>                    
+     </update>
+	<!-- FIN JEFFIO  22/02/2017-->
+	<!-- INICIO LLRB  31/01/2020-->
+	<select id="obtenerNroExpedienteVirtual" parameterClass="java.util.HashMap" resultMap="resultExpedienteBean" >
+			SELECT num_expedv,cod_proc,cod_tipexp
+			FROM t6614expvirtual
+			<dynamic prepend="WHERE">
+				<isNotNull property="numExpedOrigen" prepend="OR">
+					num_expedo = #numExpedOrigen#
+				</isNotNull>
+			</dynamic>
+	</select>	
+	<!-- FIN LLRB  31/01/2020-->
+	<!-- PAS20201U210500029 -HHC - INICIO-->
+	<select id="listarDocExpedienteReq" parameterClass="java.util.HashMap" resultMap="resultBeanDocumentoExpedConReq" >
+		
+		SELECT DISTINCT  a.num_expedv, 
+				 a.num_expedo, 
+				 a.cod_proc, 
+				 a.cod_tipexp, 
+				 a.num_ruc, 
+				 a.des_expedv, 
+				 a.cod_estado, 
+				 a.cod_origen, 
+				 a.cod_usuregis, 
+				 a.fec_regis, 
+				 a.cod_dep, 
+				 a.cod_oricierr, 
+				 a.cod_estcierr, 
+				 a.des_motcierr, 
+				 a.des_sumilla, 
+				 a.cod_usucierr, 
+				 a.fec_cierre, 
+				 a.cod_retserv,
+				 b.fec_doc,
+				 b.cod_origdoc,
+				 c.cod_colab,
+				 a.ind_acu,
+				 a.num_acu,
+				 b.fec_notif,
+				 b.cod_for_notif
+		FROM t6614expvirtual a
+		INNER JOIN t6613docexpvirt b on a.num_expedv=b.num_expedv
+		INNER JOIN t6620Requerim e    on a.num_expedv=e.num_expedv   
+		INNER JOIN T6621respexpvirt c 
+			on 	a.num_expedv = c.num_expedv 
+			and c.ind_resp = 1 
+			and c.ind_del = 0
+		<dynamic>
+		    <isEqual property="flagConsObsAvanzada"  compareValue="true" prepend="INNER JOIN">
+		       (SELECT num_expedv FROM t6615obsexp GROUP BY num_expedv) d
+               on a.num_expedv = d.num_expedv
+		    </isEqual>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="tipDocSust" prepend="AND">
+				b.cod_tipdocsust = #tipDocSust#
+			</isNotNull>
+			<isNotNull property="numeroRuc" prepend="AND">
+				a.num_ruc = #numeroRuc#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="numExpedOrigen" prepend="AND">
+				a.num_expedo = #numExpedOrigen#
+			</isNotNull>
+		  	<isNotNull property="numExpedVirtual" prepend="AND">
+				a.num_expedv = #numExpedVirtual#
+			</isNotNull>
+			<isNotNull property="numAcumulador" prepend="AND">
+				a.num_acu = #numAcumulador#
+			</isNotNull>
+			<isNotNull property="codEstado" prepend="AND">
+				a.cod_estado = #codEstado#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					 a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>	 	
+			</isNotNull>
+			<isNotNull property="fecDocIni">
+				<isNotNull property="fecDocFin" prepend="AND">
+				 	 b.fec_doc BETWEEN #fecDocIni# AND #fecDocFin#
+				 </isNotNull>	
+			</isNotNull>
+			<isNotNull property="listCodTipExp">
+				<isNotEmpty prepend="AND" property="listCodEstReq">
+					a.cod_tipexp IN 
+					<iterate property="listCodTipExp" open="(" close=")" conjunction=",">
+						#listCodTipExp[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="listCodEstReq">
+				<isNotEmpty prepend="AND" property="listCodEstReq">
+					e.COD_ESTREQ IN 
+					<iterate property="listCodEstReq" open="(" close=")" conjunction=",">
+						#listCodEstReq[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep like #codDependencia#||'%'
+			</isNotNull>
+				and EXISTS (select d.num_expedv from t6621respexpvirt d where a.num_expedv=d.num_expedv and d.ind_del = '0'
+			<isNotNull property="codColab" prepend="AND">
+				d.cod_colab = #codColab#
+			</isNotNull>
+				)		
+		</dynamic>
+	</select>
+	<!--PAS20201U210500029 HHC - FIN-->
+</sqlMap>

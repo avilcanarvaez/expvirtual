@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="tabdep">
+
+	<select id="getByCodigo" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT  
+			CODIGO,	
+			DEPEN,
+			ADUANA,
+			DEPEN2			
+		FROM TABDEP
+		WHERE
+			CODIGO = #codigo_par# AND
+			ADUANA != '000'
+	</select>
+	
+	<select id="listarDependencia" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT  
+			CODIGO,	
+			DEPEN,
+			ADUANA,
+			DEPEN2			
+		FROM TABDEP
+		WHERE
+			ADUANA != '000'
+			AND REPORTA like 'AD%'
+	</select>
+	
+</sqlMap>

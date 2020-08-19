@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- staype 26/12/2019 -->
+<sqlMap namespace="detreqordfis">
+  <typeAlias alias="DetReqOrdFisBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.DetReqOrdFisBean"/>
+	
+	<resultMap id="resultBean" class="DetReqOrdFisBean" >
+		<result property="numReq" column="num_req" />
+		<result property="item" column="item" />
+		<result property="subitem" column="sub_item" />
+		<result property="textitem" column="text_item" />
+			
+	</resultMap>
+	
+		
+	<select id="obtenerDatosReqDet" parameterClass="java.util.HashMap" resultMap="resultBean" >
+	SELECT num_req,
+	       item,
+	       sub_item,
+	       text_item 
+	FROM det_req_ordfis  
+	
+		<dynamic prepend="WHERE">
+		
+			<isNotNull property="numRequerimientoOrigen" prepend="AND">
+			num_req = #numRequerimientoOrigen#
+			</isNotNull>
+			
+		</dynamic>
+		
+	</select>
+	
+
+
+</sqlMap>
+

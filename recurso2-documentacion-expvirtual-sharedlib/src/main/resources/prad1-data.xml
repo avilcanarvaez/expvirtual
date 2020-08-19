@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/jee
+						http://www.springframework.org/schema/jee/spring-jee.xsd">
+		
+	<jee:jndi-lookup id="dcprad1" jndi-name="jdbc/dcprad1" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource"/>
+	<jee:jndi-lookup id="dgprad1" jndi-name="jdbc/dgprad1" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource"/>
+	<jee:jndi-lookup id="dxprad1" jndi-name="jdbc/dxprad1" resource-ref="true" cache="false" lookup-on-startup="false" proxy-interface="javax.sql.DataSource"/>
+</beans>

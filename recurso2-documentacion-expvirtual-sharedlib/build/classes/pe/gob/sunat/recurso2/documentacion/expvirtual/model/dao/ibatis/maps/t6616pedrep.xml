@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6616PedRep">
+	
+	<typeAlias alias="t6616PedRepBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6616PedRepBean"/>
+	
+	<resultMap id="resultBeanPedidoReporte" class="t6616PedRepBean" >	
+		<result property="numeroPedido" column="NUM_PEDIDO" />		
+		<result property="numeroPlantilla" column="NUM_PLANTI" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="codTipoGeneracionReporte" column="COD_TIPGENERA" />
+		<result property="codEstadoReporte" column="COD_ESTADO" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecGenera" column="FEC_GENERA" />
+		<result property="numRuc" column="NUM_RUC" /> 
+		<result property="codResponsable" column="COD_USURESP" /> 
+		<result property="numReportePedido" column="NUM_REPPED" /> 
+	</resultMap>
+	
+	<resultMap id="resultExpedienteTrabBean" class="java.util.HashMap">
+		<result property="numPedido" column="NUM_PEDIDO" />
+	</resultMap>	
+	
+	<select id="listarExpTrabPedido" parameterClass="java.util.HashMap" resultMap="resultExpedienteTrabBean" >
+		SELECT num_pedido
+		FROM T6616pedrep
+		<dynamic prepend="WHERE">			
+			<isNotNull property="codTipGenera" prepend="AND">
+				cod_tipgenera = #codTipGenera#
+			</isNotNull>		
+			<isNotNull property="codEstado" prepend="AND">
+				cod_estado = #codEstado#
+			</isNotNull>
+		</dynamic>		
+	</select>
+	
+	<resultMap id="resultBeanPedido" class="t6616PedRepBean" >	
+		<result property="numeroPedido" column="NUM_PEDIDO" />		
+		<result property="numeroPlantilla" column="NUM_PLANTI" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="codTipoGeneracionReporte" column="COD_TIPGENERA" />
+		<result property="codEstadoReporte" column="COD_ESTADO" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="descripcionPlantilla" column="DES_PLANTI" /> 
+	</resultMap>
+	<select id="listarExpedientesPorPedido" parameterClass="java.util.HashMap" resultMap="resultBeanPedidoReporte" >
+			
+	SELECT  a.num_pedido,a.num_planti, 				
+		a.cod_proc, a.cod_tipexp, a.cod_tipgenera, 				
+		a.cod_estado, a.cod_usuregis, d.fec_genera,  				
+		d.num_ruc, d.cod_usuresp, d.num_repped				 		
+		FROM T6616pedrep a 	INNER JOIN t6619repgenped d on a.num_pedido=d.num_pedido 		
+		<dynamic prepend="WHERE">
+			<isNotNull property="numeroPedido" prepend="AND">
+				a.num_pedido = #numeroPedido#
+			</isNotNull>
+			<isNotNull property="numeroRuc" prepend="AND">
+				a.num_ruc = #numeroRuc#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>			
+			<isNotNull property="codEstadoReporte" prepend="AND">
+				a.cod_estado = #codEstadoReporte#
+			</isNotNull>
+		</dynamic>		
+	</select>
+
+	<update id="actualizar" parameterClass="java.util.HashMap">
+		UPDATE T6616pedrep 
+		<dynamic prepend="SET">
+			<isNotNull property="codEstado" prepend=",">
+				cod_estado = #codEstado#
+			</isNotNull>
+			<isNotNull property="codUsuModif" prepend=",">
+				cod_usumodif = #codUsuModif#
+			</isNotNull>
+			<isNotNull property="fecModif" prepend=",">
+				fec_modif = #fecModif#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numPedido" prepend="AND">
+				num_pedido = #numPedido#
+			</isNotNull>
+		</dynamic>		
+	</update>
+	
+	<select id="listarPedidos" parameterClass="java.util.HashMap" resultMap="resultBeanPedido" >
+	
+	SELECT  a.num_pedido,a.num_planti, 				
+		a.cod_proc, a.cod_tipexp, a.cod_tipgenera, 				
+		a.cod_estado, a.cod_usuregis, a.fec_regis, b.des_planti				 		
+		FROM T6616pedrep a 	INNER JOIN t6611cabplanti b on a.num_planti=b.num_planti
+		and b.cod_estplant='01'
+		<dynamic prepend="WHERE">
+			<isNotNull property="numeroPedido" prepend="AND">
+				a.num_pedido = #numeroPedido#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>			
+			<isNotNull property="codEstadoReporte" prepend="AND">
+				a.cod_estado = #codEstadoReporte#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					 a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>	 	
+			</isNotNull>
+            <!-- PAS20191U210500144 Inicio 400105 RF10 PSALDARRIAGA -->
+			<isNotNull property="codUsuarioRegistro" prepend="AND">
+				a.cod_usuregis = #codUsuarioRegistro#
+			</isNotNull>
+			<!-- PAS20191U210500144 Fin 400105 RF10 PSALDARRIAGA -->
+		</dynamic>		
+	</select>
+	<insert id= "insertar" parameterClass="java.util.HashMap">
+		INSERT INTO t6616pedrep (num_pedido, num_planti, cod_proc, cod_tipexp, cod_tipgenera, cod_estado, cod_usuregis, fec_regis, cod_usumodif, fec_modif)
+		VALUES (#numPedido#,#codPlantilla#,#codProceso#,#codTipoExp#,#tipoGenera#,#estado#,#codUsuarioRegistro#,#fecRegistro#,#codUsuarioModif#,#fecModif#)
+	</insert>
+	
+</sqlMap>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<bean id="txManager" class="org.springframework.transaction.jta.WebLogicJtaTransactionManager">
+		<property name="transactionManagerName" value="javax.transaction.TransactionManager"/>
+		<property name="defaultTimeout" value="1800"/> 
+	</bean>
+		
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="realizarAsociacionTipoExpedienteProceso" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="realizarAsociacionTipoDocumentoTipoExpediente" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="registrarExpedienteVirtual" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="realizarAsignacionResponsableExpediente" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="cerrarExpedienteVirtual" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="cerrarExpedienteVirtualAcum" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="registrarDocumentosExpediente" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="registrarDocumentosExpAdjunto" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="registrarRequerimiento" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="actualizarAsignacionResponsables" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="registrarObservacion" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="registrarRequerimientoManual" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="adjuntarDocumentosRequerimiento" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="reAbrirExpediente" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="registrarPedidoReporte" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="registrarPlantilla" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="generarReporteRUC" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="generarReporteMasivo" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<!--Incio JEFFIO 18/05/2017 -->
+			<tx:method name="eliminarExpVirtual" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="revertirCierreExpVirtual" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="reaperturaExpVirtual" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="eliminarRequerimiento" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="EliminarDocumentoExpediente" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<!--Fin JEFFIO 18/05/2017 -->
+			<!-- Inicio [jquispe 30/05/2016] -->
+			<tx:method name="generarIndiceArchivoPdf" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<!-- Fin [jquispe 30/05/2016] -->
+			<!-- Inicio [jtejada 18/08/2016] -->
+			<tx:method name="buscarExpedienteRepreImpr" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<!-- Fin [jtejada 18/08/2016] -->
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="realizarAsociacionTipoExpedienteProceso" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ConfiguracionExpedienteService.realizarAsociacionTipoExpedienteProceso(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="realizarAsociacionTipoExpedienteProceso"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="realizarAsociacionTipoDocumentoTipoExpediente" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ConfiguracionExpedienteService.realizarAsociacionTipoDocumentoTipoExpediente(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="realizarAsociacionTipoDocumentoTipoExpediente"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="registrarExpedienteVirtual" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.registrarExpedienteVirtual(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="registrarExpedienteVirtual"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="realizarAsignacionResponsableExpediente" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ResponsableService.realizarAsignacionResponsableExpediente(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="realizarAsignacionResponsableExpediente"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="cerrarExpedienteVirtual" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.cerrarExpedienteVirtual(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="cerrarExpedienteVirtual"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="cerrarExpedienteVirtualAcum" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.cerrarExpedienteVirtualAcum(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="cerrarExpedienteVirtualAcum"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="registrarDocumentosExpediente" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.registrarDocumentosExpediente(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="registrarDocumentosExpediente"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="registrarRequerimiento" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.RequerimientoService.registrarRequerimiento(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="registrarRequerimiento"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="actualizarAsignacionResponsables" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ResponsableService.actualizarAsignacionResponsables(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="actualizarAsignacionResponsables"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="registrarObservacion" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ObservacionExpedienteVirtualService.registrarObservacion(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="registrarObservacion"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="registrarDocumentosExpAdjunto" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.registrarDocumentosExpAdjunto(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="registrarDocumentosExpAdjunto"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="registrarRequerimientoManual" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.RequerimientoService.registrarRequerimientoManual(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="registrarRequerimientoManual"/>
+	</aop:config>	
+
+	<aop:config>
+		<aop:pointcut id="adjuntarDocumentosRequerimiento" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.adjuntarDocumentosRequerimiento(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="adjuntarDocumentosRequerimiento"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="reAbrirExpediente" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.reAbrirExpediente(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="reAbrirExpediente"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="registrarPlantilla" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ManttoPlanRepService.registrarPlantilla(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="registrarPlantilla"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="registrarPedidoReporte" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.GeneraReportePedidoService.registrarPedidoReporte(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="registrarPedidoReporte"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="generarReporteRUC" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteTrabReporteService.generarReporteRUC(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="generarReporteRUC"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="generarReporteMasivo" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteTrabReporteService.generarReporteMasivo(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="generarReporteMasivo"/>
+	</aop:config>
+	
+	<!-- Inicio [jquispe 30/05/2016] -->
+	<aop:config>
+		<aop:pointcut id="generarIndiceArchivoPdf" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.IndiceExpedienteVirtualService.generarIndiceArchivoPdf(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="generarIndiceArchivoPdf"/>
+	</aop:config>
+	<!-- Fin [jquispe 30/05/2016] -->
+	
+	<!-- Inicio [jtejada 18/08/2016] -->
+	<aop:config>
+		<aop:pointcut id="buscarExpedienteRepreImpr" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.buscarExpedienteRepreImpr(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="buscarExpedienteRepreImpr"/>
+	</aop:config>
+		<!-- Inicio [JEFFIO 18/08/2016] -->
+	<aop:config>
+		<aop:pointcut id="eliminarExpVirtual" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.EliminarExpVirtual(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="eliminarExpVirtual"/>
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="revertirCierreExpVirtual" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.RevertirCierreExpVirtual(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="revertirCierreExpVirtual"/>
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="reaperturaExpVirtual" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.ReaperturaExpVirtual(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="reaperturaExpVirtual"/>
+	</aop:config>
+		<aop:config>
+		<aop:pointcut id="eliminarRequerimiento" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.ExpedienteVirtualService.eliminarRequerimiento(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="eliminarRequerimiento"/>
+	</aop:config>
+		<aop:config>
+		<aop:pointcut id="eliminarDocumentoExpediente" expression="execution(* pe.gob.sunat.recurso2.documentacion.expvirtual.service.DocumentoExpedienteService.EliminarDocumentoExpediente(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="eliminarDocumentoExpediente"/>
+	</aop:config>
+	<aop:aspectj-autoproxy/>	
+</beans>

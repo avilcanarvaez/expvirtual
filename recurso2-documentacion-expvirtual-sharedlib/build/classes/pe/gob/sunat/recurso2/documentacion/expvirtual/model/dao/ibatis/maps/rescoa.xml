@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="rescoa">
+
+	<typeAlias alias="resCoaBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ResCoaBean"/>
+	
+	<parameterMap id="IN_parametros_fechaNot" class="java.util.HashMap">
+       <parameter property="numeroDocumento" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+       <parameter property="numeroRuc" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+    </parameterMap>
+    
+	<resultMap id="resultBean" class="resCoaBean" >
+		<result property="num_exp" column="num_exp" />
+		<result property="cod_tip_doc" column="cod_tip_doc" />
+		<result property="num_rc" column="num_rc" />
+		<result property="fec_emi" column="fec_emi" />
+	</resultMap>
+	
+	<resultMap id="OUT_parametros_fechaNot" class="java.util.HashMap">
+             <result property="fechaNotificacion" />
+     </resultMap>
+	<!-- Inicio [eaguilar 26/05/2015] -->
+	<parameterMap id="IN_parametros_dataSirat" class="java.util.HashMap">
+		<parameter property="codMaestro" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="numeroRuc" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="numeroDocumento" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+    </parameterMap>
+    
+	<resultMap id="OUT_parametros_dataSirat" class="java.util.HashMap">
+		<result property="numeroDoc" />
+		<result property="numeroRuc" />
+		<result property="tipDoc" />
+		<result property="fechaEmision" />
+		<result property="fechaNotificacion" />
+	</resultMap>
+ 	
+	
+	<select id="obtener" parameterClass="java.util.HashMap" resultMap="resultBean">
+		Select num_exp, cod_tip_doc, num_rc, fec_emi 
+		from 
+		$nombreTabla$
+		<dynamic prepend="WHERE">
+	 		num_exp = #numExpediente#
+			<isNotNull property="codTipoDoc" prepend="AND">
+				cod_tip_doc = #codTipoDoc#
+			</isNotNull>
+			and num_rc = #numRC#
+		</dynamic>
+	</select>
+	<!-- Fin [eaguilar 26/05/2015] --> 
+
+	<procedure id="obtenerFechaNotificacion" parameterMap="IN_parametros_fechaNot" resultMap="OUT_parametros_fechaNot">
+             {call nts01_sql_fec_not(?, ?);}
+    </procedure>
+	<!-- Inicio [eaguilar 26/05/2015] -->
+   	<procedure id="obtenerDatosSirat" parameterMap="IN_parametros_dataSirat" resultMap="OUT_parametros_dataSirat">
+             {call ccs19_obt_dat_doc(?, ?, ?);}
+    </procedure>
+	<!-- Fin [eaguilar 26/05/2015] -->
+</sqlMap>

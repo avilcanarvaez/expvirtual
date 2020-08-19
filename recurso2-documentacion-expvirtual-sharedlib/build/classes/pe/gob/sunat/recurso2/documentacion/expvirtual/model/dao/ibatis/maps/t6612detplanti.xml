@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6612DetPlanti">
+<typeAlias alias="t6612DetPlantiBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6612DetPlantiBean"/>
+
+	<resultMap id="resultBean" class="t6612DetPlantiBean" >
+		<result property="numCorDetPlanti" column="NUM_CORDETPLANTI" />
+		<result property="numPlantilla" column="NUM_PLANTI" />
+		<result property="codTipoDocumento" column="COD_TIPDOC" />
+		<result property="codRepTrbib" column="COD_RUBR" />
+		<result property="codFormatoAdi" column="COD_FORMADI" />
+		<result property="usuarioRegistro" column="COD_USUREGIS" />
+		<result property="fechaRegistro" column="FEC_REGIS" />
+		<result property="indicadorSelDoc" column="IND_SELDOC" />
+		<result property="indicadorSelRubro" column="IND_SELRUBRO" />
+		<result property="indicadorSelForma" column="IND_SELFORMA" />
+		
+	</resultMap>
+
+	<resultMap id="resultExpTrabBean" class="java.util.HashMap" >
+		<result property="indSelDoc" column="IND_SELDOC" />
+		<result property="codTipDoc" column="COD_TIPDOC" />
+		<result property="indSelForma" column="IND_SELFORMA" />
+		<result property="codFormadi" column="COD_FORMADI" />
+		<result property="indSelRubro" column="IND_SELRUBRO" />
+		<result property="codRubr" column="COD_RUBR" />		
+	</resultMap>
+
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		select NUM_CORDETPLANTI,NUM_PLANTI,COD_TIPDOC,COD_RUBR,COD_FORMADI,COD_USUREGIS,FEC_REGIS,IND_SELDOC,IND_SELRUBRO,IND_SELFORMA
+		from t6612detplanti
+		<dynamic prepend="WHERE">
+			<isNotNull property="numPlantilla" prepend="AND">
+				num_planti = #numPlantilla#
+			</isNotNull>
+			<isNotNull property="indicadorSelDoc" prepend="AND">
+				ind_seldoc = #indicadorSelDoc#
+			</isNotNull>
+			<isNotNull property="indicadorSelRubro" prepend="AND">
+				ind_selrubro = #indicadorSelRubro#
+			</isNotNull>
+			<isNotNull property="indicadorSelForma" prepend="AND">
+				ind_selforma = #indicadorSelForma#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+<!-- 	<update id="actualizar" parameterClass="java.util.HashMap" > -->
+		
+<!-- 		UPDATE t6611cabplanti  -->
+<!-- 		<dynamic prepend="SET"> -->
+<!-- 			<isNotNull property="estadoPlant" prepend=","> -->
+<!-- 				cod_estplant = #estadoPlant# -->
+<!-- 			</isNotNull> -->
+<!-- 		</dynamic> -->
+<!-- 		<dynamic prepend="WHERE"> -->
+<!-- 			<isNotNull property="numPlantilla" prepend="AND"> -->
+<!-- 				num_planti = #numPlantilla# -->
+<!-- 			</isNotNull> -->
+<!-- 		</dynamic> -->
+		
+<!-- 	</update> -->
+	
+	<insert id= "insertar" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6612DetPlantiBean">
+		INSERT INTO t6612detplanti
+		(num_cordetplanti, num_planti, cod_tipdoc, cod_formadi, cod_rubr, cod_usuregis, fec_regis,cod_usumodif, fec_modif, cod_usubaja,	fec_baja, ind_seldoc, ind_selrubro, ind_selforma)
+		VALUES (#numCorDetPlanti#, #numPlantilla#, #codTipoDocumento#, #codFormatoAdi#, #codRepTrbib#, #usuarioRegistro#, #fechaRegistro#,#usuarioMod#,#fechaModificacion#,#codUsuarioBaja#,#fechaBaja#, #indicadorSelDoc#, #indicadorSelRubro#, #indicadorSelForma#);
+	</insert> 
+	
+	<insert id= "eliminar" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6612DetPlantiBean">
+		DELETE FROM t6612detplanti
+		WHERE num_cordetplanti = #numCorDetPlanti#;
+	</insert> 
+		
+	<select id="listarExpTrab" parameterClass="java.util.HashMap" resultMap="resultExpTrabBean" >
+		SELECT ind_seldoc, cod_tipdoc, ind_selforma, cod_formadi, ind_selrubro, cod_rubr
+		FROM t6612detplanti
+		<dynamic prepend="WHERE">
+			<isNotNull property="numPlantilla" prepend="AND">
+				num_planti = #numPlantilla#
+			</isNotNull>
+		</dynamic>
+	</select>
+</sqlMap>

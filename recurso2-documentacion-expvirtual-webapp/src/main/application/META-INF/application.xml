@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/application_5.xsd" 
+	version="5" id="Application">
+	
+	<description></description>
+	<display-name>recurso2-documentacion-expvirtual</display-name>
+	
+	<module>
+		<java>lib/documentacion-expvirtual-controller-${impl.version}.jar</java>
+	</module>
+	
+	<module>
+		<web>
+			<web-uri>iaexpvirtual-regconfexp-${impl.version}.war</web-uri>
+			<context-root>/ol-ti-iaexpvirtual-regconfexp</context-root>
+		</web>
+	</module>
+	
+	<module>
+		<web>
+			<web-uri>iaexpvirtual-ingvirtdoc-${impl.version}.war</web-uri>
+			<context-root>/ol-ti-iaexpvirtual-ingvirtdoc</context-root>
+		</web>
+	</module>
+	<module>
+		<web>
+			<web-uri>iaexpvirtual-escritoelect-${impl.version}.war</web-uri>
+			<context-root>/ol-ti-iaexpvirtual-escritoelect</context-root>
+		</web>
+	</module>
+	<module>
+		<web>
+			<web-uri>itexpvirtual-ingvirtdoc-${impl.version}.war</web-uri>
+			<context-root>/ol-ti-itexpvirtual-ingvirtdoc</context-root>
+		</web>
+	</module>
+	
+	<module>
+		<web>
+			<web-uri>iaexpvirtual-segconsultas-${impl.version}.war</web-uri>
+			<context-root>/ol-ti-iaexpvirtual-segconsultas</context-root>
+		</web>
+	</module>
+	
+ 	<module> 
+		<web>
+			<web-uri>itexpvirtual-segconsultas-${impl.version}.war</web-uri>
+			<context-root>/cl-ti-itexpvirtual-segconsultas</context-root>
+		</web>
+	</module> 
+	
+	<module>
+		<web>
+			<web-uri>iaexpvirtual-docinternos-${impl.version}.war</web-uri>
+			<context-root>/ol-ti-iaexpvirtual-docinternos</context-root>
+		</web>
+	</module> 
+	
+	<module>
+		<web>
+			<web-uri>iaexpvirtual-repexptrab-${impl.version}.war</web-uri>
+			<context-root>/ol-ti-iaexpvirtual-repexptrab</context-root>
+		</web>
+	</module>
+	
+	<module>
+		<web>
+			<web-uri>itexpvirtual-consvaliriev-${impl.version}.war</web-uri>
+			<context-root>/ol-ti-itexpvirtual-consvaliriev</context-root>
+		</web>
+	</module>
+	
+</application>

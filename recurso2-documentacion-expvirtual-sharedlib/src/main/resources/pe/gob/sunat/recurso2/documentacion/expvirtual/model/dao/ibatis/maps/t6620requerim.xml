@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="T6620Requerim">
+
+<typeAlias alias="t6620RequerimBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6620RequerimBean"/>
+	
+	<resultMap id="resultBean" class="t6620RequerimBean" >
+		<result property="numRequerimiento" column="NUM_REQUERIM" />
+		<result property="numRequerimOrigen" column="NUM_REQORIG" />
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="fechaRequerimiento" column="FEC_REQUERIM" />
+		<result property="codEstadoRequerim" column="COD_ESTREQ" />
+		<result property="fechaVencimiento" column="FEC_VENC" />
+		<result property="codOrigRequerimiento" column="COD_ORIREQ" />
+		<result property="fechaRegistro" column="FEC_REGIS" />
+		<result property="codUsuRegis" column="COD_USUREGIS" />
+		<result property="fechaMod" column="FEC_MOD" />
+		<result property="codUsuMod" column="COD_USUMOD" />
+		<result property="codTipCierr" column="cod_tipcierr" />
+		<result property="codTipDoc" column="cod_tipdoc" />		
+	</resultMap>
+	
+	<select id="listarRequerimientos" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		
+		SELECT a.NUM_REQUERIM, 
+				a.NUM_REQORIG, 
+				a.NUM_EXPEDV, 
+				a.FEC_REQUERIM, 
+				a.COD_ESTREQ, 
+				a.FEC_VENC, 
+				A.COD_ORIREQ,
+				a.FEC_REGIS, 
+				a.COD_USUREGIS, 
+				a.FEC_MOD, 
+				a.COD_USUMOD,
+				a.cod_tipcierr,
+				a.cod_tipdoc
+		FROM t6620Requerim a
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRequerimiento" prepend="AND">
+				a.NUM_REQUERIM = #numRequerimiento#
+			</isNotNull>
+			<isNotNull property="numExpedVirtual" prepend="AND">
+				a.NUM_EXPEDV = #numExpedVirtual#
+			</isNotNull>
+			<isNotNull property="codEstReq" prepend="AND">
+				a.cod_estreq = #codEstReq#
+			</isNotNull>
+			<!-- Inicio [nchavez 26/05/2016] -->
+			<isNotNull property="codOrigenReq" prepend="AND">
+				a.cod_orireq = #codOrigenReq#
+			</isNotNull>
+			<!-- Fin [nchavez 26/05/2016] -->
+			<!-- Inicio nchavez [31/05/2016] -->
+			<isNotNull property="numRequerimientoOrigen" prepend="AND">
+				a.num_reqorig=#numRequerimientoOrigen=#
+			</isNotNull>
+			<!-- Fin nchavez [31/05/2016] -->
+			<!-- Inicio oachahuic [PAS20175E210400016] -->
+			<isNotNull property="codEstReqDifEli" prepend="AND">
+				a.cod_estreq != #codEstReqDifEli#
+			</isNotNull>
+			<isNotNull property="listCodEstReq">
+				<isNotEmpty prepend="AND" property="listCodEstReq">
+					a.cod_estreq IN 
+					<iterate property="listCodEstReq" open="(" close=")" conjunction=",">
+						#listCodEstReq[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<!-- Fin oachahuic [PAS20175E210400016] -->
+		</dynamic>
+		
+	</select>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		
+		SELECT NUM_REQUERIM, NUM_REQORIG, NUM_EXPEDV, FEC_REQUERIM, COD_ESTREQ, 
+		FEC_VENC, COD_ORIREQ, FEC_REGIS, COD_USUREGIS, FEC_MOD, COD_USUMOD, cod_tipcierr, cod_tipdoc
+		FROM t6620Requerim
+		<dynamic prepend="WHERE">
+			<isNotNull property="numExpedienteVirtual" prepend="AND">
+				NUM_EXPEDV = #numExpedienteVirtual#
+			</isNotNull>
+			<isNotNull property="codEstadoRequerimiento" prepend="AND">
+				COD_ESTREQ = #codEstadoRequerimiento#
+			</isNotNull>
+			<isNotNull property="numRequerim" prepend="AND">
+				NUM_REQUERIM = #numRequerim#
+			</isNotNull>
+			<!-- Inicio cvg [14/01/2020] -->
+			<isNotNull property="numRequerimientoOrigen" prepend="AND">
+				num_reqorig=#numRequerimientoOrigen=#
+			</isNotNull>
+			<!-- Inicio oachahuic [PAS20175E210400016] -->
+			<isNotNull property="codEstReqDifEli" prepend="AND">
+				COD_ESTREQ != #codEstReqDifEli#
+			</isNotNull>
+			<isNotNull property="listCodEstReq">
+				<isNotEmpty prepend="AND" property="listCodEstReq">
+					COD_ESTREQ IN 
+					<iterate property="listCodEstReq" open="(" close=")" conjunction=",">
+						#listCodEstReq[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<!-- Fin oachahuic [PAS20175E210400016] -->
+		</dynamic>
+		ORDER BY fec_regis<!-- [oachahuic][PAS20165E210400270] -->
+	</select>
+	
+	<insert id= "insertar" parameterClass="java.util.HashMap">
+		INSERT INTO T6620Requerim (num_requerim,num_reqorig,num_expedv,fec_requerim,cod_estreq,fec_venc,cod_orireq,fec_regis,cod_usuregis,fec_mod,cod_usumod,des_elireq,des_atereq,cod_tipcierr)
+		VALUES (#num_requerim#,#num_reqorig#,#num_expedv#,#fec_requerim#,#cod_estreq#,#fec_venc#,#cod_orireq#,#fec_regis#,#cod_usuregis#,#fec_mod#,#cod_usumod#,#des_elireq#,#des_atereq#,#cod_tipcierr#)
+	</insert>
+	
+	<insert id= "insertarManual" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6620RequerimBean">
+		INSERT INTO T6620Requerim (num_requerim,num_reqorig,num_expedv,fec_requerim,cod_estreq,fec_venc,cod_orireq,fec_regis,cod_usuregis,fec_mod,cod_usumod,des_elireq,des_atereq,cod_tipcierr,cod_tipdoc)
+		VALUES (#numRequerimiento#,#numRequerimOrigen#,#numExpedienteVirtual#,#fechaRequerimiento#,#codEstadoRequerim#,#fechaVencimiento#,#codOrigRequerimiento#,#fechaRegistro#,#codUsuRegis#,#fechaMod#,#codUsuMod#,#desEliReq#,#desAteReq#,#codTipCierr#,#codTipDoc#) <!-- [cvg][PAS20191U210500291] -->
+	</insert>
+	
+	<update id="actualizar" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6620RequerimBean" >
+			
+		UPDATE T6620Requerim 
+		<dynamic prepend="SET">
+			<isNotNull property="codUsuMod" prepend=",">
+				cod_usumod = #codUsuMod#
+			</isNotNull>
+			<isNotNull property="fechaMod" prepend=",">
+				fec_mod = #fechaMod#
+			</isNotNull>
+			<isNotNull property="codEstadoRequerim" prepend=",">
+				cod_estreq = #codEstadoRequerim#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRequerimiento" prepend="AND">
+				num_requerim = #numRequerimiento#
+			</isNotNull>
+		</dynamic>
+		
+	</update>
+
+	<!-- INICIO [ATORRESCH 2017-03-02] IU015 -->
+	<update id="anular" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6620RequerimBean" >	
+		UPDATE t6620requerim 
+		<dynamic prepend="SET">
+			<isNotNull property="codEstadoRequerim" prepend=",">
+				cod_estreq = #codEstadoRequerim#
+			</isNotNull>
+			<isNotNull property="desEliReq" prepend=",">
+				des_elireq = #desEliReq#
+			</isNotNull>			
+			<isNotNull property="codUsuMod" prepend=",">
+				cod_usumod = #codUsuMod#
+			</isNotNull>			
+			<isNotNull property="fechaMod" prepend=",">
+				fec_mod = #fechaMod#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRequerimiento" prepend="AND">
+				num_requerim = #numRequerimiento#
+			</isNotNull>
+		</dynamic>
+	</update>
+	<!-- FIN [ATORRESCH 2017-03-02] IU015 -->
+	<!-- Inicio staype 26/12/2019 -->
+	<update id="actualizarFecVen" parameterClass="java.util.HashMap" >
+			
+		UPDATE T6620Requerim 
+		<dynamic prepend="SET">
+			
+			<isNotNull property="fechaVenc" prepend=",">
+				fec_venc = #fechaVenc#
+			</isNotNull>
+			<!-- Inicio modifica cvalencia -->
+			<isNotNull property="codUsuMod" prepend=",">
+				cod_usumod = #codUsuMod#
+			</isNotNull>
+			<isNotNull property="fechaMod" prepend=",">
+				fec_mod = #fechaMod#
+			</isNotNull>
+			<!-- Fin modifica cvalencia -->
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRequerimiento" prepend="AND">
+				num_reqorig = #numRequerimiento#
+			</isNotNull>
+			<isNotNull property="codEstReqDifEli" prepend="AND">
+				cod_estreq != #codEstReqDifEli#
+			</isNotNull>
+		</dynamic>
+		
+	</update>
+	<!-- Fin staype 26/12/2019 -->
+	
+	<!-- Inicio cvalencia 09/01/2020 [PAS20191U210500291] -->
+	<select id="obtenerRequerimiento" parameterClass="java.util.HashMap" resultMap="resultBean" >		
+		SELECT first 1 a.NUM_REQUERIM, 
+				a.NUM_REQORIG, 
+				a.NUM_EXPEDV, 
+				a.FEC_REQUERIM, 
+				a.COD_ESTREQ, 
+				a.FEC_VENC, 
+				a.COD_ORIREQ,
+				a.FEC_REGIS, 
+				a.COD_USUREGIS, 
+				a.FEC_MOD, 
+				a.COD_USUMOD,
+				a.cod_tipcierr,
+				a.cod_tipdoc
+		FROM t6620Requerim a
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRequerimientoOrigen" prepend="AND">
+				a.num_reqorig=#numRequerimientoOrigen=#
+			</isNotNull>
+		</dynamic>
+		ORDER BY a.fec_regis desc
+	</select>
+	<!-- Fin cvalencia  -->
+</sqlMap>

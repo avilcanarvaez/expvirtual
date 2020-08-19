@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" useStatementNamespaces="true" maxSessions="64" maxTransactions="8" maxRequests="128"/>
+	
+<!-- 	<typeHandler callback="pe.gob.sunat.framework.spring.util.dao.ibatis.FechaTypeHandler" javaType="pe.gob.sunat.framework.spring.util.date.FechaBean" /> -->
+	
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6613docexpvirt.xml" />	
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6614expvirtual.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6620requerim.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6621respexpvirt.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6623tipdocexp.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6624tipexpproc.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6622seguim.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6615obsexp.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6611cabplanti.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6612detplanti.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6616pedrep.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6617repgendoc.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6618repgenexp.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6619repgenped.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/reportesIndicadores.xml" />
+	<!-- Inicio [jquispe 02/06/2016] -->
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t7731docadiexpvirt.xml" />
+	<!-- Fin [jquispe 02/06/2016] -->
+	
+	<!-- Inicio [jtejada 18/08/2016] -->
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6625repimpexpvirt.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t6626seguirepimp.xml" />
+	<!-- Fin [jtejada 18/08/2016] -->
+	<!--  Inicio [lromerob 10/12/2019] -->
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t10373docadjreq.xml" />	
+	<!--  Fin [lromerob 10/12/2019] -->
+  	<!-- Inicio [staype 26/12/2019] -->
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t10372detrequerim.xml" />
+	<!-- Fin [staype 26/12/2019] -->
+	
+	<!--  Inicio CVG 16/01/2020 -->
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t10459accepexpvirt.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t10460vincexpvirt.xml" />
+	<!--  Fin CVG 16/01/2020 -->
+	
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t10458versdocadj.xml" />	
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/t10461soldes.xml" />	
+	
+</sqlMapConfig>	

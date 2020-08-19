@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="T01param">
+	
+	<typeAlias alias="t01ParamBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T01ParamBean"/>
+	
+	<cacheModel id="t01Cache" type="LRU" readOnly="true" serialize="false">
+		<flushInterval hours="1"/>
+		<property name="cache-size" value="10000"/>
+	</cacheModel>
+	
+	<resultMap id="resultBean" class="t01ParamBean" >
+		<result property="codClase" column="T01_NUMERO" />
+		<result property="indTipo" column="T01_TIPO" />
+		<result property="codParametro" column="T01_ARGUMENTO" />
+		<result property="desParametro" column="T01_FUNCION" />
+	</resultMap>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean" cacheModel="t01Cache">
+		
+		SELECT T01_NUMERO, T01_TIPO, T01_ARGUMENTO, T01_FUNCION
+		FROM T01PARAM 
+		<dynamic prepend="WHERE">
+			<isNotNull property="codClase" prepend="AND">
+				T01_NUMERO = #codClase#
+			</isNotNull>
+			<isNotNull property="indTipo" prepend="AND">
+				T01_TIPO = #indTipo#
+			</isNotNull>
+			<isNotNull property="codParametro" prepend="AND">
+				T01_ARGUMENTO = #codParametro#
+			</isNotNull>
+			<!-- Inicio nchavez [03/06/2016] -->
+			<isNotNull property="codTipoExpediente" prepend="AND">
+				t01_argumento[1,3]=#codTipoExpediente#
+			</isNotNull>
+			<!-- Fin nchavez [03/06/2016] -->
+			<isNotNull property="listadoParametrosIncluidos">
+				<isNotEmpty prepend="AND" property="listadoParametrosIncluidos">
+					T01_ARGUMENTO IN 
+					<iterate property="listadoParametrosIncluidos" open="(" close=")" conjunction=",">
+						#listadoParametrosIncluidos[].codParametro#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="listadoParametrosExcluidos">
+				<isNotEmpty prepend="AND" property="listadoParametrosExcluidos">
+					T01_ARGUMENTO NOT IN 
+					<iterate property="listadoParametrosExcluidos" open="(" close=")" conjunction=",">
+						#listadoParametrosExcluidos[].codParametro#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		
+	</select>
+	
+	<select id="obtener" parameterClass="java.util.HashMap" resultMap="resultBean" cacheModel="t01Cache">
+		SELECT T01_NUMERO, T01_TIPO, T01_ARGUMENTO, T01_FUNCION
+		FROM T01PARAM 
+		WHERE T01_NUMERO = #codClase#
+		AND	T01_TIPO = #indTipo#
+		AND T01_ARGUMENTO = #codParametro#
+	</select>
+<!-- Inicio - [oachahuic][PAS20165E210400270] -->
+	<select id="listarDocCierreByTipExp" parameterClass="java.util.HashMap" resultClass="java.lang.String">
+		SELECT
+			t01_funcion[1,6]
+		FROM T01PARAM
+		WHERE
+			T01_NUMERO = #t01_numero_par#
+			AND T01_TIPO = #t01_tipo_par#
+			AND T01_ARGUMENTO[1,3] = #t01_argumento_par#
+	</select>
+	
+	<select id="listarTipDocNotif" parameterClass="java.util.HashMap" resultClass="java.lang.String">
+		SELECT
+			t01_argumento[1,6]
+		FROM T01PARAM
+		WHERE
+			T01_NUMERO = #t01_numero_par#
+			AND T01_TIPO = #t01_tipo_par#
+			AND T01_ARGUMENTO[1,3] = #t01_argumento_par#
+	</select>
+<!-- Fin - [oachahuic][PAS20165E210400270] -->
+<!-- Inicio - [oachahuic][PAS20181U210400241] -->
+	<select id="listarEquivalencia" parameterClass="java.util.HashMap" resultMap="resultBean" cacheModel="t01Cache">		
+		SELECT
+			t01_numero,
+			t01_tipo,
+			t01_argumento[01,06] AS t01_argumento,
+			t01_funcion[01,06] AS t01_funcion
+		FROM T01PARAM
+		<dynamic prepend="WHERE">
+			<isNotNull property="codClase" prepend="AND">
+				t01_numero = #codClase#
+			</isNotNull>
+			<isNotNull property="indTipo" prepend="AND">
+				t01_tipo = #indTipo#
+			</isNotNull>
+			<isNotNull property="codArgumento" prepend="AND">
+				t01_argumento = #codArgumento#
+			</isNotNull>
+			<isNotNull property="indEstado" prepend="AND">
+				t01_funcion[97,97] = #indEstado#
+			</isNotNull>
+			<isNotNull property="codTipDoc" prepend="AND">
+				t01_funcion[01,06] = #codTipDoc#
+			</isNotNull>
+			<isNotNull property="codPro" prepend="AND">
+				t01_funcion[08,12] = #codPro#
+			</isNotNull>
+		</dynamic>
+	</select>
+<!-- Fin - [oachahuic][PAS20181U210400241] -->
+<!-- Inicio - [oachahuic][PAS20191U210500076] -->
+	<select id="obtenerTipValidacion" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" cacheModel="t01Cache">		
+		SELECT
+			t01_funcion[01,01] AS tip_serv,
+			t01_funcion[02,02] AS tip_almcn_bd,
+			t01_funcion[03,03] AS tip_bd,
+			TRIM(t01_funcion[05,24]) AS sistema,
+			TRIM(t01_funcion[26,55]) AS sub_sistema,
+			TRIM(t01_funcion[57,86]) AS funcion,
+			TRIM(t01_funcion[91,100]) AS param_funcion
+		FROM T01PARAM
+		WHERE
+			t01_numero = #t01_numero_par# AND
+			t01_tipo = #t01_tipo_par# AND
+			t01_argumento = #t01_argumento_par#
+	</select>
+<!-- Fin - [oachahuic][PAS20191U210500076] -->
+</sqlMap>

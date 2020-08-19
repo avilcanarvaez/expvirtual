@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6618RepGenExp">
+<typeAlias alias="t6618RepGenExpBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6618RepGenExpBean"/>
+	
+	<resultMap id="resultBeanRepPorExpediente" class="t6618RepGenExpBean">	
+		<result property="numReporteExpediente" column="NUM_REPEXP"/>
+		<result property="numReportePedido" column="NUM_REPPED"/>
+		<result property="numeroPedido" column="NUM_PEDIDO"/>		
+		<result property="codigoIdecm" column="COD_IDECM"/>		
+		<result property="fecGeneracion" column="FEC_GENERA"/>
+		<result property="codEstadoRepPorExpediente" column="COD_EST"/>
+		<result property="codError" column="COD_ERROR"/>
+	</resultMap>
+	
+	<resultMap id="resultBeanPedidoGen" class="java.util.HashMap">		
+		<result property="numPlantilla" column="NUM_PLANTI" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="numRUC" column="NUM_RUC" />
+		<result property="numRepExp" column="NUM_REPEXP" />
+		<result property="numRepPed" column="NUM_REPPED" />
+	</resultMap>
+	
+	<resultMap id="resultBeanPedidoGen2" class="t6618RepGenExpBean">		
+		<result property="numReporteExpediente" column="NUM_REPEXP"	 />
+		<result property="numReportePedido" column="NUM_REPPED" />
+		<result property="numeroPedido" column="NUM_PEDIDO" />
+		<result property="codigoIdecm" column="COD_IDECM" />
+		<result property="codEstadoRepPorExpediente" column="COD_EST" />
+	</resultMap>
+	
+	<!--  08 JUN eaguilar: se anadio la columna cod_error -->
+	<select id="reportePorExpediente" parameterClass="java.util.HashMap" resultMap="resultBeanRepPorExpediente" >	
+		SELECT   
+			num_repexp,
+			num_repped,
+			num_pedido,
+			cod_idecm,	
+			fec_genera,
+			cod_est,
+			cod_error
+		FROM t6618repgenexp 
+		<dynamic prepend="WHERE">
+			<isNotNull property="numeroPedido" prepend="AND">
+				num_pedido = #numeroPedido#
+			</isNotNull>
+			<isNotNull property="numReportePedido" prepend="AND">
+				num_repped = #numReportePedido#
+			</isNotNull>				  
+		</dynamic>		
+	</select>
+	
+	<insert id= "insertar" parameterClass="java.util.HashMap" >
+		INSERT INTO t6618repgenexp(num_repexp,num_repped,num_pedido,cod_idecm,fec_genera,cod_est,cod_usumodif,fec_modif,cod_error)
+		VALUES(#numRepExp#, #numRepPedido#, #numPedido#, #codIdecm#, #fecGenera#, #estado#, #codUsuModif#, #fecModif#,#codError#)
+	</insert>
+	
+	<!--  08 JUN eaguilar: se anadio la columna cod_error -->
+	<update id="actualizar" parameterClass="java.util.HashMap" >		
+		UPDATE t6618repgenexp 
+		<dynamic prepend="SET">
+			<isNotNull property="codIdEcm" prepend=",">
+				cod_idecm = #codIdEcm#
+			</isNotNull>
+			<isNotNull property="codEstado" prepend=",">
+				cod_est = #codEstado#
+			</isNotNull>
+			<isNotNull property="codUsuModif" prepend=",">
+				cod_usumodif = #codUsuModif#
+			</isNotNull>
+			<isNotNull property="fecModif" prepend=",">
+				fec_modif = #fecModif#
+			</isNotNull>
+			<isNotNull property="fecGenera" prepend=",">
+				fec_genera = #fecGenera#
+			</isNotNull>
+			<isNotNull property="codError" prepend=",">
+				cod_error = #codError#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRepExp" prepend="AND">
+				num_repexp = #numRepExp#
+			</isNotNull>			
+		</dynamic>
+	</update>
+	
+	<select id="listarPedidoGen" parameterClass="java.util.HashMap" resultMap="resultBeanPedidoGen" >
+		SELECT p.num_planti, p.cod_proc, p.cod_tipexp, g.num_ruc, et.num_repexp, g.num_repped
+		FROM t6616pedrep p JOIN t6619repgenped g ON (p.num_pedido = g.num_pedido)
+		JOIN t6618repgenexp et ON (g.num_repped = et.num_repped)
+		<dynamic prepend="WHERE">
+			<isNotNull property="numPedido" prepend="AND">
+				p.num_pedido = #numPedido#
+			</isNotNull>
+			<isNotNull property="codEstadoPedRep" prepend="AND">
+				p.cod_estado = #codEstadoPedRep#
+			</isNotNull>
+			<isNotNull property="codEstadoRepGenPed" prepend="AND">
+				g.cod_est = #codEstadoRepGenPed#
+			</isNotNull>
+			<isNotNull property="codEstadoRepGenExp" prepend="AND">
+				et.cod_est = #codEstadoRepGenExp#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<select id="listarExpedientesTrabajo" parameterClass="java.util.HashMap" resultMap="resultBeanPedidoGen2" >
+		SELECT a.num_repexp, a.num_repped, a.num_pedido, a.cod_idecm, a.cod_est
+		FROM t6618repgenexp a		
+		<dynamic prepend="WHERE">
+			<isNotNull property="numReportePedido" prepend="AND">
+				a.num_repped = #numReportePedido#
+			</isNotNull>
+			<isNotNull property="numPedido" prepend="AND">
+				a.num_pedido = #numPedido#
+			</isNotNull>
+			<isNotNull property="codEstadoPedRep" prepend="AND">
+				a.cod_estado = #codEstadoPedRep#
+			</isNotNull>
+			
+		</dynamic>
+	</select>
+</sqlMap>

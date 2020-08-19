@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="expcoa">
+	
+	<typeAlias alias="expCoaBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ExpCoaBean"/>
+	
+	<resultMap id="resultBean" class="expCoaBean" >
+		<result property="cod_tip_doc" column="cod_tip_doc" />
+		<result property="fec_emi" column="fec_emi" />
+		<result property="num_exp_coa" column="num_exp_coa" />		
+	</resultMap>
+	
+	<resultMap id="resultBeanIndicadortes" class="expCoaBean" >
+		<result property="ind_est_ecc" column="ind_est_ecc" />
+		<result property="ind_eta_ecc" column="ind_eta_ecc" />
+		<result property="ind_acu" column="ind_acu" />
+	</resultMap>
+	
+	<resultMap id="resultMapAcumExpCoa" class="java.util.HashMap">
+		<result property="numExpCoa" column="NUM_EXP_COA" />
+	</resultMap>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean">
+		Select cod_tip_doc,fec_emi,num_exp_coa from exp_coa
+		where num_exp_coa = #num_exp_coa#
+		and num_ruc = #num_ruc#
+	</select>
+	
+	<select id="obtenerIndicadores" parameterClass="java.util.HashMap" resultMap="resultBeanIndicadortes">
+		Select ind_est_ecc, ind_eta_ecc, ind_acu from exp_coa
+		where num_exp_coa = #numExpediente#
+	</select>
+	
+	<select id="listarAcumuladosDoc" parameterClass="java.util.HashMap" resultMap="resultMapAcumExpCoa" >
+			
+		SELECT e.num_exp_coa 
+		FROM res_coa r JOIN exp_coa e
+		ON(r.num_exp = e.num_acu)
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRC" prepend="AND">
+				r.num_rc = #numRC#
+			</isNotNull>		
+		</dynamic>
+						
+	</select>
+	
+	
+</sqlMap>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" useStatementNamespaces="true" maxSessions="64" maxTransactions="8" maxRequests="128"/>
+	
+	<typeHandler callback="pe.gob.sunat.framework.spring.util.dao.ibatis.FechaTypeHandler" javaType="pe.gob.sunat.framework.spring.util.date.FechaBean" />
+	
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/expcoa.xml" />
+	
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/rescoa.xml" />
+	
+	<!-- Inicio [nchavez 26/05/2015] -->
+	<sqlMap  resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/sgs33.xml"/>
+	<!-- Fin [nchavez 26/05/2015] -->
+	
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/ccs19.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/acc_exp.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/expfisca.xml" />
+	<!-- Inicio staype 26/12/2019 [PAS20191U210500291] xml de tabla  -->
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/reqordfis.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/detreqordfis.xml" />
+	<!-- Fin staype 26/12/2019 [PAS20191U210500291] xml de tabla  -->
+	
+	<!-- [PAS20191U210500291]: JMC - INI -->
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/recaud.xml" />
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+</sqlMapConfig>	

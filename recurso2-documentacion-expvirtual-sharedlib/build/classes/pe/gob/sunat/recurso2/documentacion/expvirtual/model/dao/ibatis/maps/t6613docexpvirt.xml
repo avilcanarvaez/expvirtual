@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6613docExpVirt">
+	<typeAlias alias="t6613DocExpVirtBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6613DocExpVirtBean"/>
+	
+	<resultMap id="resultBeanDocOrigen" class="T6613DocExpVirtBean" >
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="codTipDoc" column="COD_TIPDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="fecDoc" column="FEC_DOC" />
+		<!-- Inicio oachahuic PAS20175E210400016 -->
+		<result property="fecNotif" column="FEC_NOTIF" />
+		<result property="codForNotif" column="COD_FOR_NOTIF" />
+		<!-- Fin oachahuic PAS20175E210400016 -->
+		<result property="numCorDocRel" column="NUM_CORDOCREL" /><!-- etito PAS20191U210500144 -->
+	</resultMap>
+	
+	<resultMap id="resultBean" class="T6613DocExpVirtBean" >
+		<result property="codTipDoc" column="COD_TIPDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="fecDoc" column="FEC_DOC" />
+		<result property="fechaCarga" column="FEC_CARG" />
+		<result property="codUsucarga" column="COD_USUCARG" />
+		<result property="descripcionArchivo" column="DES_ARCH" />
+		<result property="codOrigenDocuento" column="COD_ORIGDOC" />
+		<result property="codIdentificadorECM" column="COD_IDECM" />
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="codTipExp" column="COD_TIPEXP" />
+		<result property="numDocRelacionado" column="NUM_CORDOCREL" />
+		<result property="indVisible" column="IND_VISIBLE" />
+    <result property="fecNotif" column="FEC_NOTIF" />
+	</resultMap>
+	
+	<resultMap id="resultTipoDocAsocExpeBean" class="T6613DocExpVirtBean" >
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="codTipDoc" column="COD_TIPDOC" />
+		<result property="fecDoc" column="FEC_DOC" />
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="indVisDocumento" column="IND_VISIBLE" />
+		<result property="descripcionArchivo" column="DES_ARCH" />
+	</resultMap>
+	
+	<resultMap id="resultBeanListaDoc" class="java.util.HashMap">
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="codTipExp" column="COD_TIPEXP" />
+		<result property="codTipDoc" column="COD_TIPDOC" />		
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="codIdecm" column="COD_IDECM" />
+		<result property="fecCarg" column="FEC_CARG" />
+		<result property="codUsuCarg" column="COD_USUCARG" />
+		<!-- Inicio [ATORRESCH 2017-02-17] -->
+		<result property="fecNotif" column="FEC_NOTIF" />
+		<result property="codForNotif" column="COD_FOR_NOTIF" />
+		<!-- Fin [ATORRESCH 2017-02-17] -->
+		<result property="numExpeDv" column="NUM_EXPEDV" />
+		<result property="numExpeDo" column="NUM_EXPEDO" />
+		<result property="descArchivo" column="DES_ARCH" />
+		<result property="codOrigen" column="COD_ORIGDOC" />
+		<result property="codIdecm" column="COD_IDECM" />
+		<result property="nroRequerim" column="NUM_REQUERIM" />
+		<result property="fecDocumento" column="FEC_DOC" />
+		<result property="estadoDocumentoReq" column="COD_ESTDOCREQ" />
+		<result property="numAcumulador" column="NUM_ACU" />
+		<!-- Inicio nchavez 07/07/2016 -->
+		<result property="cod_tipdocsust" column="COD_TIPDOCSUST"/>
+		<!-- Fin nchavez 07/07/2016 -->
+		<!-- Inicio [ATORRESCH 2017-07-07]  -->
+		<result property="indTipDoc" column="IND_TIPDOC"/>
+		<!-- Fin [ATORRESCH 2017-07-07] -->
+		<!--[PAS20191U210500144] Inicio -->
+		<result property="indVisible" column="IND_VISIBLE"/>
+		<result property="indReserTrib" column="IND_RESERTRIB"/>
+		<result property="numCorDocRel" column="NUM_CORDOCREL"/>
+		<!--[PAS20191U210500144] Fin -->
+		<!-- PAS20191U210500144 Inicio 400104 RF03 PSALDARRIAGA -->
+		<result property="indVis" column="IND_VISIBLE"/>
+		<result property="indResTri" column="IND_RESERTRIB"/>
+		<result property="numCorDocRel" column="NUM_CORDOCREL"/>
+		<!-- PAS20191U210500144 Fin 400104 RF03 PSALDARRIAGA -->
+		<!-- Ini [lromerob]-->
+		<result property="indReservTrib" column="IND_RESERTRIB" />
+		<result property="indVisible" column="IND_VISIBLE" />
+		<result property="numCordocrel" column="NUM_CORDOCREL" />
+		<!-- Fin [lromerob]-->
+
+	</resultMap>
+	
+
+	<resultMap id="resultBeanListaDocEstExp" class="t6613DocExpVirtBean">
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="codTipDoc" column="COD_TIPDOC" />	
+		<result property="fecRegis" column="FEC_REGIS" />
+		<result property="codUsucarga" column="COD_USUCARG" />
+		<result property="codOrigenExpe" column="COD_ORIGDOC" />
+		<result property="desMotCierre" column="DES_MOTCIERR" />
+		<result property="desSumilla" column="DES_SUMILLA" />
+		<result property="codigoTipoDocumentoSust" column="COD_TIPDOCSUST" />
+		<result property="codEstadoExpe" column="COD_ESTADO" />
+	</resultMap>
+	
+	<resultMap id="resultListT6613DocExpVirtBean" class="t6613DocExpVirtBean">
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="codTipDoc" column="COD_TIPDOC" />		
+		<result property="codIdentificadorECM" column="COD_IDECM" />
+		<result property="fechaCarga" column="FEC_CARG" />
+		<result property="codUsucarga" column="COD_USUCARG" />
+		<result property="numExpedienteVir" column="NUM_EXPEDV" />
+		<result property="descripcionArchivo" column="DES_ARCH" />
+		<result property="codOrigenDocuento" column="COD_ORIGDOC" />
+		<result property="desMotsoldoc" column="DES_MOTSOLDOC" />
+		<result property="estadoDocumentoReq" column="COD_ESTDOCREQ" />
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="fecDoc" column="FEC_DOC" />
+	</resultMap>
+	
+	<resultMap id="resultListDocVisContribuyente" class="t6613DocExpVirtBean">
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="numExpedienteVir" column="NUM_EXPEDV" />	
+		<result property="codTipDoc" column="COD_TIPDOC" />		
+		<result property="codTipExp" column="COD_TIPEXP" />
+		<result property="numRequerimiento" column="NUM_REQUERIM" />
+		<result property="estadoDocumentoReq" column="COD_ESTDOCREQ" />	
+		<result property="desMotsoldoc" column="DES_MOTSOLDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="fecDoc" column="FEC_DOC" />
+		<result property="codigoTipoDocumentoSust" column="COD_TIPDOCSUST" />	
+		<result property="codUsucarga" column="COD_USUCARG" />	
+		<result property="fechaCarga" column="FEC_CARG" />	
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegis" column="FEC_REGIS" />
+		<result property="descripcionArchivo" column="DES_ARCH" />
+		<result property="codIdentificadorECM" column="COD_IDECM" />
+		<result property="codOrigenDocuento" column="COD_ORIGDOC" />
+		<result property="indVisContribuyente" column="IND_VISIBLE" />	
+		<result property="codOrigenExpe" column="NUM_EXPEDO" />
+		<result property="numAcumulador" column="NUM_ACU" />
+		<result property="fecNotif" column="FEC_NOTIF" />
+		<result property="codForNotif" column="COD_FOR_NOTIF" />
+		<!-- Ini [lromerob]-->
+		<result property="numCordocrel" column="NUM_CORDOCREL" />
+		<!-- Fin [lromerob]-->
+	</resultMap>	
+	
+	<resultMap id="resultListDocsAcumulados" class="t6613DocExpVirtBean">
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="numExpedienteVir" column="NUM_EXPEDV" />	
+		<result property="codTipDoc" column="COD_TIPDOC" />		
+		<result property="codTipExp" column="COD_TIPEXP" />
+		<result property="numRequerimiento" column="NUM_REQUERIM" />
+		<result property="estadoDocumentoReq" column="COD_ESTDOCREQ" />	
+		<result property="desMotsoldoc" column="DES_MOTSOLDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="fecDoc" column="FEC_DOC" />
+		<result property="codigoTipoDocumentoSust" column="COD_TIPDOCSUST" />	
+		<result property="codUsucarga" column="COD_USUCARG" />	
+		<result property="fechaCarga" column="FEC_CARG" />	
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegis" column="FEC_REGIS" />
+		<result property="descripcionArchivo" column="DES_ARCH" />
+		<result property="codIdentificadorECM" column="COD_IDECM" />
+		<result property="codOrigenDocuento" column="COD_ORIGDOC" />
+		<result property="indVisContribuyente" column="IND_VISCONT" />		
+	</resultMap>
+	
+	<resultMap id="resultBeanListaDocExpTrab" class="java.util.HashMap">
+		<result property="codTipDoc" column="COD_TIPDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="fecDoc" column="FEC_DOC" />
+		<result property="codTipDocSust" column="COD_TIPDOCSUST" />
+		<result property="desArch" column="DES_ARCH" />
+		<result property="codIdEcm" column="COD_IDECM" />
+		<result property="numCorDoc" column="NUM_CORDOC" /><!--PAS20201U210500029 -HHC-->
+	</resultMap>
+
+	<!--[PAS20191U210500144] Inicio -->
+	<resultMap id="resultBeanDocInterno" class="T6613DocExpVirtBean" >
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="indVisDocumento" column="IND_VISIBLE" />
+		<result property="indReserTrib" column="IND_RESERTRIB" />
+		<result property="numCorDocRel" column="NUM_CORDOCREL" />
+	</resultMap>
+    <!--[PAS20191U210500144] Fin -->
+    
+    <!-- INICIO [HHC][PAS20201U210500029]  -->
+	<resultMap id="resultBeanDocumentoEscritoRespDoc" class="t6613DocExpVirtBean" >
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="numRuc" column="NUM_RUC" />
+		<result property="numExpedienteOrigen" column="NUM_EXPEDO" />
+		<result property="codProceso" column="COD_PROC" />
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="codEstadoExpe" column="COD_ESTADO" />
+		<result property="codOrigenExpe" column="COD_ORIGEN" />
+		<result property="fecDoc" column="FEC_DOC" />
+		<result property="codOrigenDocuento" column="COD_ORIGDOC" />
+		<result property="fecNotif" column="FEC_NOTIF" />
+		<result property="codForNotif" column="COD_FOR_NOTIF" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="numRequerimOrigen" column="NUM_REQORIG" />
+		<result property="numRequerimiento" column="NUM_REQUERIM" />
+	</resultMap>
+	<!-- Fin [HHC][PAS20201U210500029]  -->
+	<resultMap id="resultBeanDocExpVir" class="T6613DocExpVirtBean" >
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="codTipDoc" column="COD_TIPDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="fecDoc" column="FEC_DOC" />
+		<result property="descripcionArchivo" column="DES_ARCH" />
+		<result property="codIdentificadorECM" column="COD_IDECM" />
+		<result property="fechaCarga" column="FEC_CARG" />
+	</resultMap>
+	
+    <!--[PAS20191U210500144] Etito Inicio -->
+	<insert id= "insertar" parameterClass="java.util.HashMap">
+		INSERT INTO T6613docexpvirt
+		(num_cordoc, num_expedv, cod_tipdoc, cod_tipexp, num_requerim, cod_estdocreq, des_motsoldoc, 
+		num_doc, fec_doc, cod_tipdocsust, cod_usucarg, fec_carg, cod_usuregis, fec_regis, des_arch, 
+		cod_idecm, cod_origdoc, num_cordocrel, ind_visible,fec_notif,cod_for_notif,cod_estdoc,des_elidoc,cod_usumodif,fec_modif
+		<dynamic prepend=" ">
+			<isNotNull property="indReserTrib" prepend=",">
+				,ind_resertrib
+			</isNotNull>
+		</dynamic>
+    	)
+		VALUES (#numCordoc#, #numExpeDv#, #codTipdoc#, #codTipExp#, #numRequerim#, #codEstDocReq#, #desMotSolDoc#, #numDoc#, #fecDoc#, 
+		#codTipDocSust#, #codUsuCarg#, #fecCarg#, #codUsuRegis#, #fecRegis#, #desArch#, #codIdecm#, #codOrigDoc#, #numCordocRel#, #indVisible#,
+		#fecNotif#,#codForNotif#,#codEstDoc#,#desEliDoc#,#codUsuModif#,#fecModif#
+		<dynamic prepend=" ">
+			<isNotNull property="indReserTrib" prepend=",">
+				,#indReserTrib#
+			</isNotNull>
+		</dynamic>
+		  
+		)
+	</insert>
+    <!--[PAS20191U210500144] Etito Fin -->
+	
+	<insert id= "insertarManual" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6613DocExpVirtBean">
+		INSERT INTO T6613docexpvirt
+		(num_cordoc, num_expedv, cod_tipdoc, cod_tipexp, num_requerim, cod_estdocreq, des_motsoldoc, 
+		num_doc, fec_doc, cod_tipdocsust, cod_usucarg, fec_carg, cod_usuregis, fec_regis, des_arch, 
+		cod_idecm, cod_origdoc, ind_visible, num_cordocrel, fec_notif, cod_for_notif, cod_estdoc, des_elidoc, cod_usumodif, fec_modif)
+		VALUES (#numCorDoc#, #numExpedienteVir#, #codTipDoc#, #codTipExp#, #numRequerimiento#, #estadoDocumentoReq#, #desMotsoldoc#, #numDoc#, #fecDoc#, 
+		#codigoTipoDocumentoSust#, #codUsucarga#, #fechaCarga#, #codUsuarioRegistro#, #fecRegis#, #descripcionArchivo#, #codIdentificadorECM#, #codOrigenDocuento#,
+		#indVisDocumento#, #numDocRelacionado#, #fecNotif#, #codForNotif#, #codEstDoc#, #desEliDoc#, #codUsuModif#, #fecModif#)
+	</insert>
+	
+	<update id="actualizar" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6613DocExpVirtBean" >
+		
+		UPDATE T6613docexpvirt 
+		<dynamic prepend="SET">
+			<isNotNull property="estadoDocumentoReq" prepend=",">
+				cod_estdocreq = #estadoDocumentoReq#
+			</isNotNull>
+			<isNotNull property="codUsucarga" prepend=",">
+				cod_usucarg = #codUsucarga#
+			</isNotNull>
+			<isNotNull property="fechaCarga" prepend=",">
+				fec_carg = #fechaCarga#
+			</isNotNull>
+			<isNotNull property="descripcionArchivo" prepend=",">
+				des_arch = #descripcionArchivo#
+			</isNotNull>
+			<isNotNull property="codIdentificadorECM" prepend=",">
+				cod_idecm = #codIdentificadorECM#
+			</isNotNull>
+			<isNotNull property="codOrigenDocuento" prepend=",">
+				cod_origdoc = #codOrigenDocuento#
+			</isNotNull>
+			<isNotNull property="indVisDocumento" prepend=",">
+				ind_visible = #indVisDocumento#
+			</isNotNull>
+			<isNotNull property="codigoTipoDocumentoSust" prepend=",">
+				cod_tipdocsust = #codigoTipoDocumentoSust#
+			</isNotNull>
+			<isNotNull property="fecDoc" prepend=",">
+				fec_doc = #fecDoc#
+			</isNotNull>
+			<isNotNull property="numDoc" prepend=",">
+				num_doc = #numDoc#
+			</isNotNull>
+<!-- 		Inicio - [oachahuic][PAS20175E210400016] -->
+			<isNotNull property="fecNotif" prepend=",">
+				fec_notif = #fecNotif#
+			</isNotNull>
+			<isNotNull property="codForNotif" prepend=",">
+				cod_for_notif = #codForNotif#
+			</isNotNull>
+			<isNotNull property="codEstDoc" prepend=",">
+				cod_estdoc = #codEstDoc#
+			</isNotNull>
+			<isNotNull property="desEliDoc" prepend=",">
+				des_elidoc = #desEliDoc#
+			</isNotNull>
+			<isNotNull property="codUsuModif" prepend=",">
+				cod_usumodif = #codUsuModif#
+			</isNotNull>
+			<isNotNull property="fecModif" prepend=",">
+				fec_modif = #fecModif#
+			</isNotNull>
+<!-- 		Fin - [oachahuic][PAS20175E210400016] -->
+			<!--[PAS20191U210500144] Inicio -->
+			<isNotNull property="indReserTrib" prepend=",">
+				ind_resertrib = #indReserTrib#
+			</isNotNull>
+			<isNotNull property="numCorDocRel" prepend=",">
+				num_cordocrel = #numCorDocRel#
+			</isNotNull>
+			<!--[PAS20191U210500144] Fin -->
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numCorDoc" prepend="AND">
+				num_cordoc = #numCorDoc#
+			</isNotNull>
+		</dynamic>
+		
+	</update>
+	
+	<!-- INICIO [ATORRESCH 2017-02-28] IU005 -->
+	<update id="anular" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6613DocExpVirtBean" >		
+		UPDATE T6613docexpvirt 
+		<dynamic prepend="SET">
+			<isNotNull property="codEstDoc" prepend=",">
+				cod_estdoc = #codEstDoc#
+			</isNotNull>
+			<isNotNull property="desEliDoc" prepend=",">
+				des_elidoc = #desEliDoc#
+			</isNotNull>			
+			<isNotNull property="codUsuModif" prepend=",">
+				cod_usumodif = #codUsuModif#
+			</isNotNull>			
+			<isNotNull property="fecModif" prepend=",">
+				fec_modif = #fecModif#
+			</isNotNull>		
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numCorDoc" prepend="AND">
+				num_cordoc = #numCorDoc#
+			</isNotNull>
+			<isNotNull property="nroRequerim" prepend="AND">
+				num_requerim = #nroRequerim#
+			</isNotNull>
+			<isNotNull property="codigoTipoDocumentoSust" prepend="AND">
+				cod_tipdocsust = #codigoTipoDocumentoSust#
+			</isNotNull>
+			<isNotNull property="numExpedienteVir" prepend="AND">
+				num_expedv = #numExpedienteVir#
+			</isNotNull>
+		</dynamic>		
+	</update>	
+	
+	<select id="contarDocumentosRelacion" parameterClass="java.util.HashMap" resultClass="int">
+		SELECT count(1)
+		FROM t6613docexpvirt
+		<dynamic prepend="WHERE">
+			cod_estdoc != '02' AND
+			<isNotNull property="numCorDoc" prepend="AND">				
+				num_cordocrel = #numCorDoc#
+			</isNotNull>			
+		</dynamic>
+	</select>
+	<!-- FIN  [ATORRESCH 2017-02-28] IU005 -->
+		
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean">
+		SELECT num_doc, cod_tipdoc, fec_doc, fec_carg, cod_usucarg, des_arch, cod_origdoc, cod_idecm, num_cordoc, cod_tipexp, num_cordocrel, fec_notif, ind_visible
+		FROM t6613docexpvirt
+		<dynamic prepend="WHERE">
+			cod_estdoc != '02' AND
+			<isNotNull property="numCorDoc" prepend="AND">
+				num_cordoc = #numCorDoc#
+			</isNotNull>
+			<isNotNull property="numExpedienteVirtual" prepend="AND">
+				num_expedv = #numExpedienteVirtual#
+			</isNotNull>
+			<isNotNull property="numRequerimiento" prepend="AND">
+				num_requerim = #numRequerimiento#
+			</isNotNull>
+			<isNotNull property="estadoDocumentoReq" prepend="AND">
+				cod_estdocreq = #estadoDocumentoReq#
+			</isNotNull>
+			<isNotNull property="numExpedienteOrigen" prepend="AND">
+				num_expedo = #numExpedienteOrigen#
+			</isNotNull>
+			<!-- Inicio - [oachahuic][PAS20165E210400270] -->
+			<isNotNull property="codTipDoc" prepend="AND">
+				cod_tipdoc = #codTipDoc#
+			</isNotNull>
+			<isNotNull property="listaCodTipDocs">
+				<isNotEmpty prepend="AND" property="listaCodTipDocs">
+					cod_tipdoc IN 
+					<iterate property="listaCodTipDocs" open="(" close=")" conjunction=",">
+						#listaCodTipDocs[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="listaNumCorDocRel">
+				<isNotEmpty prepend="AND" property="listaNumCorDocRel">
+					num_cordocrel IN 
+					<iterate property="listaNumCorDocRel" open="(" close=")" conjunction=",">
+						#listaNumCorDocRel[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<!-- Fin - [oachahuic][PAS20165E210400270] -->
+		</dynamic>
+		ORDER BY num_cordoc,num_cordocrel
+	</select>
+	
+	<select id="listarTipoDocAsocExpe" parameterClass="java.util.HashMap" resultMap="resultTipoDocAsocExpeBean">
+		SELECT 
+			t13.num_doc,
+			t13.cod_tipdoc,
+			t13.fec_doc,
+			t13.num_cordoc,
+			t13.ind_visible,
+			t13.des_arch
+		FROM t6613docexpvirt t13 
+		LEFT JOIN t6623tipdocexp t23 ON t13.cod_tipdoc = t23.cod_tipdoc and t13.cod_tipexp = t23.cod_tipexp
+		<!-- Inicio - [oachahuic][PAS20175E210400016] -->
+		<dynamic prepend="WHERE">
+			t13.cod_estdoc != '02' AND
+			<isNotNull property="numExpedienteVirtual" prepend="AND">
+				t13.num_expedv = #numExpedienteVirtual#
+			</isNotNull>
+			<isNotNull property="indTipDocumento" prepend="AND">
+				t23.ind_tipdoc = #indTipDocumento#
+			</isNotNull>
+			<isNotNull property="listIndTipDoc">
+				<isNotEmpty property="listIndTipDoc" prepend="AND" >
+					t23.ind_tipdoc IN 
+					<iterate property="listIndTipDoc" open="(" close=")" conjunction=",">
+						#listIndTipDoc[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		<!-- Fin - [oachahuic][PAS20175E210400016] -->
+		ORDER BY fec_doc ASC
+	</select>
+	
+	<select id="listarDocumentosAsociados" parameterClass="java.util.HashMap" resultMap="resultTipoDocAsocExpeBean">
+		SELECT num_doc, cod_tipdoc, fec_doc, num_cordoc, ind_visible, des_arch
+		FROM t6613docexpvirt
+		<dynamic prepend="WHERE">
+			<isNotNull property="codtipdoc" prepend="AND">
+				cod_tipdoc = #codtipdoc#
+			</isNotNull>
+			<isNotNull property="codtipexp" prepend="AND">
+				cod_tipexp = #codtipexp#
+			</isNotNull>
+		</dynamic>
+		ORDER BY fec_doc ASC
+	</select>
+	
+	<select id="listarDocumentosPorExp" parameterClass="java.util.HashMap" resultMap="resultBeanListaDoc">
+		SELECT d.num_cordoc, d.num_doc,  d.cod_tipexp, d.cod_tipdoc, e.num_ruc, d.cod_idecm, d.fec_carg, d.cod_usucarg, e.num_expedv, e.num_expedo,  d.des_arch, d.cod_origdoc, d.cod_idecm, d.num_requerim, d.fec_doc,d.cod_estdocreq, e.num_acu
+		,d.cod_tipdocsust, d.fec_doc, d.fec_notif, d.cod_for_notif, x.ind_tipdoc, d.ind_visible, d.ind_resertrib, d.num_cordocrel     
+		FROM t6614expvirtual e
+		INNER JOIN t6613docexpvirt d ON e.num_expedv = d.num_expedv 
+		LEFT JOIN t6623tipdocexp x ON  d.cod_tipdoc = x.cod_tipdoc AND  d.cod_tipexp = x.cod_tipexp 
+		<dynamic prepend="WHERE">
+			d.cod_estdoc != '02' AND
+			<isNotNull property="codTipDoc" prepend="AND">
+				d.cod_tipdoc = #codTipDoc#
+			</isNotNull>
+		  	<isNotNull property="numExpeDv" prepend="AND">
+				d.num_expedv = #numExpeDv#
+			</isNotNull>
+			<isNotNull property="numDoc" prepend="AND">
+				d.num_doc = #numDoc#
+			</isNotNull>
+			<isNotNull property="numExpedo" prepend="AND">
+				e.num_expedo = #numExpedo#
+			</isNotNull>
+			<isNotNull property="codEstDocReqNo" prepend="AND">
+				d.cod_estdocreq != #codEstDocReqNo#
+			</isNotNull>
+			<isNotNull property="codEstDocReq" prepend="AND">
+				d.cod_estdocreq = #codEstDocReq#
+			</isNotNull>
+	  	</dynamic>
+	  	<dynamic prepend="order by">
+	        <isEqual property="orderby" compareValue="fec_carg">
+	            d.fec_carg ASC
+	        </isEqual>
+	        <isEqual property="orderby" compareValue="fec_regis">
+	            d.fec_regis ASC
+	        </isEqual>
+	        <isEqual property="orderby" compareValue="num_cordoc">
+	            d.num_cordoc ASC
+	        </isEqual>
+	        <isEqual property="orderby" compareValue="num_cordoc_desc">
+	            d.num_cordoc DESC
+	        </isEqual>
+        </dynamic>
+	</select>
+	
+	<select id="listarEstadosExp" parameterClass="java.util.HashMap" resultMap="resultBeanListaDocEstExp">
+		SELECT d.cod_tipdoc, d.num_doc, d.cod_origdoc, e.cod_estado, d.fec_regis, d.cod_usucarg, d.cod_tipdocsust, e.des_sumilla, e.des_motcierr
+		FROM t6614expvirtual e INNER JOIN t6613docexpvirt d ON e.num_expedv = d.num_expedv 
+		<dynamic prepend="WHERE">
+		  	<isNotNull property="numExpeDv" prepend="AND">
+				d.num_expedv = #numExpeDv#
+			</isNotNull>
+			<isNotNull property="listaTipDocSustento">
+				<isNotEmpty prepend="AND" property="listaTipDocSustento">
+					d.cod_tipdocsust IN 
+					<iterate property="listaTipDocSustento" open="(" close=")" conjunction=",">
+						#listaTipDocSustento[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+	  	</dynamic>
+	</select>
+	
+	<select id="obtenerDocOrigen" parameterClass="java.util.HashMap" resultMap="resultBeanDocOrigen" >
+		SELECT t.num_cordoc, t.cod_tipdoc, t.num_doc, t.fec_doc, t.fec_notif, t.cod_for_notif,t.num_cordocrel
+		FROM t6613docexpvirt t
+		<dynamic prepend="WHERE">
+			t.cod_estdoc != '02' AND
+			<isNotNull property="codTipDocSust" prepend="AND">
+				t.cod_tipdocsust = #codTipDocSust#
+			</isNotNull>
+		  	<isNotNull property="numExpeDv" prepend="AND">
+				t.num_expedv = #numExpeDv#
+			</isNotNull>
+			<!-- Inicio - [oachahuic][PAS20165E210400270] -->
+		  	<isNotNull property="codTipDoc" prepend="AND">
+				t.cod_tipdoc = #codTipDoc#
+			</isNotNull>
+		  	<isNotNull property="numDoc" prepend="AND">
+				t.num_doc = #numDoc#
+			</isNotNull>
+		  	<isNotNull property="numCorDocRel" prepend="AND">
+				t.num_cordocrel = #numCorDocRel#
+			</isNotNull>
+		  	<isNotNull property="difGrupo" prepend="AND">
+				t.cod_tipdoc NOT LIKE #difGrupo#
+			</isNotNull>
+			<isNotNull property="numCorDoc" prepend="AND">
+				t.num_cordoc = #numCorDoc#
+			</isNotNull>
+			<!-- Fin - [oachahuic][PAS20165E210400270] -->
+	  	</dynamic>
+	</select>
+	
+	<select id="listarDocVisiblesContribuyente" parameterClass="java.util.HashMap" resultMap="resultListDocVisContribuyente" >
+ 		SELECT 
+			a.num_cordoc,
+			a.num_expedv,
+			a.cod_tipdoc,
+			a.cod_tipexp,
+			a.num_requerim,
+			a.cod_estdocreq,
+			a.des_motsoldoc,
+			a.num_doc,
+			a.fec_doc,
+			a.cod_tipdocsust,
+			a.cod_usucarg,
+			a.fec_carg,
+			a.cod_usuregis,
+			a.fec_regis,
+			a.des_arch,
+			a.cod_idecm,
+			a.cod_origdoc,
+			a.ind_visible,
+			e.num_expedo,
+			e.num_acu,
+			a.fec_notif,
+			a.cod_for_notif,
+			a.num_cordocrel
+			FROM t6614expvirtual e
+			INNER JOIN t6613docexpvirt a ON e.num_expedv = a.num_expedv 
+			<dynamic prepend="WHERE">
+			a.cod_estdoc != '02' AND
+			<isNotNull property="indVisContribuyente" prepend="AND">
+				a.ind_visible = #indVisContribuyente#
+			</isNotNull>
+		  	<isNotNull property="numExpedVirtual" prepend="AND">
+				a.num_expedv = #numExpedVirtual#
+			</isNotNull>
+			<isNotNull property="codEstDocReqNo" prepend="AND">
+				a.cod_estdocreq != #codEstDocReqNo#
+			</isNotNull>
+			<isNotNull property="listaEstDocReq">
+				<isNotEmpty prepend="AND" property="listaEstDocReq">
+					a.cod_estdocreq IN 
+					<iterate property="listaEstDocReq" open="(" close=")" conjunction=",">
+						#listaEstDocReq[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>		
+		<dynamic prepend="order by">
+	        <isEqual 
+	             property="orderby" 
+	             compareValue="fec_carg">
+	            a.fec_carg ,a.num_cordoc ASC
+	        </isEqual>
+	        <isEqual 
+	             property="orderby" 
+	             compareValue="fec_regis">
+	             a.fec_regis ASC
+	        </isEqual>
+        </dynamic>			
+	</select>
+	<select id="listarDocumentosPorRequerim" parameterClass="java.util.HashMap" resultMap="resultListT6613DocExpVirtBean">
+		SELECT 	a.num_doc, 
+				a.num_cordoc, 
+				a.cod_tipdoc, 
+				a.cod_idecm, 
+				a.fec_carg, 
+				a.cod_usucarg, 
+				a.num_expedv, 
+				a.des_arch, 
+				a.cod_origdoc, 
+				a.cod_tipdocsust,
+				a.cod_estdocreq, 
+				a.des_motsoldoc,
+				a.fec_doc
+		FROM t6613docexpvirt a
+		<dynamic prepend="WHERE">
+			a.cod_estdoc != '02' AND
+			<isNotNull property="numExpeDv" prepend="AND">
+				a.num_expedv = #numExpeDv#
+			</isNotNull>
+			<isNotNull property="numRequerimiento" prepend="AND">
+				a.num_requerim = #numRequerimiento#
+			</isNotNull>
+			<isNotNull property="tipDocSust" prepend="AND">
+				a.cod_tipdocsust = #tipDocSust#
+			</isNotNull>
+	  	</dynamic>
+	  	order by a.num_cordoc asc
+	</select>
+	<select id="listarDocumentosAcumulados" parameterClass="java.util.HashMap" resultMap="resultBeanListaDoc" > 		
+ 		SELECT d.num_cordoc, d.num_doc, d.cod_tipexp, d.cod_tipdoc, e.num_ruc, d.cod_idecm, d.fec_carg, d.cod_usucarg, e.num_expedv, e.num_expedo,  d.des_arch, d.cod_origdoc, d.cod_idecm, d.num_requerim, d.fec_doc,d.cod_estdocreq, e.num_acu
+		,d.cod_tipdocsust, d.fec_notif, d.cod_for_notif, '04' AS ind_tipdoc FROM t6614expvirtual e
+		INNER JOIN t6613docexpvirt d ON e.num_expedv = d.num_expedv 
+			<dynamic prepend="WHERE">
+			d.cod_estdoc != '02' AND
+			<isNotNull property="listaExpedientes">
+				<isNotEmpty prepend="AND" property="listaExpedientes">
+					d.num_expedv IN 
+					<iterate property="listaExpedientes" open="(" close=")" conjunction=",">
+						#listaExpedientes[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="codEstDocReqNo" prepend="AND">
+				d.cod_estdocreq != #codEstDocReqNo#
+			</isNotNull>
+			<isNotNull property="codEstDocReq" prepend="AND">
+				d.cod_estdocreq = #codEstDocReq#
+			</isNotNull>
+		</dynamic>		
+		<dynamic prepend="order by">
+	        <isEqual 
+	             property="orderby" 
+	             compareValue="fec_carg">
+	            d.fec_carg ASC
+	        </isEqual>
+	        <isEqual 
+	             property="orderby" 
+	             compareValue="fec_regis">
+	            d.fec_regis ASC
+	        </isEqual>
+        </dynamic>			
+	</select>	
+	
+	<select id="listarDocVisiblesContribuyenteAcumulados" parameterClass="java.util.HashMap" resultMap="resultListDocVisContribuyente" >
+ 		SELECT 
+			a.num_cordoc,
+			a.num_expedv,
+			a.cod_tipdoc,
+			a.cod_tipexp,
+			a.num_requerim,
+			a.cod_estdocreq,
+			a.des_motsoldoc,
+			a.num_doc,
+			a.fec_doc,
+			a.cod_tipdocsust,
+			a.cod_usucarg,
+			a.fec_carg,
+			a.cod_usuregis,
+			a.fec_regis,
+			a.des_arch,
+			a.cod_idecm,
+			a.cod_origdoc,
+			a.ind_visible,
+			e.num_expedo,
+			e.num_acu,
+			a.fec_notif,
+			a.cod_for_notif
+			FROM t6614expvirtual e
+			INNER JOIN t6613docexpvirt a ON e.num_expedv = a.num_expedv 				
+			<dynamic prepend="WHERE">
+			a.cod_estdoc != '02' AND
+			<isNotNull property="indVisContribuyente" prepend="AND">
+				a.ind_visible = #indVisContribuyente#
+			</isNotNull>
+		  	<isNotNull property="listaExpedientes">
+				<isNotEmpty prepend="AND" property="listaExpedientes">
+					a.num_expedv IN 
+					<iterate property="listaExpedientes" open="(" close=")" conjunction=",">
+						#listaExpedientes[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="codEstDocReqNo" prepend="AND">
+				a.cod_estdocreq != #codEstDocReqNo#
+			</isNotNull>
+			<isNotNull property="codEstDocReq" prepend="AND">
+				a.cod_estdocreq = #codEstDocReq#
+			</isNotNull>
+		</dynamic>		
+		<dynamic prepend="order by">
+	        <isEqual 
+	             property="orderby" 
+	             compareValue="fec_carg">
+	            a.fec_carg ASC
+	        </isEqual>
+	        <isEqual 
+	             property="orderby" 
+	             compareValue="fec_regis">
+	             a.fec_regis ASC
+	        </isEqual>
+        </dynamic>
+	</select>
+	
+	<select id="listarDocExpTrab" parameterClass="java.util.HashMap" resultMap="resultBeanListaDocExpTrab" >
+ 		SELECT cod_tipdoc, num_doc, fec_doc, cod_tipdocsust, des_arch, cod_idecm  <!--PAS20201U210500029 -HHC - se agrego num_cordoc-->
+		FROM t6613docexpvirt
+		<dynamic prepend="WHERE">
+			a.cod_estdoc != '02' AND
+			<isNotNull property="numExpedv" prepend="AND">
+				num_expedv = #numExpedv#
+			</isNotNull>
+			<isNotNull property="codIdEcm" prepend="AND">
+				cod_idecm != #codIdEcm#
+			</isNotNull>
+			<isNotNull property="listaCodTipDocs">
+				<isNotEmpty prepend="AND" property="listaCodTipDocs">
+					cod_tipdoc IN 
+					<iterate property="listaCodTipDocs" open="(" close=")" conjunction=",">
+						#listaCodTipDocs[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic> 	
+		<!--PAS20201U210500029 HHC - Inicio -->
+		<dynamic prepend="order by">
+	        <isEqual property="orderby" compareValue="num_cordoc">
+				num_cordoc ASC
+	        </isEqual>
+        </dynamic>
+        <!--PAS20201U210500029 HHC - Fin -->			
+	</select>
+	
+	<!-- Inicio [eaguilar 26/05/2016] -->
+	<update id="desasociarAcu" parameterClass="java.util.HashMap">
+		UPDATE T6613docexpvirt set num_cordoc = #numCorDoc# WHERE num_expedv = #numExpedienteVirtual#
+	</update>
+	<!-- Fin [jjuradp 26/05/2016] -->
+	
+	<!-- Inicio [jjuradp 26/05/2016] -->
+	<select id="obtenerDocumentoCierre" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		
+		SELECT a.num_doc, a.cod_tipdoc, a.fec_doc, a.fec_carg, a.cod_usucarg, a.des_arch, a.cod_origdoc, a.cod_idecm, a.num_cordoc, a.cod_tipexp, num_cordocrel
+		FROM t6613docexpvirt a
+		WHERE a.cod_estdoc != '02' and a.num_expedv = #numExpVirt# 
+		and a.num_cordocrel in(select b.num_cordoc from t6613docexpvirt b where b.cod_estdoc != '02' and b.cod_tipdoc = #codTipDoc# and b.num_expedv = #numExpVirt# )
+						
+	</select>
+	<!-- Fin [jjuradp 26/05/2016] -->
+		<!-- Inicio [gangles 16/09/2016] -->
+	<select id="obtenerDatosDocumentoCierre" parameterClass="java.util.HashMap" resultMap="resultBean" >		
+		SELECT first 1 a.num_doc, a.cod_tipdoc, a.fec_doc, a.fec_carg, a.cod_usucarg, a.des_arch, a.cod_origdoc, a.cod_idecm, a.num_cordoc, a.cod_tipexp, num_cordocrel
+		FROM t6613docexpvirt a
+		WHERE a.num_expedv = #numExpVirt#
+		and a.cod_tipdoc = #codTipDoc#
+	</select>
+	<!-- Fin [gangles 16/09/2016] -->
+
+	<!--Inicio [Johan]  -->
+	<resultMap id="resultDatosDocumento" class="t6613DocExpVirtBean">
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="numExpedienteVir" column="NUM_EXPEDV" />  
+		<result property="codTipDoc" column="COD_TIPDOC" />         
+		<result property="codTipExp" column="COD_TIPEXP" />
+		<result property="numRequerimiento" column="NUM_REQUERIM" />
+		<result property="estadoDocumentoReq" column="COD_ESTDOCREQ" />    
+		<result property="desMotsoldoc" column="DES_MOTSOLDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="fecDoc" column="FEC_DOC" />
+		<result property="codigoTipoDocumentoSust" column="COD_TIPDOCSUST" />     
+		<result property="codUsucarga" column="COD_USUCARG" />      
+		<result property="fechaCarga" column="FEC_CARG" />    
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegis" column="FEC_REGIS" />
+		<result property="descripcionArchivo" column="DES_ARCH" />
+		<result property="codIdentificadorECM" column="COD_IDECM" />
+		<result property="codOrigenDocuento" column="COD_ORIGDOC" />
+		<result property="indVisible" column="IND_VISIBLE" /> 
+		<result property="numDocRelacionado" column="NUM_CORDOCREL" />
+		<result property="fecNotif" column="FEC_NOTIF" />     
+		<result property="codForNotif" column="COD_FOR_NOTIF" />    
+		<result property="codEstDoc" column="COD_ESTDOC" />
+		<result property="desEliDoc" column="DES_ELIDOC" />   
+		<result property="codUsuModif" column="COD_USUMODIF" />
+		<result property="fecModif" column="FEC_MODIF" />     
+	</resultMap> 
+	<!-- Fin -->
+	
+	<!-- Inicio [JEFFIO 03/03/2017] -->
+	<select id="obtenerDatosDocumentoGenerico" parameterClass="java.util.HashMap" resultMap="resultDatosDocumento" >		
+		SELECT a.num_cordoc, a.num_expedv, a.cod_tipdoc, a.cod_tipexp, a.num_requerim, a.cod_estdocreq, a.des_motsoldoc, a.num_doc, a.fec_doc, a.cod_tipdocsust, a.cod_usucarg,
+		a.fec_carg, a.cod_usuregis, a.fec_regis, a.des_arch, a.cod_idecm, a.cod_origdoc, a.ind_visible, a.num_cordocrel, a.fec_notif, a.cod_for_notif, a.cod_estdoc, a.des_elidoc, a.cod_usumodif, a.fec_modif
+		FROM t6613docexpvirt a
+		where a.num_expedv = #numExpedienteVir# 
+		and a.cod_tipdocsust = #codigoTipoDocumentoSust#
+		and fec_regis in(select max(b.fec_regis) FROM t6613docexpvirt b where b.num_expedv = #numExpedienteVir# and b.cod_tipdocsust = #codigoTipoDocumentoSust#)
+	</select>
+	<select id="NumDocPorExpediente" parameterClass="java.util.HashMap" resultClass="int">
+		SELECT COUNT(*)
+		FROM t6613docexpvirt 
+		<dynamic prepend="WHERE">
+			cod_estdoc != '02' AND
+			<isNotNull property="numExpedienteVir" prepend="AND">
+				num_expedv = #numExpedienteVir#
+			</isNotNull>
+			<isNotNull property="codigoTipoDocumentoSust" prepend="AND">
+				cod_tipdocsust != #codigoTipoDocumentoSust#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<!-- Fin -->
+	<!-- INICIO [ATORRESCH 2017-05-08] -->
+	<select id="contarTipoDocumentosRelacion" parameterClass="java.util.HashMap" resultClass="int">
+		SELECT count(1) FROM t6613docexpvirt WHERE cod_tipexp = #codTipoExpediente# AND cod_tipdoc = #codTipoDocumento#  
+	</select>
+	<!-- FIN -->
+	
+	<select id="countDocReaperByNumExpVir" parameterClass="java.lang.String" resultClass="int">
+		SELECT
+			COUNT(*)
+		FROM t6613docexpvirt
+		WHERE 
+			num_expedv = #numExpVir#
+			AND cod_estdoc != '02' 
+			AND cod_tipdocsust = '05'
+	</select>
+	
+	<!--[PAS20191U210500144] Inicio -->
+	<select id="obtenerDocInterno" parameterClass="java.util.HashMap" resultMap="resultBeanDocInterno" >
+		SELECT t.num_cordoc, t.ind_visible, t.ind_resertrib, t.num_cordocrel 
+		FROM t6613docexpvirt t
+		<dynamic prepend="WHERE">
+			<isNotNull property="numExpeDv" prepend="AND">
+				t.num_expedv = #numExpeDv#
+			</isNotNull>
+			<isNotNull property="numCorDoc" prepend="AND">
+				t.num_cordoc = #numCorDoc#
+			</isNotNull>
+	  	</dynamic>
+	</select>
+	<!--[PAS20191U210500144] Fin -->
+		<!-- Inicio staype 26/12/2019 verifica que el num. de requerimiento este asociado a un exp. -->
+		<select id="obtenerReqExpediente"  parameterClass="java.util.HashMap" resultMap="resultDatosDocumento">
+		SELECT 	a.num_cordoc, 
+				a.num_expedv, 
+				a.cod_tipdoc, 
+				a.cod_tipexp, 
+				a.num_requerim, 
+				a.cod_estdocreq, 
+				a.des_motsoldoc, 
+				a.num_doc, 
+				a.fec_doc, 
+				a.cod_tipdocsust, 
+				a.cod_usucarg,
+		        a.fec_carg, 
+		        a.cod_usuregis, 
+		        a.fec_regis, 
+		        a.des_arch, 
+		        a.cod_idecm, 
+		        a.cod_origdoc, 
+		        a.ind_visible, 
+		        a.num_cordocrel, 
+		        a.fec_notif, 
+		        a.cod_for_notif, 
+		        a.cod_estdoc, 
+		        a.des_elidoc, 
+		        a.cod_usumodif, 
+		        a.fec_modif
+		FROM t6613docexpvirt a
+		<dynamic prepend="WHERE">
+		
+			<isNotNull property="numReqOrig" prepend="AND">
+				a.num_doc = #numReqOrig#
+			</isNotNull>
+			<isNotNull property="codTipDocReq" prepend="AND">
+				a.cod_tipdoc = #codTipDocReq#
+			</isNotNull>
+			
+	  	</dynamic>
+
+	</select>
+<!-- Fin staype 26/12/2019 verifica que el num. de requerimiento este asociado a un exp. -->	
+	
+	<!-- INICIO HHC  PAS20201U210500029-->
+	<select id="listarDocumentosDeEscritos" parameterClass="java.util.HashMap" resultMap="resultBeanDocumentoEscritoRespDoc" >
+		SELECT
+		 		 a.num_expedv, 
+				 a.num_expedo, 
+				 a.cod_proc, 
+				 a.cod_tipexp, 
+				 a.num_ruc, 
+				 a.des_expedv, 
+				 a.cod_estado, 
+				 a.cod_origen, 
+				 a.cod_usuregis, 
+				 a.fec_regis, 
+				 a.cod_dep, 
+				 a.cod_oricierr, 
+				 a.cod_estcierr, 
+				 a.des_motcierr, 
+				 a.des_sumilla, 
+				 a.cod_usucierr, 
+				 a.fec_cierre, 
+				 a.cod_retserv,
+				 b.fec_doc,
+				 b.cod_origdoc,
+				 a.ind_acu,
+				 a.num_acu,
+				 b.fec_notif,
+				 b.cod_for_notif,
+				 b.num_doc,
+				 CASE WHEN e.num_requerim IS NULL THEN '-'
+                 ELSE e.num_requerim END AS num_requerim,
+                 CASE WHEN e.num_reqorig IS NULL THEN '-'
+                 ELSE e.num_reqorig END  AS num_reqorig
+		FROM   t6613docexpvirt b
+		LEFT JOIN t6614expvirtual a on a.num_expedv=b.num_expedv
+        LEFT JOIN t6620requerim e on  b.num_requerim = e.num_requerim 
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="tipDocSust" prepend="AND">
+				b.cod_tipdocsust = #tipDocSust#
+			</isNotNull>
+			<isNotNull property="numeroRuc" prepend="AND">
+				a.num_ruc = #numeroRuc#
+			</isNotNull>
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="numExpedOrigen" prepend="AND">
+				a.num_expedo = #numExpedOrigen#
+			</isNotNull>
+		  	<isNotNull property="numExpedVirtual" prepend="AND">
+				a.num_expedv = #numExpedVirtual#
+			</isNotNull>
+			<isNotNull property="numAcumulador" prepend="AND">
+				a.num_acu = #numAcumulador#
+			</isNotNull>
+			<isNotNull property="codEstado" prepend="AND">
+				a.cod_estado = #codEstado#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					 b.fec_doc BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>	 	
+			</isNotNull>
+			<isNotNull property="fecDocIni">
+				<isNotNull property="fecDocFin" prepend="AND">
+				 	 b.fec_doc BETWEEN #fecDocIni# AND #fecDocFin#
+				 </isNotNull>	
+			</isNotNull>
+			<isNotNull property="numDoc" prepend="AND">
+				 	 b.num_doc =  #numDoc#
+			</isNotNull>
+			<isNotNull property="numRequerimOrigen" prepend="AND">
+				 	 e.num_reqorig =  #numRequerimOrigen#
+			</isNotNull>	
+			<isNotNull property="numRequerimiento" prepend="AND">
+				 	 e.num_requerim =  #numRequerimiento#
+			</isNotNull>
+			<isNotNull property="codTipDoc" prepend="AND">
+				 	 b.cod_tipdoc =  #codTipDoc#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep like #codDependencia#||'%'
+			</isNotNull>	
+		</dynamic>
+		
+	</select>
+	<!-- FIN HHC  PAS20201U210500029-->
+	<select id="listDocPorNumExpVir" parameterClass="java.util.HashMap" resultMap="resultBeanDocExpVir" >
+		SELECT
+			num_cordoc,
+			cod_tipdoc,
+			num_doc,
+			fec_doc,
+			des_arch,
+			cod_idecm,
+			fec_carg
+		FROM t6613docexpvirt 
+		WHERE
+			num_expedv = #numExpVir# AND
+			cod_estdoc != '02'
+		ORDER BY num_cordoc ASC 
+	</select>
+	
+</sqlMap>

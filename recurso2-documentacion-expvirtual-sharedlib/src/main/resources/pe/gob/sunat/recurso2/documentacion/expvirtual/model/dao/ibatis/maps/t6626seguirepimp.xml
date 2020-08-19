@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6626seguirepimp">
+	<typeAlias alias="t6626seguirepimpBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6626seguirepimpBean"/>
+	
+	<!-- jtejada 18/08/2016 -->
+	<insert id="insertar" parameterClass="java.util.HashMap">	
+		INSERT INTO t6626seguirepimp(
+			  	num_seguirep,
+			  	num_ruc,
+			  	num_repimp,
+			  	cod_tipconsul,
+			  	fec_consulta,
+			  	cod_usureg,
+			  	fec_reg,
+			  	cod_usumod,
+			  	fec_mod
+			  )
+			  VALUES(
+			  	#numSeguiRep#,
+				#numRUC#,
+				#numRepreImp#,
+				#codTipConsul#,
+				#fecConsulta#,
+				#codUsuReg#,
+				#fecReg#,
+				#codUsuMod#,
+				#fecMod#
+			  )
+	</insert>
+	<!-- FIN jtejada 17/08/2016 -->
+</sqlMap>

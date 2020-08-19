@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="datacatalogo">
+
+	<select id="getDepByCod" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT  
+			COD_DATACAT,
+			DES_DATACAT,
+			DES_CORTA,
+			DES_ACRONIMO
+		FROM DATACATALOGO
+		WHERE
+			COD_CATALOGO = '00'
+			AND COD_ESTADO = '01'
+			AND IND_REGACTUAL = '1'
+			AND COD_DATACAT = #cod_datacat_par#
+	</select>
+	
+	<select id="listarDependencia" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT  
+			COD_DATACAT,
+			DES_DATACAT,
+			DES_CORTA,
+			DES_ACRONIMO
+		FROM DATACATALOGO
+		WHERE
+			COD_CATALOGO = '00'
+			AND COD_ESTADO = '01'
+			AND IND_REGACTUAL = '1'
+			AND COD_DATACAT NOT LIKE ('3%')
+			AND COD_DATACAT NOT LIKE ('8%')
+			AND COD_DATACAT NOT LIKE ('000')
+		ORDER BY COD_DATACAT
+	</select>
+	
+</sqlMap>

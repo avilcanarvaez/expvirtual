@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T10458VersDocAdj">
+	<typeAlias alias="t10458VersDocAdjBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10458VersDocAdjBean"/>
+	
+	<resultMap id="resultBeanListaCopias" class="java.util.HashMap">
+		<result property="numCorDoc" column="NUM_CORDOC" />
+		<result property="numVerDoc" column="NUM_VERDOC" />
+		<result property="numCopia" column="NUM_COPIA" />
+		<result property="nomArcAdj" column="NOM_ARC_ADJ" />
+		<result property="cntTamArc" column="CNT_TAM_ARC" />
+		<result property="codIdecm" column="COD_ID_ECM" />		
+		<result property="indVis" column="IND_VISIBLE" />
+		<result property="codUsuRegis" column="COD_USUREGIS" />
+		<result property="fecRegis" column="FEC_REGIS" />
+		<result property="codTipExp" column="COD_TIPEXP" />
+		<result property="codTipDoc" column="COD_TIPDOC" />
+		<result property="numDoc" column="NUM_DOC" />
+		<result property="numExpedO" column="NUM_EXPEDO" />
+		
+	</resultMap>
+		
+	<select id="listarCopDocPorExp" parameterClass="java.util.HashMap" resultMap="resultBeanListaCopias">
+		select b.num_cordoc,a.num_verdoc, a.num_copia, a.nom_arc_adj, a.cnt_tam_arc,a.cod_id_ecm,
+		a.ind_visible,a.cod_usuregis,a.fec_regis,b.cod_tipexp, b.cod_tipdoc,b.num_doc,c.num_expedo
+		FROM t10458versdocadj a
+		INNER join t6613docexpvirt b ON a.num_cordoc = b.num_cordoc
+		inner join  t6614expvirtual c ON b.num_expedv = c.num_expedv
+		
+		<dynamic prepend="WHERE">
+			<isNotNull property="numCorDoc" prepend="AND">
+				b.num_cordoc = #numCorDoc#
+			</isNotNull>
+	  	</dynamic>
+	  	<dynamic prepend="order by">
+	        <isEqual property="orderby" compareValue="num_cordoc">
+	            b.num_cordoc ASC
+	        </isEqual>
+
+        </dynamic>
+	</select>
+	<select id="obtenerCopia" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT count(*)as num_copia 
+		FROM t10458versdocadj
+		<dynamic prepend="WHERE">
+			<isNotNull property="numCorDoc" prepend="AND">
+				num_cordoc = #numCorDoc#
+			</isNotNull>
+	  	</dynamic>
+	</select>
+
+	<insert id= "insertar" parameterClass="java.util.HashMap">
+		INSERT INTO t10458versdocadj
+		(num_cordoc,  num_copia, nom_arc_adj, cnt_tam_arc, cod_id_ecm, ind_visible, cod_usuregis, fec_regis,cod_usumodif,fec_modif
+    	)
+		VALUES (#numCorDoc#,#numCopia#,#desArch#,#tamanoDoc#, #codIdecm#, #indVisible#,#codUsuRegis#, #fecRegis#,#codUsuModif#,#fecModif#
+		)
+	</insert>
+
+
+</sqlMap>

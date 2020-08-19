@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="reportesIndicadores">
+
+	<typeAlias alias="reporteIndicadoresExpedienteVirtualDependBean"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresExpedienteVirtualDependBean" />
+
+	<typeAlias alias="reporteIndicadoresExpedienteVirtualFechaGenBean"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresExpedienteVirtualFechaGenBean" />
+
+	<typeAlias alias="reporteIndicadoresExpedientesVirtualesGeneradosPorDependConsultBean"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresExpedientesVirtualesGeneradosPorDependConsultBean" />
+	
+	<typeAlias alias="reporteIndicadoresGeneradosCobranzaAcumDependBean"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresExpedientesGeneradosCobranzaAcumDependBean" />
+		
+	<typeAlias alias="documentoPorDependenciaBean"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresExpedientesVirtualesDocumentosPorDependenciaBean" />
+
+	<typeAlias alias="reporteIndicadoresExpedientesPorResponsable"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresExpedientesPorResponsableBean" />
+	
+	<typeAlias alias="reporteIndicadoresDocumentosExpediente"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresDocumentosExpedientesPorDepBean" />
+		
+	<typeAlias alias="reporteIndicadoresRepresImprPorDependencia"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresRepresImprPorDepBean" />
+	<typeAlias alias="reporteIndicadoresRepresImprPorFecha"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresRepresImprPorFechaBean" />
+	
+	<typeAlias alias="reporteIndicadoresRepresImprPorExpdteYDependencia"
+		type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReporteIndicadoresRepresImprPorExpdteYDependenciaBean" />	
+		
+
+	<resultMap id="resultRptXDepenBean" class="reporteIndicadoresExpedienteVirtualDependBean">
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="cantExpedientes" column="Cantidad_Exp" />
+		<result property="cantRuc" column="Cantidad_RUC" />
+		<result property="cantExpedientesAutomaticos" column="Automaticos" />
+		<result property="cantExpedientesManuales" column="Manuales" />
+		<result property="cantExpedientesAbiertos" column="ExpAbiertos" />
+		<result property="cantExpedientesCerrados" column="ExpCerrados" />
+	</resultMap>
+
+	<resultMap id="resultRptXFechaGenBean" class="reporteIndicadoresExpedienteVirtualFechaGenBean">
+		<result property="fechaGeneracion" column="fechaGeneracion" />
+		<result property="cantExpedientes" column="Cantidad_Exp" />
+		<result property="cantRuc" column="Cantidad_RUC" />
+		<result property="cantExpedientesAutomaticos" column="Automaticos" />
+		<result property="cantExpedientesManuales" column="Manuales" />
+		<result property="cantExpedientesAbiertos" column="ExpAbiertos" />
+		<result property="cantExpedientesCerrados" column="ExpCerrados" />
+	</resultMap>
+
+	<resultMap id="resultRptXDepenSeguimBean" class="reporteIndicadoresExpedienteVirtualDependBean">
+		<result property="codDependencia" column="COD_DEP" />
+		<result property="cantExpedientes" column="Cantidad_Exp" />
+		<result property="cantRuc" column="Cantidad_RUC" />
+		<result property="cantExpedientesAutomaticos" column="Automaticos" />
+		<result property="cantExpedientesManuales" column="Manuales" />
+		<result property="cantExpedientesAbiertos" column="ExpAbiertos" />
+		<result property="cantExpedientesCerrados" column="ExpCerrados" />
+		<result property="cantExpedientesConsultUsuIntAbiertos" column="expConsultUsuIntAbi" />
+		<result property="cantExpedientesConsultUsuIntCerrados" column="expConsultUsuIntCerr" />
+		<result property="cantExpedientesConsultContribAbiertos" column="expConsultContribAbi" />
+		<result property="cantExpedientesConsultContribCerrados" column="expConsultContribCerr" />
+	</resultMap>
+
+	<resultMap id="resultRptXFechaGenSeguimBean" class="reporteIndicadoresExpedienteVirtualFechaGenBean">
+		<result property="fechaGeneracion" column="fechaGeneracion" />
+		<result property="cantExpedientes" column="Cantidad_Exp" />
+		<result property="cantRuc" column="Cantidad_RUC" />
+		<result property="cantExpedientesAutomaticos" column="Automaticos" />
+		<result property="cantExpedientesManuales" column="Manuales" />
+		<result property="cantExpedientesAbiertos" column="ExpAbiertos" />
+		<result property="cantExpedientesCerrados" column="ExpCerrados" />
+		<result property="cantExpedientesConsultUsuIntAbiertos" column="expConsultUsuIntAbi" />
+		<result property="cantExpedientesConsultUsuIntCerrados" column="expConsultUsuIntCerr" />
+		<result property="cantExpedientesConsultContribAbiertos" column="expConsultContribAbi" />
+		<result property="cantExpedientesConsultContribCerrados" column="expConsultContribCerr" />
+	</resultMap>
+
+	<resultMap id="resultRptExpdtesCobranzaAcumDependBean" class="reporteIndicadoresGeneradosCobranzaAcumDependBean">
+		<result property="codDependencia" column="cod_dep" />
+		<result property="numRuc" column="num_ruc" /> 
+		<result property="numExpdteOrigen" column="num_expedo" /> 
+		<result property="indicAcum" column="ind_acu" />
+		<result property="expdteRelac" column="num_acu" />
+		<result property="cantDocsExpdteVirt" column="cant_docs" />
+		<result property="codOrigenExpdte" column="cod_origen" />
+	</resultMap>
+	
+	<resultMap id="resultRptCantDocsPorDepenBean" class="documentoPorDependenciaBean">
+		<result property="codDependencia" column="cod_dep" />
+		<result property="codTipoDoc" column="cod_tipdoc" />
+		<result property="cantidadDocumentos" column="cant" />
+	</resultMap>
+
+	<resultMap id="resultCantXDependMap" class="java.util.HashMap">
+		<result property="codDependencia" column="cod_dep" />
+		<result property="codTipoDoc" column="cod_tipdoc" />
+		<result property="cant" column="cant" />
+	</resultMap>
+
+	<resultMap id="resultCantXFechaGeneracionMap" class="java.util.HashMap">
+		<result property="fechaGeneracion" column="fechaGeneracion" />
+		<result property="codTipoDoc" column="cod_tipdoc" />
+		<result property="cant" column="cant" />
+	</resultMap>
+	 
+	<resultMap id="resultRptExpdtesGenConsultBean" class="reporteIndicadoresExpedientesVirtualesGeneradosPorDependConsultBean">
+		<result property="codDependencia" column="cod_dep" />
+		<result property="numRuc" column="num_ruc" />
+		<result property="numExpdteOrigen" column="num_expedo" />
+		<result property="numExpdteVirtual" column="num_expedv" />
+		<result property="codProceso" column="cod_proc" />
+		<result property="codTipoExpediente" column="cod_tipexp" />
+		<result property="fechaGeneracion" column="fec_regis" />
+		<result property="codOrigen" column="cod_origen" />
+		<result property="codEstado" column="cod_estado" />
+		<result property="indicLectUsuInt" column="indLecUsuInt" />
+		<result property="indicLectContrib" column="indLecContrib" />
+		<result property="fecUltLecUsuInt" column="fecUltLecUsuInt" />
+		<result property="fecUltLecContrib" column="fecUltLecContrib" />
+	</resultMap>
+	<resultMap id="resultGrupoCantXDependMap" class="java.util.HashMap">
+		<result property="codDependencia" column="cod_dep" />
+		<result property="codTipoDoc" column="codGrupo" />
+		<result property="cant" column="cant" />
+	</resultMap>
+	<resultMap id="resultCantDocMap" class="java.util.HashMap">
+		<result property="codTipoDoc" column="codGrupo" />
+		<result property="cant" column="cant" />
+	</resultMap>
+	<resultMap id="resultCantXGrupoFechaGeneracionMap" class="java.util.HashMap">
+		<result property="fechaGeneracion" column="fechaGeneracion" />
+		<result property="codTipoDoc" column="codGrupo" />
+		<result property="cant" column="cant" />
+	</resultMap>
+		<resultMap id="resultRptExpPorResponsableBean" class="reporteIndicadoresExpedientesPorResponsable">
+		<result property="codResponsable" column="cod_colab" />
+		<result property="fecRegistroResponsable" column="fec_regis" />
+		<result property="codDependencia" column="cod_dep" />
+		<result property="numRuc" column="num_ruc" />
+		<result property="numExpdteOrigen" column="num_expedo" />
+		<result property="numExpdteVirtual" column="num_expedv" />
+		<result property="codProceso" column="cod_proc" />
+		<result property="codTipoExpediente" column="cod_tipexp" />
+		<result property="fechaGeneracion" column="fec_regis" />
+		<result property="codOrigen" column="cod_origen" />
+		<result property="codEstado" column="cod_estado" />
+		<result property="fecEmisionExpOrigen" column="fec_doc" />
+		<result property="fecNotificacionExpOrigen" column="fec_notif" />
+	</resultMap>
+	<resultMap id="resultRptDocumentosExpPorDependenciaBean" class="reporteIndicadoresDocumentosExpediente">
+		<result property="codDependencia" column="cod_dep" />
+		<result property="numRuc" column="num_ruc" />
+		<result property="numExpdteOrigen" column="num_expedo" />
+		<result property="numExpdteVirtual" column="num_expedv" />
+		<result property="codProceso" column="cod_proc" />
+		<result property="codTipoExpediente" column="cod_tipexp" />
+		<result property="fecEmisionExpOrigen" column="fec_emi_exp" />
+		<result property="fecNotificacionExpOrigen" column="fec_notif_exp" />
+		<result property="fechaGeneracion" column="fec_regis" />
+		<result property="codOrigen" column="cod_origen" />
+		<result property="codEstado" column="cod_estado" />
+		<result property="codTipoDocumento" column="cod_tipdoc" />
+		<result property="numDocumento" column="num_doc" />
+		<result property="fecRegistroDocExpVirt" column="fec_regis" />	
+		<result property="fecEmisionDocumento" column="fec_doc" />
+		<result property="fecNotificacionDocumento" column="fec_notif" />
+	</resultMap>
+	
+	<!-- Inicio [jtejada 24/08/2016] -->
+	<resultMap id="resultRptCantRepresImprPorDependenciaBean" class="reporteIndicadoresRepresImprPorDependencia">
+		<result property="codDependencia" column="cod_dep" />
+		<result property="cantidadRuc" column="cantidad_ruc" />
+		<result property="cantidadExpAbiertos" column="exp_abiertos" />
+		<result property="cantidadExpCerrados" column="exp_cerrados" />
+		<result property="cantidadExpAbiRepImpUsu" column="cant_expd_abi_ri_usu" />
+		<result property="cantidadExpCerrRepImpUsu" column="cant_expd_cerr_ri_usu" />
+		<result property="cantidadExpAbiRepImpContrib" column="cant_expd_abi_ri_contrib" />
+		<result property="cantidadExpCerrRepImpContrib" column="cant_expd_cerr_ri_contrib" />
+	</resultMap>
+	
+	<resultMap id="resultRptCantRepresImprPorFechaBean" class="reporteIndicadoresRepresImprPorFecha">
+		<result property="fecha" column="fecha" />
+		<result property="cantidadRuc" column="cantidad_ruc" />
+		<result property="cantidadExpAbiertos" column="exp_abiertos" />
+		<result property="cantidadExpCerrados" column="exp_cerrados" />
+		<result property="cantidadExpAbiRepImpUsu" column="cant_expd_abi_ri_usu" />
+		<result property="cantidadExpCerrRepImpUsu" column="cant_expd_cerr_ri_usu" />
+		<result property="cantidadExpAbiRepImpContrib" column="cant_expd_abi_ri_contrib" />
+		<result property="cantidadExpCerrRepImpContrib" column="cant_expd_cerr_ri_contrib" />
+	</resultMap>
+	
+	<resultMap id="resultRptCantRepresImprPorExpdteYDependenciaBean" class="reporteIndicadoresRepresImprPorExpdteYDependencia">
+		<result property="codDependencia" column="cod_dep" />
+		<result property="numeroRuc" column="num_ruc" />
+		<result property="numExpdteOrigen" column="num_expedo" />
+		<result property="numExpdteVirtual" column="num_expedv" />
+		<result property="fecRegistroExpdte" column="fec_regis_expdte" />
+		<result property="codOrigen" column="cod_origen" />
+		<result property="codEstado" column="cod_estado" />
+		<result property="cantidadDocumentos" column="cant_docs" />
+		<result property="cantidadExpRepImpUsu" column="cant_expd_ri_usu" />
+		<result property="fecUltRepImpUsu" column="fec_expd_ri_usu" />
+		<result property="cantidadExpRepImpCont" column="cant_expd_ri_cont" />
+		<result property="fecUltRepImpCont" column="fec_expd_ri_cont" />
+	</resultMap>
+	<!-- Fin [jtejada 24/08/2016] -->
+	
+	
+	<!-- 1 -->
+	<select id="listasReportePorDependencia" parameterClass="java.util.HashMap" resultMap="resultRptXDepenBean">
+		<!-- Inicio [oachahuic][PAS20175E210400016] -->
+		SELECT
+			a.cod_dep,
+			COUNT(a.num_expedv) AS Cantidad_Exp,
+			COUNT(DISTINCT a.num_ruc) AS Cantidad_RUC,
+			COUNT(DISTINCT(CASE WHEN a.cod_estado = '01' THEN a.num_expedv END)) AS ExpAbiertos,
+			COUNT(DISTINCT(CASE WHEN a.cod_estado = '02' THEN a.num_expedv END)) AS ExpCerrados,
+			COUNT(DISTINCT(CASE WHEN a.cod_origen = '01' THEN a.num_expedv END)) AS Manuales,
+			COUNT(DISTINCT(CASE WHEN a.cod_origen = '02' THEN a.num_expedv END)) AS Automaticos
+		FROM t6614expvirtual a
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY a.cod_dep
+		ORDER BY a.cod_dep
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</select>
+	<!-- 2 -->
+	<select id="listasReportePorFechasGeneracion" parameterClass="java.util.HashMap" resultMap="resultRptXFechaGenBean">
+		<!-- Inicio [oachahuic][PAS20175E210400016] -->
+		SELECT
+			date(a.fec_regis) as fechaGeneracion,
+			COUNT(a.num_expedv) AS Cantidad_Exp,
+			COUNT(DISTINCT a.num_ruc) AS Cantidad_RUC,
+			COUNT(DISTINCT(CASE WHEN a.cod_estado = '01' THEN a.num_expedv END)) AS ExpAbiertos,
+			COUNT(DISTINCT(CASE WHEN a.cod_estado = '02' THEN a.num_expedv END)) AS ExpCerrados,
+			COUNT(DISTINCT(CASE WHEN a.cod_origen = '01' THEN a.num_expedv END)) AS Manuales,
+			COUNT(DISTINCT(CASE WHEN a.cod_origen = '02' THEN a.num_expedv END)) AS Automaticos
+		FROM t6614expvirtual a
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY fechaGeneracion
+		ORDER BY fechaGeneracion
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</select>
+	<!-- 3 -->
+	<select id="listasReportePorDependenciaSeguim" parameterClass="java.util.HashMap" resultMap="resultRptXDepenSeguimBean">
+		<!-- Inicio [oachahuic][PAS20175E210400016] -->
+		SELECT
+			a.cod_dep,
+			COUNT(DISTINCT a.num_expedv) AS Cantidad_Exp,
+			COUNT(DISTINCT a.num_ruc) AS Cantidad_RUC,
+			COUNT(DISTINCT(CASE WHEN a.cod_origen = '02' THEN a.num_expedv END)) AS Automaticos,
+			COUNT(DISTINCT(CASE WHEN a.cod_origen = '01' THEN a.num_expedv END)) AS Manuales,
+			COUNT(DISTINCT(CASE WHEN a.cod_estado = '01' THEN a.num_expedv END)) AS ExpAbiertos,
+			COUNT(DISTINCT(CASE WHEN a.cod_estado = '02' THEN a.num_expedv END)) AS ExpCerrados,
+			COUNT(DISTINCT(CASE WHEN b.cod_tipseguim = '04' AND b.cod_accion = '15' AND a.cod_estado = '01' THEN a.num_expedv END)) AS expConsultUsuIntAbi,
+			COUNT(DISTINCT(CASE WHEN b.cod_tipseguim = '04' AND b.cod_accion = '15' AND a.cod_estado = '02' THEN a.num_expedv END)) AS expConsultUsuIntCerr,
+			COUNT(DISTINCT(CASE WHEN b.cod_tipseguim = '03' AND b.cod_accion = '05' AND a.cod_estado = '01' THEN a.num_expedv END)) AS expConsultContribAbi,
+			COUNT(DISTINCT(CASE WHEN b.cod_tipseguim = '03' AND b.cod_accion = '05' AND a.cod_estado = '02' THEN a.num_expedv END)) AS expConsultContribCerr
+		FROM t6614expvirtual a
+			INNER JOIN t6622seguim b ON (a.num_expedv = b.num_expedv)
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY a.cod_dep
+		ORDER BY a.cod_dep
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</select>
+	<!-- 4 -->
+	<select id="listasReportePorFechasGeneracionSeguim" parameterClass="java.util.HashMap" resultMap="resultRptXFechaGenSeguimBean">
+		<!-- Inicio [oachahuic][PAS20175E210400016] -->
+		SELECT
+			date(a.fec_regis) as fechaGeneracion,
+			COUNT(DISTINCT a.num_expedv) AS Cantidad_Exp,
+			COUNT(DISTINCT a.num_ruc) AS Cantidad_RUC,
+			COUNT(DISTINCT(CASE WHEN a.cod_origen = '02' THEN a.num_expedv END)) AS Automaticos,
+			COUNT(DISTINCT(CASE WHEN a.cod_origen = '01' THEN a.num_expedv END)) AS Manuales,
+			COUNT(DISTINCT(CASE WHEN a.cod_estado = '01' THEN a.num_expedv END)) AS ExpAbiertos,
+			COUNT(DISTINCT(CASE WHEN a.cod_estado = '02' THEN a.num_expedv END)) AS ExpCerrados,
+			COUNT(DISTINCT(CASE WHEN b.cod_tipseguim = '04' AND b.cod_accion = '15' AND a.cod_estado = '01' THEN a.num_expedv END)) AS expConsultUsuIntAbi,
+			COUNT(DISTINCT(CASE WHEN b.cod_tipseguim = '04' AND b.cod_accion = '15' AND a.cod_estado = '02' THEN a.num_expedv END)) AS expConsultUsuIntCerr,
+			COUNT(DISTINCT(CASE WHEN b.cod_tipseguim = '03' AND b.cod_accion = '05' AND a.cod_estado = '01' THEN a.num_expedv END)) AS expConsultContribAbi,
+			COUNT(DISTINCT(CASE WHEN b.cod_tipseguim = '03' AND b.cod_accion = '05' AND a.cod_estado = '02' THEN a.num_expedv END)) AS expConsultContribCerr		
+		FROM t6614expvirtual a
+			INNER JOIN t6622seguim b ON (a.num_expedv = b.num_expedv)
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		group by fechaGeneracion
+		order by fechaGeneracion
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</select>
+	<!-- 5 -->
+	<select id="listaReporteExpdteGenerPorDependConsultados" parameterClass="java.util.HashMap" resultMap="resultRptExpdtesGenConsultBean">
+		SELECT ev.cod_dep,ev.num_ruc,ev.num_expedo,ev.num_expedv,ev.cod_proc,ev.cod_tipexp,ev.fec_regis as fec_regis,ev.cod_origen,ev.cod_estado,
+		<!-- Inicio [jquispe 02/06/2016] Obtiene el indice de lectura del Usuario Interno  -->
+		(SELECT COUNT(*) FROM t6622seguim s WHERE  s.num_expedv=ev.num_expedv AND cod_tipseguim = '04' AND s.cod_accion='15') indLecUsuInt,
+		<!-- Fin [jquispe 02/06/2016] -->
+		(SELECT COUNT(*) FROM t6622seguim s WHERE  s.num_expedv=ev.num_expedv AND s.num_ruc=ev.num_ruc AND cod_usuinvserv='-') indLecContrib,
+		<!-- Inicio [jquispe 02/06/2016] Obtiene la fecha de lectura del Usuario Interno  -->
+		(SELECT NVL(MAX(s.fec_seguim),'0001-01-01 00:00:00') FROM t6622seguim s WHERE  s.num_expedv=ev.num_expedv AND cod_tipseguim = '04' AND s.cod_accion='15') fecUltLecUsuInt,
+		<!-- Fin [jquispe 02/06/2016] -->
+		(SELECT NVL(MAX(s.fec_seguim),'0001-01-01 00:00:00') FROM t6622seguim s WHERE  s.num_expedv=ev.num_expedv AND s.num_ruc=ev.num_ruc AND cod_usuinvserv='-') fecUltLecContrib
+		FROM t6614expvirtual ev
+		<dynamic prepend="WHERE">
+			ev.cod_estado !='03' AND 
+			<isNotNull property="codProceso" prepend="AND">
+				ev.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				ev.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				ev.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				ev.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					ev.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		ORDER BY ev.cod_dep,ev.num_ruc,ev.num_expedo,ev.num_expedv,ev.cod_proc,ev.cod_tipexp,ev.fec_regis
+	</select>
+	<!-- 6 -->
+	<select id="listaReporteExpdtesCobranzaAcumPorDependencia" parameterClass="java.util.HashMap" resultMap="resultRptExpdtesCobranzaAcumDependBean">
+		<!-- Inicio [oachahuic][PAS20175E210400016] -->
+		SELECT
+			DISTINCT a.num_expedo,
+			a.cod_dep,
+			a.num_ruc,
+			a.ind_acu,
+			a.num_acu,
+			COUNT(b.num_cordoc) AS cant_docs,
+			a.cod_origen
+		FROM t6614expvirtual a
+			INNER JOIN t6613docexpvirt b ON (a.num_expedv = b.num_expedv)
+		<dynamic prepend="WHERE">
+			a.cod_estado != '03' AND
+			b.cod_estdoc != '02' AND
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY a.num_expedo, a.cod_dep, a.num_ruc, a.ind_acu, a.num_acu, a.cod_origen
+		ORDER BY a.cod_dep, a.num_ruc, a.num_expedo
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</select>
+	<!-- 7 -->
+	<select id="listaReporteCantidadDocumentosPorDependencia" parameterClass="java.util.HashMap" resultMap="resultRptCantDocsPorDepenBean">
+		SELECT 
+			ev.cod_dep,
+			dev.cod_tipdoc,
+			count(dev.cod_tipdoc) cant
+		FROM t6614expvirtual ev
+			INNER JOIN t6613docexpvirt dev ON (ev.num_expedv = dev.num_expedv)
+		<dynamic prepend="WHERE">
+			ev.cod_estado != '03' AND
+			dev.cod_estdoc != '02' AND
+			<isNotNull property="codProceso" prepend="AND">
+				ev.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				ev.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				ev.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				ev.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>
+			<isNotNull property="codTipDoc" prepend="AND">
+				dev.cod_tipdoc = #codTipDoc#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					ev.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>   
+		GROUP BY ev.cod_dep, dev.cod_tipdoc
+		ORDER BY ev.cod_dep, dev.cod_tipdoc
+	</select>
+
+	<select id="listasCantDocPorDependencia" parameterClass="java.util.HashMap" resultMap="resultCantXDependMap">
+		SELECT
+			a.cod_dep,
+			b.cod_tipdoc,
+			COUNT(*) cant 
+		FROM t6613docexpvirt b
+			INNER JOIN t6614expvirtual a ON (b.num_expedv = a.num_expedv)
+		<dynamic prepend="WHERE">
+			b.cod_estdoc != '02' AND
+			a.cod_estado != '03' AND
+		    <isNotNull property="codTipExpediente" prepend="AND">
+				b.cod_tipexp = #codTipExpediente#
+			</isNotNull>		    
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotEmpty property="codTipDoc" prepend="AND">
+				b.cod_tipdoc = #codTipDoc#
+			</isNotEmpty>
+			<isNotEmpty property="listadoTiposDocumentosDisponibles" prepend="AND">
+				b.cod_tipdoc IN 
+				<iterate property="listadoTiposDocumentosDisponibles" open="(" close=")" conjunction=",">
+				   #listadoTiposDocumentosDisponibles[].codTipoDocumento#
+				</iterate>
+			</isNotEmpty>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY a.cod_dep, b.cod_tipdoc
+	</select>
+
+	<select id="listasCantDocPorFechaGeneracion" parameterClass="java.util.HashMap" resultMap="resultCantXFechaGeneracionMap">
+		SELECT
+			date(a.fec_regis) AS fechaGeneracion,
+			b.cod_tipdoc,
+			COUNT(*) cant 
+		FROM t6613docexpvirt b
+			INNER JOIN t6614expvirtual a ON (b.num_expedv = a.num_expedv)
+		<dynamic prepend="WHERE">
+			b.cod_estdoc != '02' AND
+			a.cod_estado != '03' AND
+			<isNotNull property="codTipExpediente" prepend="AND">
+				b.cod_tipexp = #codTipExpediente#
+			</isNotNull> 
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="codTipDoc" prepend="AND">
+				b.cod_tipdoc = #codTipDoc#
+			</isNotNull>
+			<isNotEmpty property="listadoTiposDocumentosDisponibles" prepend="AND">
+				b.cod_tipdoc IN 
+				<iterate property="listadoTiposDocumentosDisponibles" open="(" close=")" conjunction=",">
+				   #listadoTiposDocumentosDisponibles[].codTipoDocumento#
+				</iterate>
+			</isNotEmpty>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>	
+		GROUP BY fechaGeneracion, b.cod_tipdoc
+	</select>
+
+	<select id="listasCantGrupoDocPorDependencia" parameterClass="java.util.HashMap" resultMap="resultGrupoCantXDependMap">
+		SELECT
+			a.cod_dep,
+			SUBSTR(b.cod_tipdoc, 1, 3) codGrupo,
+			COUNT(*) cant 
+		FROM t6613docexpvirt b
+		INNER JOIN t6614expvirtual a ON (b.num_expedv = a.num_expedv)
+		<dynamic prepend="WHERE">
+			b.cod_estdoc != '02' AND
+			a.cod_estado != '03' AND
+		    <isNotNull property="codTipExpediente" prepend="AND">
+				b.cod_tipexp = #codTipExpediente#
+			</isNotNull>		    
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotEmpty property="codTipDoc" prepend="AND">
+				b.cod_tipdoc = #codTipDoc#
+			</isNotEmpty>
+			<isNotEmpty property="listadoTiposDocumentosDisponibles" prepend="AND">
+				b.cod_tipdoc IN 
+				<iterate property="listadoTiposDocumentosDisponibles" open="(" close=")" conjunction=",">
+				   #listadoTiposDocumentosDisponibles[].codTipoDocumento#
+				</iterate>
+			</isNotEmpty>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY 1,2
+		ORDER BY 1,2
+	</select>
+
+	<select id="listaCantDocsPorTipo" parameterClass="java.util.HashMap" resultMap="resultCantDocMap">
+		SELECT
+			SUBSTR(b.cod_tipdoc, 1, 3) codGrupo,
+			COUNT(*) cant
+		FROM t6613docexpvirt b
+			INNER JOIN t6614expvirtual a ON (b.num_expedv = a.num_expedv)
+		<dynamic prepend="WHERE">
+			b.cod_estdoc != '02' AND
+			a.cod_estado != '03' AND
+		    <isNotNull property="codTipExpediente" prepend="AND">
+				b.cod_tipexp = #codTipExpediente#
+			</isNotNull>		    
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotEmpty property="codTipDoc" prepend="AND">
+				b.cod_tipdoc = #codTipDoc#
+			</isNotEmpty>
+			<isNotEmpty property="listadoTiposDocumentosDisponibles" prepend="AND">
+				b.cod_tipdoc IN 
+				<iterate property="listadoTiposDocumentosDisponibles" open="(" close=")" conjunction=",">
+				   #listadoTiposDocumentosDisponibles[].codTipoDocumento#
+				</iterate>
+			</isNotEmpty>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY 1
+		ORDER BY 1
+	</select>
+	<select id="listasCantGrupoDocPorFechaGeneracion" parameterClass="java.util.HashMap" resultMap="resultCantXGrupoFechaGeneracionMap">
+		SELECT
+			date(a.fec_regis) AS fechaGeneracion,
+			SUBSTR(b.cod_tipdoc, 1, 3) codGrupo,
+			COUNT(*) cant
+		FROM t6613docexpvirt b
+			INNER JOIN t6614expvirtual a ON (b.num_expedv = a.num_expedv)
+		<dynamic prepend="WHERE">
+			b.cod_estdoc != '02' AND
+			a.cod_estado != '03' AND
+			<isNotNull property="codTipExpediente" prepend="AND">
+				b.cod_tipexp = #codTipExpediente#
+			</isNotNull> 
+			<isNotNull property="codProceso" prepend="AND">
+				a.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				a.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				a.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				a.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="codTipDoc" prepend="AND">
+				b.cod_tipdoc = #codTipDoc#
+			</isNotNull>
+			<isNotEmpty property="listadoTiposDocumentosDisponibles" prepend="AND">
+				b.cod_tipdoc IN 
+				<iterate property="listadoTiposDocumentosDisponibles" open="(" close=")" conjunction=",">
+				   #listadoTiposDocumentosDisponibles[].codTipoDocumento#
+				</iterate>
+			</isNotEmpty>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					a.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>	
+		GROUP BY 1,2
+		ORDER by 1,2
+	</select>
+	<!-- 8 -->
+	<select id="listaReporteExpGeneradosPorResponsables" parameterClass="java.util.HashMap" resultMap="resultRptExpPorResponsableBean">
+		<!-- Inicio [oachahuic][PAS20175E210400016] -->
+		SELECT
+			res.cod_colab,
+			res.fec_regis,
+			ev.cod_dep,
+			ev.num_ruc,
+			ev.num_expedo,
+			ev.num_expedv,
+			ev.cod_proc,
+			ev.cod_tipexp,
+			ev.fec_regis as fec_regis,
+			ev.cod_origen,
+			ev.cod_estado,
+			doc.fec_doc,
+			doc.fec_notif
+		FROM t6614expvirtual ev 
+			INNER JOIN t6621respexpvirt res ON (ev.num_expedv = res.num_expedv)
+			INNER JOIN t6613docexpvirt doc ON (ev.num_expedv = doc.num_expedv)
+		<dynamic prepend="WHERE">
+			ev.cod_estado != '03' AND
+			doc.cod_estdoc != '02' AND
+			doc.cod_tipdocsust = '01' AND
+			<isNotNull property="codProceso" prepend="AND">
+				ev.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				ev.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				ev.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				ev.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					ev.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		ORDER BY ev.cod_dep, ev.num_ruc, ev.num_expedo, ev.num_expedv, ev.cod_proc, ev.cod_tipexp, ev.fec_regis
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</select>
+	<!-- 9 -->
+	<select id="listaReporteCantDocumentosPorExpDependencia" parameterClass="java.util.HashMap" resultMap="resultRptDocumentosExpPorDependenciaBean">
+		SELECT
+			ev.cod_dep,
+			ev.num_ruc,
+			ev.num_expedo,
+			ev.num_expedv,
+			ev.cod_proc,
+			ev.cod_tipexp,
+			CASE WHEN de.cod_tipdocsust = '01' THEN de.fec_doc END AS fec_emi_exp,
+			CASE WHEN de.cod_tipdocsust = '01' THEN de.fec_notif END AS fec_notif_exp,
+			ev.fec_regis,
+			ev.cod_origen,
+			ev.cod_estado,
+			de.cod_tipdoc,
+			de.num_doc,
+			de.fec_regis,
+			de.fec_doc,
+			de.fec_notif
+ 		FROM t6614expvirtual ev 
+		INNER JOIN t6613docexpvirt de on ev.num_expedv = de.num_expedv and de.cod_estdocreq != '01' 
+		<dynamic prepend="WHERE">
+			ev.cod_estado != '03' AND
+			<isNotNull property="codProceso" prepend="AND">
+				ev.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				ev.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				ev.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				ev.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					ev.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		ORDER BY ev.cod_dep, ev.num_ruc, ev.num_expedo, ev.num_expedv, ev.cod_proc, ev.cod_tipexp, ev.fec_regis, de.num_cordoc
+	</select>
+	<!-- Inicio [jtejada 24/08/2016] -->
+	<!-- 10 -->
+	<select id="listaReporteCantRepresImprPorDependencia" parameterClass="java.util.HashMap" resultMap="resultRptCantRepresImprPorDependenciaBean">
+		<!-- Inicio [oachahuic][PAS20175E210400016] -->
+		SELECT
+			ev.cod_dep AS cod_dep,
+			COUNT(DISTINCT(ev.num_ruc)) AS cantidad_ruc,
+			COUNT(DISTINCT(CASE WHEN ev.cod_estado = '01' THEN ev.num_expedv END)) AS exp_abiertos,
+			COUNT(DISTINCT(CASE WHEN ev.cod_estado = '02' THEN ev.num_expedv END)) AS exp_cerrados,
+			COUNT(CASE WHEN ev.cod_estado = '01' AND ri.cod_orides = '01' THEN ri.cod_orides END) AS cant_expd_abi_ri_usu,
+			COUNT(CASE WHEN ev.cod_estado = '02' AND ri.cod_orides = '01' THEN ri.cod_orides END) AS cant_expd_cerr_ri_usu,
+			COUNT(CASE WHEN ev.cod_estado = '01' AND ri.cod_orides = '02' THEN ri.cod_orides END) AS cant_expd_abi_ri_contrib,
+			COUNT(CASE WHEN ev.cod_estado = '02' AND ri.cod_orides = '02' THEN ri.cod_orides END) AS cant_expd_cerr_ri_contrib
+		FROM t6625repimpexpvirt ri
+			INNER JOIN t6614expvirtual ev ON (ri.num_expedo = ev.num_expedo)
+		<dynamic prepend="WHERE">
+			ev.cod_estado != '03' AND
+			<isNotNull property="codProceso" prepend="AND">
+				ev.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				ev.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				ev.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				ev.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					ri.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY cod_dep
+		ORDER BY cod_dep;
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</select>
+	
+	<!-- 11 -->
+	<select id="listaReporteCantRepresImprPorFecha" parameterClass="java.util.HashMap" resultMap="resultRptCantRepresImprPorFechaBean">
+		<!-- Inicio [oachahuic][PAS20175E210400016] -->
+		SELECT
+			to_char(ri.fec_regis,'%Y-%m-%d') AS fecha,
+			COUNT(DISTINCT(ev.num_ruc)) AS cantidad_ruc,
+			COUNT(DISTINCT(CASE WHEN ev.cod_estado = '01' THEN ev.num_expedv END)) AS exp_abiertos,
+			COUNT(DISTINCT(CASE WHEN ev.cod_estado = '02' THEN ev.num_expedv END)) AS exp_cerrados,
+			COUNT(CASE WHEN ev.cod_estado = '01' AND ri.cod_orides = '01' THEN ri.cod_orides END) AS cant_expd_abi_ri_usu,
+			COUNT(CASE WHEN ev.cod_estado = '02' AND ri.cod_orides = '01' THEN ri.cod_orides END) AS cant_expd_cerr_ri_usu,
+			COUNT(CASE WHEN ev.cod_estado = '01' AND ri.cod_orides = '02' THEN ri.cod_orides END) AS cant_expd_abi_ri_contrib,
+			COUNT(CASE WHEN ev.cod_estado = '02' AND ri.cod_orides = '02' THEN ri.cod_orides END) AS cant_expd_cerr_ri_contrib
+		FROM t6625repimpexpvirt ri
+			INNER JOIN t6614expvirtual ev ON (ri.num_expedo = ev.num_expedo)
+		<dynamic prepend="WHERE">
+			ev.cod_estado != '03' AND
+			<isNotNull property="codProceso" prepend="AND">
+				ev.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				ev.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				ev.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				ev.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					ri.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY fecha
+		ORDER BY fecha DESC;
+		<!-- Fin [oachahuic][PAS20175E210400016] -->
+	</select>
+	
+	<!-- 12 -->
+	<select id="listaReporteCantRepresImprPorExpdteYDependencia" parameterClass="java.util.HashMap" resultMap="resultRptCantRepresImprPorExpdteYDependenciaBean">
+		SELECT 
+			expvir.cod_dep,
+			expvir.num_ruc,
+			expvir.num_expedo,
+			expvir.num_expedv,
+			to_char(expvir.fec_regis,'%Y-%m-%d') fec_regis_expdte,
+			expvir.cod_origen,
+			expvir.cod_estado,
+			(SELECT COUNT(docexpvir.num_expedv) FROM t6613docexpvirt docexpvir WHERE docexpvir.num_expedv=expvir.num_expedv) cant_docs,
+			(SELECT COUNT(ri.num_expedo) FROM t6625repimpexpvirt ri WHERE ri.num_expedo=expvir.num_expedo AND ri.cod_orides='01' ) cant_expd_ri_usu,
+			(SELECT to_char(fec_regis_max,'%Y-%m-%d') FROM (SELECT MAX(ri.fec_regis) fec_regis_max  FROM t6625repimpexpvirt ri WHERE ri.cod_orides='01' AND ri.num_expedo=expvir.num_expedo)) as fec_expd_ri_usu,
+			(SELECT COUNT(ri.num_expedo) FROM t6625repimpexpvirt ri WHERE ri.num_expedo=expvir.num_expedo AND ri.cod_orides='02' ) cant_expd_ri_cont,
+			(SELECT to_char(fec_regis_max,'%Y-%m-%d') FROM (SELECT MAX(ri.fec_regis) fec_regis_max  FROM t6625repimpexpvirt ri WHERE ri.cod_orides='02' AND ri.num_expedo=expvir.num_expedo)) as fec_expd_ri_cont
+		FROM t6614expvirtual expvir 
+		INNER JOIN t6613docexpvirt docexpvir ON (expvir.num_expedv=docexpvir.num_expedv)
+		INNER join t6625repimpexpvirt repimp ON(expvir.num_expedo = repimp.num_expedo)
+		<dynamic prepend="WHERE">
+			docexpvir.cod_estdoc != '02' AND expvir.cod_estado !='03' AND
+			<isNotNull property="codProceso" prepend="AND">
+				expvir.cod_proc = #codProceso#
+			</isNotNull>
+			<isNotNull property="codTipExpediente" prepend="AND">
+				expvir.cod_tipexp = #codTipExpediente#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+				expvir.cod_dep LIKE #codDependencia#||'%'
+			</isNotNull>			
+			<isNotNull property="codOrigenExpediente" prepend="AND">
+				expvir.cod_origen = #codOrigenExpediente#
+			</isNotNull>
+			<isNotNull property="fecGenIni">
+				<isNotNull property="fecGenFin" prepend="AND">
+					repimp.fec_regis BETWEEN #fecGenIni# AND #fecGenFin#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+		GROUP BY expvir.cod_dep , expvir.num_ruc, expvir.num_expedo, expvir.num_expedv, expvir.fec_regis, expvir.cod_origen, expvir.cod_estado 
+		ORDER BY expvir.cod_dep
+	</select>
+	
+	<!-- Fin [jtejada 24/08/2016] -->
+</sqlMap>

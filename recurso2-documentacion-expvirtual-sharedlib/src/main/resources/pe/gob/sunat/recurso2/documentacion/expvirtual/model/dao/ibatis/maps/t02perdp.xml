@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="T02Perdp">
+	
+	<typeAlias alias="t02PerdpBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T02PerdpBean"/>
+	
+	<resultMap id="resultT02PerdpBean" class="t02PerdpBean" >
+		<result property="codPersona" column="T02COD_PERS" />
+		<result property="desNombres" column="T02NOMBRES" />
+		<result property="desApellidoPaterno" column="T02AP_PATE" />
+		<result property="desApellidoMaterno" column="T02AP_MATE" />
+		<result property="codUnidadOrganizacional" column="T02COD_UORG" />
+		<result property="indHabilitado" column="T02COD_STAT" />        
+	</resultMap>
+    
+    <resultMap id="resultadoListaResponsableDependencia" class="t02PerdpBean" >
+		<result property="codPersona" column="T02COD_PERS" />
+		<result property="desNombres" column="T02NOMBRES" />
+		<result property="desApellidoPaterno" column="T02AP_PATE" />
+		<result property="desApellidoMaterno" column="T02AP_MATE" />
+		<result property="codUnidadOrganizacional" column="T02COD_UORG" />
+		<result property="indHabilitado" column="T02COD_STAT" />
+        <!-- PAS20191U210500144 Inicio 400101 RF28 PSALDARRIAGA -->
+		<result property="codDependencia" column="cod_depend" />
+		<!-- PAS20191U210500144 Fin 400101 RF28 PSALDARRIAGA -->
+	</resultMap>
+	
+	<select id="obtener" parameterClass="java.util.HashMap" resultMap="resultT02PerdpBean">
+		
+		SELECT t02cod_pers, t02nombres, t02ap_pate, t02ap_mate, substr(nvl(t02cod_uorgl,t02cod_uorg),1,6) as t02cod_uorg, t02cod_stat
+		FROM t02perdp
+		<dynamic prepend="WHERE">
+			<isNotNull property="codPersona" prepend="AND">
+				t02cod_pers = #codPersona#
+			</isNotNull>
+			<isNotNull property="indHabilitado" prepend="AND">
+				t02cod_stat = #indHabilitado#
+			</isNotNull>
+		</dynamic>
+		
+	</select>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultT02PerdpBean">
+		
+		SELECT t02cod_pers, t02nombres, t02ap_pate, t02ap_mate, substr(nvl(t02cod_uorgl,t02cod_uorg),1,6) as t02cod_uorg, t02cod_stat
+		FROM t02perdp
+		<dynamic prepend="WHERE">
+			<isNotNull property="listadoPersonas">
+				<isNotEmpty prepend="AND" property="listadoPersonas">
+					t02cod_pers IN 
+					<iterate property="listadoPersonas" open="(" close=")" conjunction=",">
+						#listadoPersonas[].codPersona#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="listadoUnidadesOrganizacionales">
+				<isNotEmpty prepend="AND" property="listadoUnidadesOrganizacionales">
+					t02cod_uorg IN 
+					<iterate property="listadoUnidadesOrganizacionales" open="(" close=")" conjunction=",">
+						#listadoUnidadesOrganizacionales[].codUnidadOrganizacional#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="listadoPersonasExcluidas">
+				<isNotEmpty prepend="AND" property="listadoPersonasExcluidas">
+					t02cod_pers NOT IN 
+					<iterate property="listadoPersonasExcluidas" open="(" close=")" conjunction=",">
+						#listadoPersonasExcluidas[].codPersona#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="indHabilitado" prepend="AND">
+				t02cod_stat = #indHabilitado#
+			</isNotNull>
+		</dynamic>
+		ORDER BY t02ap_pate, t02ap_mate, t02nombres
+	</select>
+    <!-- PAS20191U210500144 Inicio 400101 RF28 PSALDARRIAGA -->
+	<select id="listarResponsablesDependencia" parameterClass="java.util.HashMap" resultMap="resultadoListaResponsableDependencia">		
+		SELECT a.t02cod_pers, a.t02nombres, 
+			   a.t02ap_pate, a.t02ap_mate, 
+			   a.t02cod_uorg, a.t02cod_stat, b.cod_depend
+	     FROM  t02perdp a INNER JOIN t1797depenuorga b on a.t02cod_uorg = b.cod_uorga
+		<dynamic prepend="WHERE">
+		a.t02cod_stat = 1 AND
+			<isNotNull property="aryRespDep">
+				<isNotEmpty prepend="AND" property="aryRespDep">
+					a.t02cod_pers IN 
+					<iterate property="aryRespDep" open="(" close=")" conjunction=",">
+						#aryRespDep[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="codDependencia">
+				<isNotEmpty prepend="AND" property="codDependencia">
+					b.cod_depend = #codDependencia#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="tipDependencia">
+				<isNotEmpty prepend="AND" property="tipDependencia">
+					b.tip_depend = #tipDependencia#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</select>
+	<!-- PAS20191U210500144 Inicio 400101 RF28 PSALDARRIAGA -->
+
+	<!-- [PAS20191U210500291]: JMC - INI -->
+	<select id="obtenerUUOOSupervisor" parameterClass="java.util.HashMap" resultClass="java.lang.String">
+		
+		SELECT substr(nvl(t02cod_uorgl,t02cod_uorg),1,6) as cod_unidad
+		FROM t02perdp
+		<dynamic prepend="WHERE">
+			<isNotNull property="codPersona" prepend="AND">
+				t02cod_pers = #codPersona#
+			</isNotNull>
+		</dynamic>		
+	</select>
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+	
+</sqlMap>

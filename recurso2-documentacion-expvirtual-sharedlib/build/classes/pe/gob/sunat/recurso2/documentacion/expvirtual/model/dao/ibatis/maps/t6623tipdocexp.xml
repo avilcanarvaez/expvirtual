@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6623TipDocExp">
+	
+	<typeAlias alias="t6623TipDocExpBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6623TipDocExpBean"/>
+	
+	<resultMap id="resultBean" class="t6623TipDocExpBean" >
+		<result property="codTipoExpediente" column="COD_TIPEXP" />
+		<result property="codTipoDocumento" column="COD_TIPDOC" />
+		<result property="indVisibleContribuyente" column="IND_VISCONT" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codUsuarioModificacion" column="COD_USUMODIF" />
+		<result property="fecModificacion" column="FEC_MODIF" />
+		<result property="indEliminado" column="IND_DEL" />
+		<result property="indTipDocumento" column="IND_TIPDOC" />
+	</resultMap>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean">
+		SELECT 
+			cod_tipexp, 
+			cod_tipdoc, 
+			ind_viscont, 
+			cod_usuregis, 
+			fec_regis, 
+			cod_usumodif, 
+			fec_modif, 
+			ind_del, 
+			ind_tipdoc
+		FROM T6623tipdocexp
+		<dynamic prepend="WHERE">
+			<isNotNull property="codTipoDocumentoLike" prepend="AND">
+				cod_tipdoc LIKE #codTipoDocumentoLike#
+			</isNotNull>
+			<isNotNull property="codTipoDocumento" prepend="AND">
+				cod_tipdoc = #codTipoDocumento#
+			</isNotNull>
+			<isNotNull property="codTipoExpediente" prepend="AND">
+				cod_tipexp = #codTipoExpediente#
+			</isNotNull>
+			<isNotNull property="indVisibleContribuyente" prepend="AND">
+				ind_viscont = #indVisibleContribuyente#
+			</isNotNull>
+			<isNotNull property="indTipDoc" prepend="AND">
+				ind_tipdoc = #indTipDoc#
+			</isNotNull>			
+			<isNotNull property="indEliminado" prepend="AND">
+				ind_del = #indEliminado#
+			</isNotNull>
+			<!-- Inicio [nchavez 26/05/2016] -->
+			<isNotNull property="codigosTipoDocumento">
+				<isNotEmpty property="codigosTipoDocumento" prepend="AND" >
+					cod_tipdoc IN 
+					<iterate property="codigosTipoDocumento" open="(" close=")" conjunction=",">
+						#codigosTipoDocumento[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<!-- Fin [nchavez 26/05/2016] -->
+			<!-- Inicio [oachahuic][PAS20175E210400016] -->
+			<isNotNull property="indTipDocumento" prepend="AND">
+				ind_tipdoc = #indTipDocumento#
+			</isNotNull>
+			<isNotNull property="listIndTipDoc">
+				<isNotEmpty property="listIndTipDoc" prepend="AND" >
+					ind_tipdoc IN 
+					<iterate property="listIndTipDoc" open="(" close=")" conjunction=",">
+						#listIndTipDoc[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<!-- Fin [oachahuic][PAS20175E210400016] -->
+		</dynamic>
+		ORDER BY cod_tipdoc
+	</select>
+	
+	<insert id="insertar" parameterClass="java.util.HashMap">
+		
+		INSERT INTO T6623tipdocexp (cod_tipexp, cod_tipdoc, ind_viscont, cod_usuregis, fec_regis, 
+		cod_usumodif, fec_modif, ind_del, ind_tipdoc) VALUES
+		(#codTipoExpediente#, #codTipoDocumento#, #indVisibleContribuyente#, #codUsuarioRegistro#, 
+		#fecRegistro#, #codUsuarioModificacion#, #fecModificacion#, #indEliminado#, #indTipDoc#)
+		
+	</insert>
+	
+	<update id="actualizarMasivo" parameterClass="java.util.HashMap" >
+		
+		UPDATE T6623tipdocexp 
+		<dynamic prepend="SET">
+			<isNotNull property="indVisibleContribuyente" prepend=",">
+				ind_viscont = #indVisibleContribuyente#
+			</isNotNull>
+			<isNotNull property="codUsuarioModificacion" prepend=",">
+				cod_usumodif = #codUsuarioModificacion#
+			</isNotNull>
+			<isNotNull property="fecModificacion" prepend=",">
+				fec_modif = #fecModificacion#
+			</isNotNull>
+			<isNotNull property="indEliminado" prepend=",">
+				ind_del = #indEliminado#
+			</isNotNull>
+			<isNotNull property="indTipDocumento" prepend=",">
+				ind_tipdoc = #indTipDocumento#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="codTipoExpediente" prepend="AND">
+				cod_tipexp = #codTipoExpediente#
+			</isNotNull>
+			<isNotNull property="listadoTiposDocumentos">
+				<isNotEmpty prepend="AND" property="listadoTiposDocumentos">
+					cod_tipdoc IN 
+					<iterate property="listadoTiposDocumentos" open="(" close=")" conjunction=",">
+						#listadoTiposDocumentos[].codTipoDocumento#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		
+	</update>
+	
+	<update id="actualizar" parameterClass="java.util.HashMap" >
+			
+		UPDATE T6623tipdocexp 
+		<dynamic prepend="SET">
+			<isNotNull property="indVisibleContribuyente" prepend=",">
+				ind_viscont = #indVisibleContribuyente#
+			</isNotNull>
+			<isNotNull property="codUsuarioModificacion" prepend=",">
+				cod_usumodif = #codUsuarioModificacion#
+			</isNotNull>
+			<isNotNull property="fecModificacion" prepend=",">
+				fec_modif = #fecModificacion#
+			</isNotNull>
+			<isNotNull property="indEliminado" prepend=",">
+				ind_del = #indEliminado#
+			</isNotNull>
+			<isNotNull property="indTipDocumento" prepend=",">
+				ind_tipdoc = #indTipDocumento#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="codTipoExpediente" prepend="AND">
+				cod_tipexp = #codTipoExpediente#
+			</isNotNull>
+			<isNotNull property="codTipoDocumento" prepend="AND">
+				cod_tipdoc = #codTipoDocumento#				
+			</isNotNull>
+		</dynamic>
+				
+	</update>
+	
+	<select id="getTipDocExp" parameterClass="java.util.HashMap" resultMap="resultBean">
+		SELECT 
+			cod_tipexp, 
+			cod_tipdoc, 
+			ind_viscont, 
+			cod_usuregis, 
+			fec_regis, 
+			cod_usumodif, 
+			fec_modif, 
+			ind_del, 
+			ind_tipdoc
+		FROM T6623tipdocexp
+		<dynamic prepend="WHERE">
+			<isNotNull property="codTipoDocumento" prepend="AND">
+				cod_tipdoc = #codTipoDocumento#
+			</isNotNull>
+			<isNotNull property="codTipoExpediente" prepend="AND">
+				cod_tipexp = #codTipoExpediente#
+			</isNotNull>
+			<isNotNull property="indEliminado" prepend="AND">
+				ind_del = #indEliminado#
+			</isNotNull>
+		</dynamic>
+	</select>	
+</sqlMap>

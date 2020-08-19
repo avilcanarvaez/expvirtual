@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/application"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="LIBS/servlet-api-2.4.jar"/>
+	<classpathentry kind="var" path="LIBS/commons-logging.jar"/>
+	<classpathentry kind="var" path="LIBS/log4j.jar"/>
+	<classpathentry kind="var" path="LIBS/sojo-1.0.0.jar"/>
+	<classpathentry kind="var" path="LIBS/commons-lang.jar"/>
+	<classpathentry kind="var" path="LIBS/ibatis-2.3.0.677.jar"/>
+	<classpathentry kind="var" path="LIBS/sectoristas/framework-util-2.0-jdk16.jar"/>
+	<classpathentry kind="var" path="LIBS/mail-1.4.jar"/>
+	<classpathentry kind="var" path="LIBS/spring-beans-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="var" path="LIBS/spring-context-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="var" path="LIBS/spring-core-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="var" path="LIBS/spring-web-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="var" path="LIBS/spring-webmvc-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="var" path="LIBS/spring.jar"/>
+	<classpathentry kind="var" path="LIBS/axis-1.4.jar"/>
+	<classpathentry kind="var" path="LIBS/axis-jaxrpc-1.4.jar"/>
+	<classpathentry kind="var" path="LIBS/itext-2.1.7.jar"/>
+	<classpathentry kind="var" path="LIBS/poi-3.9/ooxml-lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="var" path="LIBS/poi-3.9/ooxml-lib/stax-api-1.0.1.jar"/>
+	<classpathentry kind="var" path="LIBS/poi-3.9/ooxml-lib/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="var" path="LIBS/poi-3.9/poi-3.9-20121203.jar"/>
+	<classpathentry kind="var" path="LIBS/poi-3.9/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="var" path="LIBS/poi-3.9/poi-scratchpad-3.9.jar"/>
+	<classpathentry kind="var" path="LIBS/documents4j-server-standalone-1.0.0-shaded.jar"/>
+	<classpathentry kind="var" path="LIBS/jackson-annotations-2.3.0.jar"/>
+	<classpathentry kind="var" path="LIBS/jackson-core-2.3.0.jar"/>
+	<classpathentry kind="var" path="LIBS/jackson-databind-2.3.0.jar"/>
+	<classpathentry kind="var" path="LIBS/jta-1.1.jar"/>
+	<classpathentry kind="var" path="LIBS/framework-util-1.6.jar"/>
+	<classpathentry kind="var" path="LIBS/framework/framework-core-1.6.jar"/>
+	<classpathentry kind="var" path="LIBS/sdkSunatTSA.jar"/>
+	<classpathentry exported="true" kind="var" path="LIBS/zxing-core-java6-3.2.0.jar"/>
+	<classpathentry exported="true" kind="var" path="LIBS/zxing-javase-java6-3.2.0.jar"/>
+	<classpathentry kind="var" path="LIBS/Jace.jar"/>
+	<classpathentry kind="var" path="LIBS/stax-api.jar"/>
+	<classpathentry kind="var" path="LIBS/xlxpScanner.jar"/>
+	<classpathentry kind="var" path="LIBS/xlxpScannerUtils.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

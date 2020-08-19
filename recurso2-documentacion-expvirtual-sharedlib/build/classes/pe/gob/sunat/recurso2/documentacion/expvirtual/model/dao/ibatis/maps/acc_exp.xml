@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="acc_exp">
+	
+	<typeAlias alias="accExp" type="pe.gob.sunat.recurso2.documentacion.expvirtual.model.AccExp"/>
+	
+	<resultMap id="resultado" class="accExp" >
+		<result property="num_rc" column="num_rc" />
+		<result property="num_ruc_ori" column="num_ruc_ori" />
+		<result property="num_exp_ori" column="num_exp_ori" />		
+		<result property="num_exp_des" column="num_exp_des" />
+		<result property="ind_acc_exp" column="ind_acc_exp" />
+	</resultMap>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultado">
+		SELECT
+			num_rc,
+			num_ruc_ori,
+			num_exp_ori,
+			num_exp_des,
+			ind_acc_exp
+		FROM acc_exp
+		<dynamic prepend="WHERE">
+			<isNotNull property="num_rc_par" prepend="AND">
+				num_rc = #num_rc_par#
+			</isNotNull>
+			<isNotNull property="num_ruc_ori_par" prepend="AND">
+				num_ruc_ori = #num_ruc_ori_par#
+			</isNotNull>
+			<isNotNull property="num_exp_ori_par" prepend="AND">
+				num_exp_ori = #num_exp_ori_par#
+			</isNotNull>
+			<isNotNull property="num_exp_des_par" prepend="AND">
+				num_exp_des = #num_exp_des_par#
+			</isNotNull>
+			<isNotNull property="ind_acc_exp_par" prepend="AND">
+				ind_acc_exp = #ind_acc_exp_par#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+</sqlMap>

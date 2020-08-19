@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6622Seguim">
+
+<typeAlias alias="t6622SeguimBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6622SeguimBean"/>
+	<resultMap id="resultBean" class="t6622SeguimBean" >
+	<result property="numSeguimiento" column="NUM_CORSEG" />
+	<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+	<result property="codTipoSeguim" column="COD_TIPSEGUIM" />
+	<result property="fec_seguim" column="FEC_SEGUIM" />
+	<result property="codServicioInvocado" column="COD_SERVINV" />
+	<result property="codRetornoServInv" column="COD_RETSERVINV" />
+	<result property="codUsuInvocaServicio" column="COD_USUINVSERV" />
+	<result property="fecInvocacionServ" column="FEC_INVSERV" />
+	<result property="desRequestServInv" column="DES_REQUEST" />
+	<result property="desResponseSerInv" column="DES_RESPONSE" />
+	<result property="numRUC" column="NUM_RUC" />
+	<result property="codOpcionConsulta" column="COD_OPCCONS" />
+	<result property="codAccionContrib" column="COD_ACCION" />
+	<result property="codRespuestaAccion" column="COD_RESPACC" />
+	<result property="desDatosConsulta" column="DES_DATCONS" />
+	
+	<result property="fecConsulta" column="FEC_CONS" />
+	<result property="codTipoDocumento" column="COD_TIPDOC" />
+	<result property="numDocumento" column="NUM_DOC" />
+	<result property="codEstExpOrigen" column="COD_ESTEXPORI" />
+	<result property="codEtapaExpOrigen" column="COD_ETAEXPORI" />
+	<result property="fecCambioEstado" column="FEC_CAMBEST" />
+	<result property="fecCambioEtapa" column="FEC_CAMBETA" />
+	</resultMap>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean" >
+	SELECT 	a.NUM_CORSEG,
+			a.NUM_EXPEDV,
+			a.COD_TIPSEGUIM,
+			a.FEC_SEGUIM,
+			a.COD_SERVINV,
+			a.COD_RETSERVINV,
+			a.COD_USUINVSERV,
+			a.FEC_INVSERV,
+			a.DES_REQUEST,
+			a.DES_RESPONSE,
+			a.NUM_RUC,
+			a.COD_OPCCONS,
+			a.COD_ACCION,
+			a.COD_RESPACC,
+			a.DES_DATCONS,
+			a.FEC_CONS,
+			a.COD_TIPDOC,
+			a.NUM_DOC,
+			a.COD_ESTEXPORI,
+			a.COD_ETAEXPORI,
+			a.FEC_CAMBEST,
+			a.FEC_CAMBETA
+		FROM t6622Seguim a
+		<dynamic prepend="WHERE">
+			<isNotNull property="numExpedVirtual" prepend="AND">
+				a.NUM_EXPEDV = #numExpedVirtual#
+			</isNotNull>
+			<isNotNull property="codTipSeguim" prepend="AND">
+				a.COD_TIPSEGUIM = #codTipSeguim#
+			</isNotNull>
+			<isNotNull property="codEstExpOrigen" prepend="AND">
+				a.COD_ESTEXPORI = #codEstExpOrigen#
+			</isNotNull>
+			<isNotNull property="codEtapaExpOrigen" prepend="AND">
+				a.COD_ETAEXPORI = #codEtapaExpOrigen#
+			</isNotNull>
+			<isNotNull property="fecSeguim" prepend="AND">
+				a.FEC_SEGUIM = #fecSeguim#
+			</isNotNull>
+			<isNotNull property="codTipoDocumento" prepend="AND">
+				a.COD_TIPDOC = #codTipoDocumento#
+			</isNotNull>
+			<isNotNull property="numDocumento" prepend="AND">
+				a.FEC_CAMBEST = #fecCambioEstado#
+			</isNotNull>
+			<isNotNull property="fecCambioEtapa" prepend="AND">
+				a.FEC_CAMBETA = #fecCambioEtapa#
+			</isNotNull>
+			<isNotNull property="fecConsulta" prepend="AND">
+				a.FEC_CONS = #fecConsulta#
+			</isNotNull>
+			<isNotNull property="codAccion" prepend="AND">
+				a.COD_ACCION = #codAccion#
+			</isNotNull>
+			<isNotNull property="numRUC" prepend="AND">
+				a.NUM_RUC = #numRuc#
+			</isNotNull>
+			<isNotNull property="codServicioInvocado" prepend="AND">
+				a.COD_SERVINV = #codServicioInvocado#
+			</isNotNull>
+		</dynamic>
+		<!-- Inicio [jquispe 06/07/2016] Ordena la lista del seguimiento -->
+		ORDER BY a.FEC_SEGUIM
+		<!-- Fin [jquispe 06/07/2016] -->
+	</select>
+	<insert id="insertar" parameterClass="java.util.HashMap">	
+		INSERT INTO T6622seguim
+		(num_corseg,num_expedv,cod_tipseguim,fec_seguim,cod_servinv,cod_retservinv,cod_usuinvserv,fec_invserv,des_request,des_response,num_ruc,cod_opccons,cod_accion,cod_respacc,des_datcons,fec_cons,cod_tipdoc,num_doc,cod_estexpori,cod_etaexpori,fec_cambest,fec_cambeta)
+		VALUES (#num_corseg#,#num_expedv#,#cod_tipseguim#,#fec_seguim#,#cod_servinv#,#cod_retservinv#,#cod_usuinvserv#,#fec_invserv#,#des_request#,#des_response#,#num_ruc#,#cod_opccons#,#cod_accion#,#cod_respacc#,#des_datcons#,#fec_cons#,#cod_tipdoc#,#num_doc#,#cod_estexpori#,#cod_etaexpori#,#fec_cambest#,#fec_cambeta#)	
+	</insert>
+	<!-- INICIO [ATORRESCH 2017-05-09] CONTABILIZA SI UN EXPEDIENTE FUE VISUALIZADO EN LA TABLA DE SEGUIMIENTO-->
+	<select id="contarExpedienteSeguimiento" parameterClass="java.util.HashMap" resultClass="int">
+		SELECT count(1) FROM t6622seguim WHERE cod_accion='05' AND cod_opccons='03' AND num_expedv= #numExpVir#  
+	</select>
+	<!-- FIN -->
+	<!-- INICIO [ATORRESCH 2017-05-18] ACTUALIZA EL SEGUIMIENTO DE CAMBIO DE ESTADO Y ETAPA DEL EXPEDIENTE A 99  -->
+	<update id="eliSegCmbEstEta" parameterClass="java.util.HashMap" >
+		UPDATE t6622seguim  SET cod_tipseguim = '99' WHERE num_expedv = #numExpeDv# AND cod_tipseguim = '02' AND cod_tipdoc = #codTipDoc# AND num_doc = #numDoc#
+	</update>
+</sqlMap>

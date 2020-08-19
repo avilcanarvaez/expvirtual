@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd"-->
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="t12uorga">
+
+  	<typeAlias alias="UnidadOrganicaAlias" type="pe.gob.sunat.recurso2.documentacion.expvirtual.model.T12UOrga"/>
+  	
+	<resultMap id="BaseResultMap" class="UnidadOrganicaAlias" >
+		<result property="codUorga" column="codUorga" jdbcType="VARCHAR" />
+		<result property="desUorga" column="desUorga" jdbcType="VARCHAR" />
+		<result property="desCortaUorga" column="desCortaUorga" jdbcType="VARCHAR" />
+		<result property="fecVigencia" column="fecVigencia" jdbcType="VARCHAR" />
+		<result property="fecBaja" column="fecBaja" jdbcType="VARCHAR" />
+		<result property="codNivel" column="codNivel" jdbcType="VARCHAR" />
+		<result property="codCategoria" column="codCategoria" jdbcType="VARCHAR" />
+		<result property="codSubpr" column="codSubpr" jdbcType="VARCHAR" />
+		<result property="indAplic" column="indAplic" jdbcType="VARCHAR" />
+		<result property="codAnterior" column="codAnterior" jdbcType="VARCHAR" />
+		<result property="indEstado" column="indEstado" jdbcType="VARCHAR" />
+		<result property="codJefatura" column="codJefatura" jdbcType="VARCHAR" />
+		<result property="codEncargado" column="codEncargado" jdbcType="VARCHAR" />
+		<result property="codRepor" column="codRepor" jdbcType="VARCHAR" />
+		<result property="codTipo" column="codTipo" jdbcType="VARCHAR" />
+		<result property="indLima" column="indLima" jdbcType="VARCHAR" />
+		<result property="codDpto" column="codDpto" jdbcType="VARCHAR" />
+	</resultMap>
+	
+  	<select id="buscarPorCodigo" parameterClass="java.lang.String" resultMap="BaseResultMap">
+  	    select
+			t12cod_uorga as codUorga, 
+			t12des_uorga as desUorga, 
+			t12des_corta as desCortaUorga, 
+			to_char(t12f_vigenci,'%Y-%m-%dT%H:%M:%S') as fecVigencia,
+			to_char(t12f_baja,'%Y-%m-%dT%H:%M:%S') as fecBaja, 
+			t12cod_nivel as codNivel, 
+			t12cod_categ as codCategoria,
+			t12cod_subpr as codSubpr, 
+			t12ind_aplic as indAplic, 
+			t12cod_anter as codAnterior,
+			t12ind_estad as indEstado, 
+			t12cod_jefat as codJefatura, 
+			t12cod_encar as codEncargado, 
+			t12cod_repor as codRepor,
+			t12tipo as codTipo, 
+			t12ind_lima as indLima, 
+			cod_dpto as codDpto
+		from t12uorga
+		where t12cod_uorga = #codUorga#
+  	</select>
+
+</sqlMap>

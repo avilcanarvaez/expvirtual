@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="expfisca">
+
+	<parameterMap id="IN_parametros_dataExpOrigen" class="java.util.HashMap">
+		<parameter property="num_ruc" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_tip_exp" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="num_exp_ori" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_dep" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+    </parameterMap>
+    
+	<resultMap id="OUT_parametros_dataExpOrigen" class="java.util.HashMap">
+		<result property="cod_rpta" />
+		<result property="cod_tip_doc" />
+		<result property="num_doc" />
+		<result property="fec_emi_doc" />
+		<result property="fec_not_doc" />
+		<result property="des_exp" />
+		<result property="cod_resp_exp" />
+		<result property="plbrs_clave" />
+		<result property="des_error" />
+	</resultMap>
+
+    <procedure id="spfivalidarexpeorigen" parameterMap="IN_parametros_dataExpOrigen" resultMap="OUT_parametros_dataExpOrigen">
+		{call spfivalidarexpeorigen(?, ?, ?, ?);}
+    </procedure>
+    
+	<parameterMap id="IN_parametros_dataDocOrigen" class="java.util.HashMap">
+		<parameter property="num_ruc" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_tip_exp" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="num_exp_ori" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_tip_doc" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="num_doc" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+    </parameterMap>
+
+	<resultMap id="OUT_parametros_dataDocOrigen" class="java.util.HashMap">
+		<result property="cod_rpta" />
+		<result property="fec_emi_doc" />
+		<result property="fec_not_doc" />
+		<result property="cod_tip_doc_rel" />
+		<result property="num_doc_rel" />
+		<result property="des_error" />
+	</resultMap>
+	
+    <procedure id="spfivalidardocexpediente" parameterMap="IN_parametros_dataDocOrigen" resultMap="OUT_parametros_dataDocOrigen">
+		{call spfivalidardocexpediente(?, ?, ?, ?, ?);}
+    </procedure>
+    
+    <!-- //PAS20191U210500144 Inicio 400101 RF04 PSALDARRIAGA -->
+   	<parameterMap id="IN_parametros_dataCieExp" class="java.util.HashMap">
+		
+		<parameter property="tip_exp" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="num_exp" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+				
+    </parameterMap>
+
+	<resultMap id="OUT_parametros_dataCieExp" class="java.util.HashMap">
+		<result property="cod_resp" />
+		<result property="desc_resp" />
+		<result property="fec_cierre" />		
+	</resultMap>
+    
+    <procedure id="spfiverificarCierreExpediente" parameterMap="IN_parametros_dataCieExp" resultMap="OUT_parametros_dataCieExp">
+		{call spvalidacierreexp(?, ?);}
+    </procedure>
+	<!-- //PAS20191U210500144 Fin 400101 RF04 PSALDARRIAGA -->
+    
+</sqlMap>

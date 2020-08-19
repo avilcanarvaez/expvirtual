@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6621RespExpVirt">
+	
+	<typeAlias alias="t6621RespExpVirtBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6621RespExpVirtBean"/>
+	
+	<resultMap id="resultBean" class="t6621RespExpVirtBean" >
+		<result property="numCorrelativo" column="NUM_CORRESP" />
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="codColaborador" column="COD_COLAB" />
+		<result property="codUsuarioRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codUsuarioModificacion" column="COD_USUMODIF" />
+		<result property="fecModificacion" column="FEC_MODIF" />
+		<result property="indEliminado" column="IND_DEL" />
+		<result property="indResponsable" column="IND_RESP" />
+	</resultMap>
+	
+	<resultMap id="resultMapRespExpVirt" class="java.util.HashMap" >
+		<result property="numCorresp" column="NUM_CORRESP" />
+		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
+		<result property="codColaborador" column="COD_COLAB" />
+		<result property="codUsuRegistro" column="COD_USUREGIS" />
+		<result property="fecRegistro" column="FEC_REGIS" />
+		<result property="codUsuModifica" column="COD_USUMODIF" />
+		<result property="fecModifica" column="FEC_MODIF" />
+		<result property="indDel" column="IND_DEL" />
+	</resultMap>
+	
+	<insert id="insertar" parameterClass="java.util.HashMap">	
+		INSERT INTO T6621respexpvirt
+		(num_corresp, num_expedv, cod_colab, cod_usuregis, fec_regis, cod_usumodif, fec_modif, ind_del, ind_resp)
+		VALUES (#numCorrelativo#, #numExpedienteVirtual#, #codColaborador#, #codUsuarioRegistro#, #fecRegistro#, #codUsuarioModificacion#, #fecModificacion#, #indEliminado#, #indResponsable#)	
+	</insert>
+	
+	<update id="actualizar" parameterClass="java.util.HashMap">
+		UPDATE T6621respexpvirt
+		<dynamic prepend="SET">
+			<isNotNull property="codColaborador" prepend=",">
+				cod_colab = #codColaborador#
+			</isNotNull>
+			<isNotNull property="codUsuModifica" prepend=",">
+				cod_usumodif = #codUsuModifica#
+			</isNotNull>
+			<isNotNull property="fecModifica" prepend=",">
+				fec_modif = #fecModifica#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numCorresp" prepend="AND">
+				num_corresp = #numCorresp#
+			</isNotNull>
+		</dynamic>	
+	</update>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		SELECT num_corresp, num_expedv, cod_colab, cod_usuregis, fec_regis, cod_usumodif, fec_modif, ind_del, ind_resp
+		FROM T6621respexpvirt
+		<dynamic prepend="WHERE">
+		  	<isNotNull property="numExpedienteVirtual" prepend="AND">
+				num_expedv = #numExpedienteVirtual#
+			</isNotNull>
+			<isNotNull property="indEliminado" prepend="AND" >
+				ind_del = #indEliminado#
+			</isNotNull>
+	  	</dynamic>
+	</select>
+	
+	<update id="actualizarMasivo" parameterClass="java.util.HashMap" >
+		
+		UPDATE T6621respexpvirt 
+		<dynamic prepend="SET">
+			<isNotNull property="codUsuarioModificacion" prepend=",">
+				cod_usumodif = #codUsuarioModificacion#
+			</isNotNull>
+			<isNotNull property="fecModificacion" prepend=",">
+				fec_modif = #fecModificacion#
+			</isNotNull>
+			<isNotNull property="indEliminado" prepend=",">
+				ind_del = #indEliminado#
+			</isNotNull>
+            <isNotNull property="indResponsable" prepend=",">
+				ind_resp = #indResponsable#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="WHERE">
+			<isNotNull property="numExpedienteVirtual" prepend="AND">
+				num_expedv = #numExpedienteVirtual#
+			</isNotNull>
+			<isNotNull property="listadoResponsables">
+				<isNotEmpty prepend="AND" property="listadoResponsables">
+					cod_colab IN 
+					<iterate property="listadoResponsables" open="(" close=")" conjunction=",">
+						#listadoResponsables[].codColaborador#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		
+	</update>
+	<!-- Inicio - [oachahuic][PAS20165E210400270] -->
+	<select id="getRespExpVirt" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		SELECT 
+			num_corresp,
+			num_expedv,
+			cod_colab,
+			cod_usuregis,
+			fec_regis,
+			cod_usumodif,
+			fec_modif,
+			ind_del,
+			ind_resp
+		FROM T6621respexpvirt
+		<dynamic prepend="WHERE">
+		  	<isNotNull property="num_expedv_par" prepend="AND"> num_expedv = #num_expedv_par#</isNotNull>
+			<isNotNull property="cod_colab_par" prepend="AND"> cod_colab = #cod_colab_par#</isNotNull>
+			<isNotNull property="ind_del_par" prepend="AND" > ind_del = #ind_del_par#</isNotNull>
+	  	</dynamic>
+	</select>
+	<!-- Fin - [oachahuic][PAS20165E210400270] -->
+	
+	<!-- INICIO [ATORRESCH 20170224] -->
+	
+	<resultMap id="resultCodigosColaboradores" class="java.lang.String" >		
+		<result property="codColaborador" column="COD_COLAB" />		
+	</resultMap>
+	
+	<select id="listarCodigosColaboradores" parameterClass="java.util.HashMap" resultClass="java.lang.String" >
+		SELECT
+			cod_colab
+		FROM T6621respexpvirt
+		<dynamic prepend="WHERE">
+		  	<isNotNull property="numExpeDv" prepend="AND"> num_expedv = #numExpeDv#</isNotNull>			
+		  	<isNotNull property="indEliminado" prepend="AND"> ind_del = #indEliminado#</isNotNull>
+	  	</dynamic>
+	</select>
+	
+	<!-- FIN [ATORRESCH 20170224] -->	
+</sqlMap>

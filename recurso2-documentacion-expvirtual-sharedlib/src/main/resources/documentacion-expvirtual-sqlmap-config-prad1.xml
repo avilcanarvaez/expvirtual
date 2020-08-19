@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" useStatementNamespaces="true" maxSessions="64" maxTransactions="8" maxRequests="128"/>
+	
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/tabdep.xml" />
+	<!--[PAS20191U210500144] Inicio -->
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/docinte.xml" />
+	<!--[PAS20191U210500144] Fin -->
+	<!-- [PAS20191U210500291]: JMC - INI -->
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/dual.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/expedi.xml" />
+	<sqlMap resource="pe/gob/sunat/recurso2/documentacion/expvirtual/model/dao/ibatis/maps/seguim.xml" />
+	<!-- [PAS20191U210500291]: JMC - FIN -->
+</sqlMapConfig>

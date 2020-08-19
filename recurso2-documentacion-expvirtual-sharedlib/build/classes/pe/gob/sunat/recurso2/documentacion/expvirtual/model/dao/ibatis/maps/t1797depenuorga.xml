@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="T1797DepenUOrga">
+	
+	<typeAlias alias="t1797DepenUOrgaBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T1797DepenUOrgaBean"/>
+	
+	<resultMap id="resultBean" class="t1797DepenUOrgaBean" >
+		<result property="codUnidadOrganizacional" column="COD_UORGA" />
+		<result property="codTipoDependencia" column="TIP_DEPEND" />
+		<result property="codDependencia" column="COD_DEPEND" />
+	</resultMap>
+	
+	<select id="obtener" parameterClass="java.util.HashMap" resultMap="resultBean">
+		
+		SELECT cod_uorga, tip_depend, cod_depend
+		FROM t1797depenuorga 
+		WHERE cod_uorga = #codUnidadOrganizacional# 
+		AND tip_depend = #codTipoDependencia# 
+		
+	</select>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean">
+		
+		SELECT cod_uorga, tip_depend, cod_depend
+		FROM t1797depenuorga
+		<dynamic prepend="WHERE">
+			<isNotNull property="codUnidadOrganizacional" prepend="AND">
+				cod_uorga = #codUnidadOrganizacional#
+			</isNotNull>
+			<isNotNull property="codDependencia" prepend="AND">
+			<!--Inicio Luis Estrada 10/11/2016-->
+				<!-- cod_depend = #codDependencia# -->
+				cod_depend like #codDependencia#||'%'
+				<!--Fin Luis Estrada 10/11/2016-->
+			</isNotNull>
+			<isNotNull property="codTipoDependencia" prepend="AND">
+				tip_depend = #codTipoDependencia#
+			</isNotNull>
+		</dynamic>
+		
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T10460VincExpVirt">
+	<typeAlias alias="t6614ExpVirtualBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6614ExpVirtualBean"/>
+
+		<resultMap id="resultExpedienteBean" class="java.util.HashMap">
+		<result property="numExpedv" column="NUM_EXPEVINC" />	
+		<result property="codProc" column="COD_PROC" />	
+		<result property="codTipExp" column="COD_TIPEXP" />	
+		</resultMap>
+		
+		<typeAlias alias="T10460VincExpVirtBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10460VincExpVirtBean"/>
+		<resultMap id="resultBean" class="T10460VincExpVirtBean" >
+		<result property="numExpepri" column="num_expepri" />
+		<result property="numExpevin" column="num_expevinc" />
+		<result property="codEst" column="cod_est" />
+		<result property="fecVinc" column="fec_vinc" />
+		<result property="usuVinc" column="cod_uservinc" />
+		<result property="usuReg" column="cod_usuregis" />
+		<result property="fecReg" column="fec_regis" />
+		<result property="usuMod" column="cod_usumodif" />
+		<result property="fecMod" column="fec_modif" />			
+		</resultMap>
+		
+	<select id="obtenerNroExpedienteVirtual" parameterClass="java.util.HashMap" resultMap="resultExpedienteBean" >
+			SELECT v.num_expevinc,a.cod_proc,a.cod_tipexp
+			FROM t6614expvirtual a
+			INNER JOIN t10460vincexpvirt v   on v.num_expepri = a.num_expedv
+			<dynamic prepend="WHERE">
+				cod_est = '01' AND
+				<isNotNull property="numExpedOrigen" prepend="OR">
+					num_expedo = #numExpedOrigen#
+				</isNotNull>
+			  	<isNotNull property="numExpedVirtual" prepend="OR">
+					num_expedv = #numExpedVirtual#
+				</isNotNull>
+			</dynamic>
+	</select>
+	
+	<!-- Inicio cvg 16/01/2020 -->
+	<insert id= "insertar"  parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10460VincExpVirtBean">
+		INSERT INTO t10460vincexpvirt (num_expepri,num_expevinc,cod_est,fec_vinc,cod_uservinc,cod_usuregis,fec_regis,cod_usumodif,fec_modif)
+		VALUES (#numExpepri#,#numExpevin#,#codEst#,#fecVinc#,#usuVinc#,#usuReg#,#fecReg#,#usuMod#,#fecMod#)
+	</insert>
+
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean" >
+		SELECT   
+				num_expepri, 
+				num_expevinc,
+				cod_est, 
+				fec_vinc, 
+				cod_uservinc,
+				cod_usuregis, 
+				fec_regis,
+				cod_usumodif,
+				fec_modif
+		FROM t10460vincexpvirt 
+		<dynamic prepend="WHERE">
+			<isNotNull property="numExpri" prepend="AND">
+				num_expepri = #numExpri#
+			</isNotNull>
+			<isNotNull property="numExpvin" prepend="AND">
+				num_expevinc = #numExpvin#
+			</isNotNull>			
+		</dynamic>
+		AND cod_est="01"
+	</select>
+	
+	<update id="actualizar" parameterClass="java.util.HashMap" >		
+		UPDATE t10460vincexpvirt 
+		<dynamic prepend="SET">
+			<isNotNull property="codEstVinc" prepend=",">
+				cod_est = #codEstVinc#
+			</isNotNull>			
+			<isNotNull property="codUsuModif" prepend=",">
+				cod_usumodif = #codUsuModif#
+			</isNotNull>			
+			<isNotNull property="fecModif" prepend=",">
+				fec_modif = #fecModif#
+			</isNotNull>		
+		</dynamic>
+		<dynamic prepend="WHERE">
+		cod_est="01" and 		
+			<isNotNull property="numExpri" prepend="AND">
+				num_expepri = #numExpri#
+			</isNotNull>
+			<isNotNull property="numExpvin" prepend="AND">
+				num_expevinc = #numExpvin#
+			</isNotNull>		
+		</dynamic>		
+	</update>
+		<!-- CVG - FIN -->
+</sqlMap>

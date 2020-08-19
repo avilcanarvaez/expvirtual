@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="recAud">
+
+	<select id="obtenerCodSup" parameterClass="java.util.HashMap" resultClass="java.lang.String">
+		select cod_reg_rec 
+		FROM rec_aud
+		WHERE num_ord_fis = #numExpOri#
+		AND ind_rol_rec = '02'
+		AND flg_est_rec = '1'
+		AND flg_est_grp = '1'		
+	</select>
+	
+</sqlMap>

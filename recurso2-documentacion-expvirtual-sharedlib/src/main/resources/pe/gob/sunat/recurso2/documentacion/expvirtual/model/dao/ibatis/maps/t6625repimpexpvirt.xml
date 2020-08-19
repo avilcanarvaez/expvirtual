@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="T6625repimpexpvirt">
+	<typeAlias alias="t6625repimpexpvirtBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6625repimpexpvirtBean"/>
+	
+	<resultMap id="resultT6625repimpexpvirtBean" class="t6625repimpexpvirtBean" >
+		<result property="numCorDoc" column="num_cordoc" />
+		<result property="numRuc" column="num_ruc" />
+		<result property="numExpedo" column="num_expedo" />
+		<result property="numDoc" column="num_doc" />
+		<result property="numRepImp" column="num_repimp" />
+	</resultMap>
+	
+	<!-- jtejada 17/08/2016 -->
+	<select id="obtenerCodigoRepresentacionImpresa" parameterClass="java.util.HashMap" resultMap="resultT6625repimpexpvirtBean">
+		SELECT 
+		num_cordoc, num_ruc, num_expedo, num_doc, num_repimp
+		FROM t6625repimpexpvirt  
+		<dynamic prepend="WHERE">
+			<isNotNull property="numRUC" prepend="AND">
+				num_ruc = #numRUC#
+			</isNotNull>
+			<isNotNull property="numRepreImp" prepend="AND">
+				num_repimp = #numRepreImp#
+			</isNotNull>
+		</dynamic>
+	</select>
+	<!-- FIN jtejada 17/08/2016 -->
+	
+	<insert id= "insertar" parameterClass="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6625repimpexpvirtBean">
+		INSERT INTO t6625repimpexpvirt
+		(num_repimp,num_ruc,num_expedo,cod_tipexp,cod_tipdoc,num_cordoc,num_doc,cod_orides,cod_usu,fec_doc,cod_usuregis,fec_regis,cod_usumod,fec_mod)
+		VALUES (#numRepImp#,#numRuc#,#numExpedo#,#codTipExp#,#codTipDoc#,#numCorDoc#,#numDoc#,#codOriDes#,#codUsu#,#fecDoc#,#codUsuRegis#,#fecRegis#,#codUsuMod#,#fecMod#)
+	</insert> 
+
+</sqlMap>

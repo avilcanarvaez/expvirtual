@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- staype 26/12/2019 -->
+<sqlMap namespace="reqordfis">
+<typeAlias alias="ReqOrdFisBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.ReqOrdFisBean"/>
+	
+	<resultMap id="resultBean" class="reqOrdFisBean" >
+		<result property="numReq" column="num_req" />
+		<result property="fecVencReq" column="fec_pre_req" />
+		<result property="fecReq" column="fec_mov_req" />
+			
+	</resultMap>
+	
+		
+	<select id="obtenerDatosReq" parameterClass="java.util.HashMap" resultMap="resultBean" >
+	SELECT a.num_req,
+	       a.fec_pre_req,
+	       b.fec_mov_req 
+	FROM req_ord_fis a  INNER JOIN  mov_req_ordfis b
+			on a.num_req=b.num_req
+			WHERE b.cod_mov_req='03' AND
+		    a.num_req = #numRequerimientoOrigen#
+		
+		
+	</select>
+	
+
+
+</sqlMap>
+

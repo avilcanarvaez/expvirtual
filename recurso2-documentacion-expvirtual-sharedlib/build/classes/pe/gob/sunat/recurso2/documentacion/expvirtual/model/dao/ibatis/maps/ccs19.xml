@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ccs19">
+
+	<parameterMap id="IN_parametros_dataSirat" class="java.util.HashMap">
+		<parameter property="cod_mae" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="num_ruc" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="num_exp_ori" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="num_doc" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />		
+    </parameterMap>
+    
+	<resultMap id="OUT_parametros_dataSirat" class="java.util.HashMap">
+		<result property="cod_rpta" />
+		<result property="num_doc" />
+		<result property="num_ruc" />
+		<result property="cod_tip_doc" />
+		<result property="fec_emi_doc" />
+		<result property="fec_not_doc" />
+		<result property="des_error" />
+	</resultMap>
+	
+	 <!-- Inicio [jjurado 25/05/2015] -->
+	<parameterMap id="IN_parametros_dataExpOrigen" class="java.util.HashMap">
+		<parameter property="num_ruc" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="num_exp_ori" jdbcType="CHAR" javaType="java.lang.String" mode="IN" />
+    </parameterMap>
+    
+	<resultMap id="OUT_parametros_dataExpOrigen" class="java.util.HashMap">
+		<result property="cod_rpta" />
+		<result property="cod_tip_doc" />
+		<result property="num_doc" />
+		<result property="fec_emi_doc" />
+		<result property="fec_not_doc" />
+		<result property="des_exp" />
+		<result property="cod_resp_exp" />
+		<result property="plbrs_clave" />
+		<result property="des_error" />
+	</resultMap>
+ 	<!-- Fin [jjurado 25/05/2015] -->
+ 	
+   	<procedure id="obtenerDatosSirat" parameterMap="IN_parametros_dataSirat" resultMap="OUT_parametros_dataSirat">
+             {call ccs19_obt_dat_doc(?, ?, ?, ?);}
+    </procedure>
+    <!-- Inicio [jjurado 25/05/2015] Obtiene los datos del expediente origen  -->
+    <procedure id="obtenerDatosExpOrigen" parameterMap="IN_parametros_dataExpOrigen" resultMap="OUT_parametros_dataExpOrigen">
+             {call ccs19_obt_dat_ecc(?, ?);}
+    </procedure>
+	<!-- Fin [jjurado 25/05/2015] -->
+</sqlMap>

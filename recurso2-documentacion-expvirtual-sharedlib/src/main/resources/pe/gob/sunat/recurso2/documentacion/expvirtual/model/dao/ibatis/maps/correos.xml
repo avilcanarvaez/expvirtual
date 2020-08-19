@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Correos">
+	
+	<typeAlias alias="correosBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.CorreosBean"/>
+	
+	<resultMap id="resultBean" class="correosBean" >
+		<result property="codPers" column="COD_PERS" />
+		<result property="smtp" column="SMTP" />
+		<result property="alias" column="ALIAS" />
+	</resultMap>
+	
+	<select id="obtener" parameterClass="java.util.HashMap" resultMap="resultBean">
+		SELECT cod_pers, smtp, alias 
+		FROM correos 
+		WHERE cod_pers = #codPers#
+	</select>
+	
+	<select id="listar" parameterClass="java.util.HashMap" resultMap="resultBean">
+		SELECT cod_pers, smtp, alias
+		FROM correos
+		<dynamic prepend="WHERE">			
+			<isNotNull property="listaCodPers">
+				<isNotEmpty prepend="AND" property="listaCodPers">
+					cod_pers IN 
+					<iterate property="listaCodPers" open="(" close=")" conjunction=",">
+						#listaCodPers[].codPers#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="listCodPers">
+				<isNotEmpty prepend="AND" property="listCodPers">
+					cod_pers IN 
+					<iterate property="listCodPers" open="(" close=")" conjunction=",">
+						#listCodPers[]#
+					</iterate>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+</sqlMap>

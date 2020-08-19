@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+<!-- 	<settings useStatementNamespaces="true" /> -->
+<!-- 	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/gestiondeuda/cobranza/embargo/model/dao/ibatis/maps/Ddp.xml" /> -->
+<!-- 	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/gestiondeuda/cobranza/embargo/model/dao/ibatis/maps/embargos_res_coa_acc_emb.xml" /> -->
+<!-- 	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/gestiondeuda/cobranza/embargo/model/dao/ibatis/maps/exp_coa.xml" /> -->
+
+</sqlMapConfig>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/application_5.xsd" 
+	version="5" id="Application">
+	
+	<description></description>
+	<display-name>recurso2-documentacion-expvirtual-sharedlib</display-name>
+	
+	<module>
+		<java>lib/documentacion-expvirtual-model-1.3.0.jar</java>
+	</module>
+	
+	<module>
+		<java>lib/documentacion-expvirtual-dao-ifz-1.3.0.jar</java>
+	</module>
+	
+	<module>
+		<java>lib/documentacion-expvirtual-dao-imp-1.3.0.jar</java>
+	</module>
+	
+	<module>
+		<java>lib/documentacion-expvirtual-service-ifz-1.3.0.jar</java>
+	</module>
+	
+	<module>
+		<java>lib/documentacion-expvirtual-service-imp-1.3.0.jar</java>
+	</module>
+	
+</application>
