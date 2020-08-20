@@ -49,5 +49,11 @@ public class SqlMapT6623TipDocExpDAO extends SqlMapClientDaoSupport implements T
 	public T6623TipDocExpBean getTipDocExp(Map<String, Object> parametros) {
 		return (T6623TipDocExpBean) getSqlMapClientTemplate().queryForObject("T6623TipDocExp.getTipDocExp", parametros);
 	}
-	
+
+	@Override
+	public int verficarDocumentoAsociado(Map<String, Object> parametros) {
+		// TODO Auto-generated method stub
+		return (Integer) getSqlMapClientTemplate().queryForObject("T6623TipDocExp.verficarDocumentoAsociado", parametros);
+	}
+
 }

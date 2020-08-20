@@ -198,5 +198,15 @@ public class SqlMapT6613DocExpVirtDAO extends SqlMapClientDaoSupport implements 
 	public List<T6613DocExpVirtBean> listDocPorNumExpVir(Map<String, Object> parametros) {
 		return (List<T6613DocExpVirtBean>) getSqlMapClientTemplate().queryForList("T6613docExpVirt.listDocPorNumExpVir", parametros);
 	}
+	
+	
+	// Inicio - [avilcan]
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T6613DocExpVirtBean> obtenerDocumentosExp(Map<String, Object> parametros) {		
+		return (List<T6613DocExpVirtBean>)getSqlMapClientTemplate().queryForList("T6613docExpVirt.obtenerDocumentosXExpediente", parametros);
+	}
+	// Fin - [avilcan]
+
 
 }

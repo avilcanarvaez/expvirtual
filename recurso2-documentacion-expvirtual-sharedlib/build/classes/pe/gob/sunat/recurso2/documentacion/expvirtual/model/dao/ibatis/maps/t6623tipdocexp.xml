@@ -175,4 +175,17 @@
 			</isNotNull>
 		</dynamic>
 	</select>	
+	
+	
+	<!--   Inicio - [avilcan]  -->
+	<select id="verficarDocumentoAsociado" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM T6623tipdocexp WHERE
+			cod_tipexp =  #codTipExp# AND
+			cod_tipdoc IN 		
+			<iterate property="codTipoDocumento" open="(" close=")" conjunction=",">
+						#codTipoDocumento[]#
+			</iterate>
+	</select>
+	<!--   Fin - [avilcan]  -->
 </sqlMap>

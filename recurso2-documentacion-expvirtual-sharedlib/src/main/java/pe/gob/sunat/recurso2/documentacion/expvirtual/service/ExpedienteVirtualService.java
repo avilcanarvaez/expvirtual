@@ -5,6 +5,7 @@ import java.util.Map;
 
 import pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T10461SolDesBean;
 import pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6614ExpVirtualBean;
+import pe.gob.sunat.recurso2.documentacion.expvirtual.model.T6613DocExpVirt;
 import pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6613DocExpVirtBean;
 
 public interface ExpedienteVirtualService {
@@ -133,4 +134,11 @@ public interface ExpedienteVirtualService {
 	public List<T6614ExpVirtualBean> obtenerListaExpedienteVirtualReq(Map<String, Object> mapParametrosBusqueda) throws Exception; 
 	public List<T10461SolDesBean> obtenerListaSolicitudDesc(Map<String, Object> mapParametrosBusqueda) throws Exception; 
 	//PAS20201U210500029 - HHC FIN
+	
+	
+	// Inicio - [avilcan]
+	public List<T6613DocExpVirtBean> obtenerDocumentosExp(Map<String, Object> mapParametrosBusqueda) throws Exception; 
+	public int verficarDocumentoAsociado(Map<String, Object> mapParametrosBusqueda) throws Exception;
+	public void insertarDocumento(T6614ExpVirtualBean t6614BeanDes, T6613DocExpVirtBean t6614BeanOri) throws Exception;
+	// Fin - [avilcan]
 }

@@ -115,6 +115,9 @@
 		<!-- Fin [jjurado 27/05/2016]-->
 		<property name="generaReporteURLService" value="http://api.sunat.peru:10021/cl-ti-iagenerador-service/GeneradorReportService?WSDL" /> 
                 <!-- <property name="generaReporteURLService" value="http://localhost:7001/cl-ti-iagenerador-service/GeneradorReportService?WSDL" />  -->
+	    <!-- Inicio [avilcan] -->
+	    <property name="t01ParamDAO" ref="t01ParamDAO" />
+	    <!-- Fin [avilcan] -->
 	</bean>
 	
 	<bean id="correosService" class="pe.gob.sunat.recurso2.documentacion.expvirtual.service.CorreosServiceImpl">

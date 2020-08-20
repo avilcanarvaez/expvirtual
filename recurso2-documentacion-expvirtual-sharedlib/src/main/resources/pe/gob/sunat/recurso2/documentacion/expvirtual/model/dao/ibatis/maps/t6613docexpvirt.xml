@@ -211,6 +211,31 @@
 		<result property="fechaCarga" column="FEC_CARG" />
 	</resultMap>
 	
+	<!--   Inicio - [avilcan]  -->
+	<resultMap id="resultMapListarDocumentosXExpediente" class="t6613DocExpVirtBean">
+		<result property="numCorDoc" column="num_cordoc" />
+		<result property="codTipDoc" column="cod_tipdoc" />
+		<result property="codTipoExpediente" column="cod_tipexp" />
+		<result property="estadoDocumentoReq" column="cod_estdocreq" />
+		<result property="desMotsoldoc" column="des_motsoldoc" />
+		<result property="numDoc" column="num_doc" />			
+		<result property="fecDoc" column="fec_doc" />		
+		<result property="codigoTipoDocumentoSust" column="cod_tipdocsust" />
+		<result property="codUsucarga" column="cod_usucarg" />
+		<result property="codUsuarioRegistro" column="cod_usuregis" />	
+		<result property="indVisContribuyente" column="ind_visible" />
+		<result property="codOrigenDocuento" column="cod_origdoc" />
+		<result property="codIdentificadorECM" column="cod_idecm" />		
+		<result property="indVisible" column="ind_visible"/>
+		<result property="descripcionArchivo" column="des_arch"/>
+		<result property="fecNotif" column="fec_notif"/>
+		<result property="codForNotif" column="cod_for_notif"/>		
+		<result property="codEstDoc" column="cod_estdoc"/>
+		<result property="desEliDoc" column="des_elidoc"/>		
+		<result property="indReserTrib" column="ind_resertrib"/>			
+	</resultMap>
+    <!--   Fin - [avilcan]  -->
+	
     <!--[PAS20191U210500144] Etito Inicio -->
 	<insert id= "insertar" parameterClass="java.util.HashMap">
 		INSERT INTO T6613docexpvirt
@@ -1014,5 +1039,14 @@
 			cod_estdoc != '02'
 		ORDER BY num_cordoc ASC 
 	</select>
+	
+	<!--   Inicio - [avilcan]  -->
+	<select id="obtenerDocumentosXExpediente" parameterClass="java.util.HashMap" resultMap="resultMapListarDocumentosXExpediente">			
+			SELECT num_cordoc, cod_tipdoc, cod_tipexp, cod_estdocreq, des_motsoldoc,  num_doc, fec_doc , cod_tipdocsust, cod_usucarg, cod_usuregis, ind_visible, 
+			cod_origdoc, cod_idecm, des_arch, fec_notif, cod_for_notif, cod_estdoc, des_elidoc, ind_resertrib 
+			FROM t6613docexpvirt 
+			WHERE num_expedv = #numExpedv#;				
+	</select>
+	<!--   Fin - [avilcan]  -->
 	
 </sqlMap>

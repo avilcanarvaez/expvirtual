@@ -25,6 +25,7 @@ import org.apache.axis.encoding.ser.BeanSerializerFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.NDC;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
@@ -47,6 +48,7 @@ import pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6620RequerimBean;
 import pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6621RespExpVirtBean;
 import pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.DetReqOrdFisDAO;
 import pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.ReqOrdFisDAO;
+import pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.T01ParamDAO;
 import pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.T10372DetRequerimDAO;
 import pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.T6613DocExpVirtDAO;
 import pe.gob.sunat.recurso2.documentacion.expvirtual.model.dao.T6620RequerimDAO;
@@ -82,6 +84,11 @@ public class RequerimientoServiceImpl implements RequerimientoService {
 	// Inicio [jjurado 27/05/2016]
 	private ValidarParametrosService validarParametrosService;
 	// Fin [jjurado 27/05/2016]
+	
+	// Inicio [avilcan]
+	private T01ParamDAO t01ParamDAO;
+	//public T01ParamDAO t01ParamDAO;
+	// Fin [avilcan]
 	@Override
 	public String registrarRequerimiento(Map<String, Object> parametros) throws Exception {
 		
@@ -1161,10 +1168,19 @@ public class RequerimientoServiceImpl implements RequerimientoService {
 		this.t6613DocExpVirtDAO = t6613DocExpVirtDAO;
 	}
 
+	// Inicio - [avilcan]
+	public void setT01ParamDAO(T01ParamDAO t01ParamDAO) {
+		this.t01ParamDAO = t01ParamDAO;
+	}
+	// Fin - [avilcan]
+	
 	public void setSequenceDAO(SequenceDAO sequenceDAO) {
 		this.sequenceDAO = sequenceDAO;
 	}
 	
+
+
+
 	public void setGeneralService(GeneralService generalService) {
 		this.generalService = generalService;
 	}
@@ -1190,6 +1206,8 @@ public class RequerimientoServiceImpl implements RequerimientoService {
 	public void setValidarParametrosService(ValidarParametrosService validarParametrosService) {
 		this.validarParametrosService = validarParametrosService;
 	}
+	
+
 
 
 	//Inicio staype 26/12/2019 [PAS20191U210500291] valida existencia de requerimiento
@@ -1225,13 +1243,53 @@ public class RequerimientoServiceImpl implements RequerimientoService {
 	}
 	//Fin staype 26/12/2019 valida existencia de requerimiento
 	
+
 	//Inicio staype [PAS20191U210500291] 26/12/2019 actualiza fecha de vencimiento
 	@Override
-	public void actualizar(Map<String, Object> parametros)
+	public void actualizar(Map<String, Object> parametros, T6614ExpVirtualBean beanExp, T6620RequerimBean t6620RequerimBean)
 			throws Exception {
 		// TODO Auto-generated method stub
 		DataSourceContextHolder.setKeyDataSource(DataSourceConstantes.DATASOURCE_TRANSACCION_EXPVIRTUAL);
 		t6620RequerimDAO.actualizar(parametros);
+		beanExp.setCodTipoExpediente(ValidaConstantes.IND_TIP_EXP_730);
+		Map<String, Object> paramDescripcion = null;
+		// Inicio - [avilcan]
+		if (beanExp.getCodTipoExpediente().equals(ValidaConstantes.IND_TIP_EXP_730)  ||  beanExp.getCodTipoExpediente().equals(ValidaConstantes.IND_TIP_EXP_731) ) {
+			/*************************************************************************/
+			/**ENVIAMOS LA CONSTANSIA DE REGISTRO DE REQUERIMIENTO AL CONTRIBUYENDE**/
+			/*************************************************************************/
+			String numRequerimiento;
+			numRequerimiento = Utils.toStr(sequenceDAO.getNextSequence(SequenceConstantes.SEQ_EV_REQUERIM));
+			String correlativoCompletado = String.format("%07d",Utils.toInteger(numRequerimiento));
+			String fechareq=null;
+			String fechavencimiento=null;
+			numRequerimiento = Utils.toStr(beanExp.getCodTipoExpediente()).trim()+correlativoCompletado;
+			if (log.isDebugEnabled()) log.debug("====[ENVIO BUZON]====");
+			Map<String, Object> mensajeMap = new HashMap<String, Object>();			
+			mensajeMap.put("razsocial", beanExp.getDesRazonSocial());
+			mensajeMap.put("ruc", beanExp.getNumRuc() );
+			mensajeMap.put("requerimientOrigen",  t6620RequerimBean.getNumRequerimOrigen() );
+			mensajeMap.put("nexpediente", beanExp.getNumExpedienteOrigen());
+			mensajeMap.put("nrequerimiento",  numRequerimiento);
+			mensajeMap.put("fechareq",  fechareq);
+			mensajeMap.put("fechavencimiento",   fechavencimiento);
+			
+			paramDescripcion= new HashMap<String, Object>();
+			paramDescripcion.put("parametro", beanExp.getCodProceso());
+			String desTipProceso= obtenerDescripcion(CatalogoConstantes.CATA_PROCESOS,paramDescripcion);
+			mensajeMap.put("desTipProceso", Utils.toStr(desTipProceso));			
+			log.debug("desTipProceso=>"+ desTipProceso);			
+			paramDescripcion=null;
+			paramDescripcion= new HashMap<String, Object>();
+			paramDescripcion.put("parametro", beanExp.getCodTipoExpediente());			
+			String desTipExpediente= obtenerDescripcion( CatalogoConstantes.CATA_TIPOS_EXPEDIENTES, paramDescripcion);			
+			log.debug("desTipExpediente=>"+ desTipExpediente);			
+			
+			if (log.isDebugEnabled()) log.debug("====[PARAMETROS PARA ENVIO BUZON: " + mensajeMap.toString() + "]====");
+			enviarMensajeBuzon(mensajeMap);
+			log.debug("Final - RequerimientoServiceImpl.actualizar");
+		}
+		// Fin - [avilcan]
 		
 	}
 	//Fin staype 26/12/2019 actualiza fecha de vencimiento
@@ -1268,5 +1326,36 @@ public class RequerimientoServiceImpl implements RequerimientoService {
 	}
 	//Fin staype 26/12/2019 obtiene datos de requerimiento
 	
-
+	// Inicio - [avilcan]
+		public String obtenerDescripcion(String codClase,Map<String, Object> parametros) throws Exception {
+			if (log.isDebugEnabled()) log.debug("Inicio - RequerimientoServiceImpl.obtenerDescripcion");
+			String resultado = null;
+			try {
+				Map<String, Object> mapParam = new HashMap<String, Object>();
+				
+				mapParam.put("codClase", codClase);
+				mapParam.put("indTipo", CatalogoConstantes.TIPO_PARAMETRO_DETALLE);
+				mapParam.put("codParametro", parametros.get("parametro"));
+				DataSourceContextHolder.setKeyDataSource(DataSourceConstantes.DATASOURCE_CONSULTA_RECAUDA);
+				log.debug("codClase=>" + mapParam.get("codClase"));
+				log.debug("indTipo=>" + mapParam.get("indTipo"));
+				log.debug("codParametro=>" + mapParam.get("codParametro"));
+				T01ParamBean paramBean = t01ParamDAO.obtener(mapParam);
+				if (paramBean == null) {
+					resultado= ValidaConstantes.CADENA_VACIA;
+				} else {
+					resultado= paramBean.getDesParametro().trim();
+				}
+				log.debug("resultado: " + resultado);
+			} catch (Exception ex) {
+				if (log.isDebugEnabled()) log.debug("Error - RequerimientoServiceImpl.obtenerDescripcion");
+				log.error(ex, ex);
+				throw ex;
+			} finally {
+				if (log.isDebugEnabled()) log.debug("Final - RequerimientoServiceImpl.obtenerDescripcion");
+			}
+			return resultado;
+		}
+		// Fin - [avilcan]
+	
 }

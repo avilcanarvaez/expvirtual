@@ -121,6 +121,9 @@
 		<property name="validarParametrosService" ref="validarParametrosService" />
  		<property name="documentoItemRequerimientoService" ref="documentoItemRequerimientoService" />
 		<property name="configuracionExpedienteService" ref="configuracionExpedienteService" />
+		<!--Inicio - [avilcan]-->
+		<property name="expedienteVirtualService" ref="expedienteVirtualService" />
+		<!--Fin - [avilcan]-->
 	</bean>
 	
 	<bean id="solicitudesElectronicasController" class="pe.gob.sunat.recurso2.documentacion.expvirtual.web.controller.SolicitudesElectronicasController">

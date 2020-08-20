@@ -144,4 +144,5 @@ public interface ConfiguracionExpedienteService {
 	public T6623TipDocExpBean obtenerTipDocExpediente(Map<String, Object> mapParametros) throws Exception;
 	
 	public DocOrigenBean obtenerDatosDocOrigen(Map<String, Object> parametros) throws Exception;
+	
 }

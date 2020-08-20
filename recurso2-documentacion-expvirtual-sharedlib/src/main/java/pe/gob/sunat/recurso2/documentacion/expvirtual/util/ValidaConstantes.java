@@ -16,7 +16,7 @@ public class ValidaConstantes {
 	public static final String FILTRO_TRES = "3";
 	public static final String FILTRO_CUATRO = "4";
 	
-	//public static final String IND_TIPO_EXPE_GENERAL = "0";
+	//public static final String IND_<_EXPE_GENERAL = "0";
 	public static final String IND_TIPO_EXPE_DISPONIBLE = "1";
 	public static final String IND_TIPO_EXPE_ASOCIADO = "2";
 	
@@ -663,5 +663,12 @@ public class ValidaConstantes {
 	public static final String FILE_FOLDER_ECM = "/Sunat/Expedientes/";
 	//public static final String RUTA_ARCHIVO_COMPARTIDA = "/recursoms/expvirtual/uploads/spring/";
 	public static final String RUTA_ARCHIVO_COMPARTIDA = "/data0/final";
+	
+	// Inicio - [avilcan]
+	public static final String IND_TIP_DOC_SUST = "04";
+	public static final String IND_NUM_COR_DOC_REL = "0";
+	public static final String IND_TIP_EXP_730 = "730";
+	public static final String IND_TIP_EXP_731 = "731";
+	// Fin - [avilcan]
 	
 }

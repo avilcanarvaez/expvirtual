@@ -4,7 +4,6 @@
 <sqlMap namespace="T6614ExpVirtual">
 	
 	<typeAlias alias="t6614ExpVirtualBean" type="pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6614ExpVirtualBean"/>
-	
 	<resultMap id="resultBean" class="t6614ExpVirtualBean" >
 		<result property="numExpedienteVirtual" column="NUM_EXPEDV" />
 		<result property="numRuc" column="NUM_RUC" />
@@ -232,7 +231,8 @@
 		<result property="codForNotifOrigen" column="COD_FOR_NOTIF" />
 	</resultMap>
 	<!-- PAS20201U210500029 HHC - Fin -->
-		
+	
+
 	<select id="obtener" parameterClass="java.util.HashMap" resultMap="resultBean" >
 		
 		SELECT num_expedv, num_expedo, cod_proc, cod_tipexp, num_ruc, des_expedv, 
@@ -982,4 +982,7 @@
 		</dynamic>
 	</select>
 	<!--PAS20201U210500029 HHC - FIN-->
+	
+
+	
 </sqlMap>

@@ -2188,6 +2188,7 @@ public class ConfiguracionExpedienteServiceImpl implements ConfiguracionExpedien
 		}
 		return mapDocOri;
 	}
+
 	
 	public void setGeneralService(GeneralService generalService) {
 		this.generalService = generalService;

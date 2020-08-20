@@ -71,4 +71,8 @@ public interface T6613DocExpVirtDAO {
 	public List<T6613DocExpVirtBean> listarDocumentosDeEscritos(Map<String, Object> mapParametrosBusqueda);//[PAS20201U210500029] - HHC
 	public List<T6613DocExpVirtBean> listDocPorNumExpVir(Map<String, Object> parametros);
 	
+	// Inicio - [avilcan]
+	public List<T6613DocExpVirtBean> obtenerDocumentosExp(Map<String, Object> parametros);
+	// Fin - [avilcan]
+	
 }

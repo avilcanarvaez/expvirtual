@@ -30,6 +30,7 @@ public class SqlMapT01ParamDAO extends SqlMapClientDaoSupport implements T01Para
 		
 		//DESPUES:
 		return (T01ParamBean) this.getSqlMapClientTemplate().queryForObject("T01param.obtener", parametros);
+		//return (T01ParamBean) this.getSqlMapClientTemplate().queryForObject("t01param.obtener", parametros);
 		
 	}
 	//Inicio - [oachahuic][PAS20165E210400270]

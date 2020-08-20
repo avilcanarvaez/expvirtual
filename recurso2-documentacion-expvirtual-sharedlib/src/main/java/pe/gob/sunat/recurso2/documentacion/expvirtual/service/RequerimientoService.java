@@ -8,6 +8,7 @@ import java.util.Map;
 //import pe.gob.sunat.recurso2.documentacion.expvirtual.bean.BeanRequerimiento;
 
 import pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6613DocExpVirtBean;
+import pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6614ExpVirtualBean;
 import pe.gob.sunat.recurso2.documentacion.expvirtual.bean.T6620RequerimBean;
 
 public interface RequerimientoService {
@@ -33,7 +34,7 @@ public interface RequerimientoService {
 	public String eliminarRequerimiento(Map<String, Object> parametros) throws Exception;
 	
 	//staype 26/12/2016 [PAS20191U210500291] 
-	public void actualizar(Map<String, Object> parametros) throws Exception;
+	public void actualizar(Map<String, Object> parametros,T6614ExpVirtualBean beanExp, T6620RequerimBean t6620RequerimBean) throws Exception;
 		
 	//existencia de requerimiento
 	public T6620RequerimBean obtenerRequerimiento(Map<String, Object> parametros) throws Exception;
