@@ -59,7 +59,7 @@ import pe.gob.sunat.tecnologia.menu.bean.UsuarioBean;
 @Controller
 public class OtrosEscritosElecronicosController extends MultiActionController {
 
-	private static final Log log = LogFactory.getLog(AsociaTipoExpedienteController.class);
+   private static final Log log = LogFactory.getLog(OtrosEscritosElecronicosController.class);
 
 	private ConfiguracionExpedienteService configuracionExpedienteService;
 	private ValidarParametrosService validarParametrosService;
@@ -68,6 +68,7 @@ public class OtrosEscritosElecronicosController extends MultiActionController {
 	// Inicio - [avilcan]
 	private ExpedienteVirtualService expedienteVirtualService;
 	// Fin - [avilcan]
+	
 	@RequestMapping(value = "/inicioConsultaOtrosEscritosEView", method = RequestMethod.GET)
 	public ModelAndView inicioConsultaOtrosEscritosEView(HttpServletRequest request, HttpServletResponse response) {
 
@@ -626,30 +627,30 @@ public class OtrosEscritosElecronicosController extends MultiActionController {
 
 	@RequestMapping(value = "/cargarListadoExpedientesPendientes", method = RequestMethod.GET)
 	public ModelAndView cargarListadoExpedientesPendientes(HttpServletRequest request, HttpServletResponse response) {
-		if (log.isDebugEnabled())
+	   
+		if (log.isDebugEnabled()) {
 			log.info((Object) "Inicio - OtrosEscritosElecronicosController.cargarListadoExpedientesPendientes");
-
+		}
+		
 		ModelAndView modelAndView = null;
 
 		Map<String, Object> mapParametrosBusqueda = new HashMap<String, Object>();
 		List<T6614ExpVirtualBean> listaExpedientesVirtuales;
 
 		String codProceso = Utils.toStr(request.getParameter("codProceso"));
-		log.info("codProceso=>" + codProceso);
 		String codTipExpediente = Utils.toStr(request.getParameter("codTipexp"));
-		log.info("codTipexp=>" + codTipExpediente);
 		String numExp = Utils.toStr(request.getParameter("numExp"));
-		log.info("numExp=>" + numExp);
+		
 		Date fecDesde = null;
 		Date fecHasta = null;
 
 		try {
-			log.info("TEST 1");
+		   modelAndView = new ModelAndView(jsonView);
+		   
 			UsuarioBean usuarioBean = (UsuarioBean) WebUtils.getSessionAttribute(request, "usuarioBean");
-			log.info("TEST 2");
+			
 			if (!Utils.isEmpty(request.getParameter("fecDesde"))) {
-				fecDesde = Utils.stringToDate(Utils.toStr(request.getParameter("fecDesde")),
-						CatalogoConstantes.INT_TWO);
+				fecDesde = Utils.stringToDate(Utils.toStr(request.getParameter("fecDesde")), CatalogoConstantes.INT_TWO);
 				Calendar calendarDesde = Calendar.getInstance();
 				calendarDesde.setTime(fecDesde);
 				calendarDesde.set(Calendar.HOUR_OF_DAY, 0);
@@ -658,12 +659,10 @@ public class OtrosEscritosElecronicosController extends MultiActionController {
 				fecDesde = calendarDesde.getTime();
 				mapParametrosBusqueda.put("fecGenIni", fecDesde);
 			}
-			log.info("TEST 3");
+			
 			if (!Utils.isEmpty(request.getParameter("fecHasta"))) {
-				fecHasta = Utils.stringToDate(Utils.toStr(request.getParameter("fecHasta")),
-						CatalogoConstantes.INT_TWO);
-				fecHasta = Utils.stringToDate(Utils.toStr(request.getParameter("fecHasta")),
-						CatalogoConstantes.INT_TWO);
+				fecHasta = Utils.stringToDate(Utils.toStr(request.getParameter("fecHasta")), CatalogoConstantes.INT_TWO);
+				fecHasta = Utils.stringToDate(Utils.toStr(request.getParameter("fecHasta")), CatalogoConstantes.INT_TWO);
 				Calendar calendarHasta = Calendar.getInstance();
 				calendarHasta.setTime(fecHasta);
 				calendarHasta.set(Calendar.HOUR_OF_DAY, 23);
@@ -672,53 +671,43 @@ public class OtrosEscritosElecronicosController extends MultiActionController {
 				fecHasta = calendarHasta.getTime();
 				mapParametrosBusqueda.put("fecGenFin", fecHasta);
 			}
-			log.info("TEST 4");
 
-			// validamos el codigoProceso
+         if (!Utils.isEmpty(numExp)) {
+            mapParametrosBusqueda.put("numExpedVirtual", numExp);
+         }
+
 			if (!Utils.isEmpty(codProceso)) {
 				mapParametrosBusqueda.put("codProceso", codProceso);
 			}
-			// validamos el codigoTipoExpediente
+			
 			if (!Utils.isEmpty(codTipExpediente)) {
 				mapParametrosBusqueda.put("codTipExpediente", codTipExpediente);
 			}
-
-			modelAndView = new ModelAndView(jsonView);
-			mapParametrosBusqueda.put("numeroRuc", usuarioBean.getNumRUC());
-			log.info("numeroRuc=>" + usuarioBean.getNumRUC());
-			log.info("TEST 5");
-			listaExpedientesVirtuales = expedienteVirtualService.obtenerListaExpedienteVirtual(mapParametrosBusqueda);
-			log.info("Cantidad=>" + listaExpedientesVirtuales.size());
-
 			
-		    if (!Utils.isEmpty(numExp)) {
-	            log.info("TEST 6");
-	            if (Utils.isEmpty(listaExpedientesVirtuales)) {
-	            	log.info("TEST 7");
-	               modelAndView.addObject("msjError","El N° Expediente no existe."); //[PAS20191U210500291]: JMC
-	            } else {    
-	            	log.info("TEST 8");
-	                  modelAndView.addObject("msjError",AvisoConstantes.EXCEP_MODULO_02_01_005);
-	            }
-	            
-	         }else if (Utils.isEmpty(listaExpedientesVirtuales)) {
-	        	 log.info("TEST 9");
-	        	   modelAndView.addObject("msjError",AvisoConstantes.EXCEP_MODULO_02_01_005);
-	         }else {
-	        	 log.info("TEST 10");
-	        	 modelAndView.addObject("listaExpedientesVirtuales", listaExpedientesVirtuales);
-		 			  
-	         }
+			mapParametrosBusqueda.put("numeroRuc", usuarioBean.getNumRUC());	
+			
+			listaExpedientesVirtuales = expedienteVirtualService.obtenerListaExpedienteVirtual(mapParametrosBusqueda);
 
+			if (Utils.isEmpty(listaExpedientesVirtuales)) {
+            if (!Utils.isEmpty(numExp)) {
+               modelAndView.addObject("msjError", AvisoConstantes.EXCEP_MODULO_02_01_008_02);
+            } else {
+               modelAndView.addObject("msjError", AvisoConstantes.EXCEP_MODULO_02_01_005);
+            }
+         }
+			
+		   modelAndView.addObject("listaExpedientesVirtuales", listaExpedientesVirtuales);
+		   
 		} catch (Exception ex) {
 			if (log.isDebugEnabled()) {
 				log.debug("Error - OtrosEscritosElecronicosController.cargarListadoExpedientesPendientes");
 			}
+			
 			log.error(ex, ex);
 			MensajeBean msb = new MensajeBean();
 			modelAndView = new ModelAndView("PaginaError");
 			msb.setError(true);
-			msb.setMensajeerror("Error al ingresar a la opci�n");
+			msb.setMensajeerror("Error al ingresar a la opción");
 			modelAndView.addObject("beanErr", msb);
 			return modelAndView;
 		} finally {
@@ -750,7 +739,6 @@ public class OtrosEscritosElecronicosController extends MultiActionController {
 	}
 
 	// Inicio - [avilcan]
-
 	public void setExpedienteVirtualService(ExpedienteVirtualService expedienteVirtualService) {
 		this.expedienteVirtualService = expedienteVirtualService;
 	}

@@ -1,14 +1,11 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=EDGE" />
-<meta name="viewport"
-	content="initial-scale = 1.0, user-scalable = no,  width=device-width">
-<title>SISTEMA INTEGRADO DE EXPEDIENTE VIRTUAL - SIEV</title>
-<!-- Bootstrap -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=EDGE" />
+	<meta name="viewport" content="initial-scale = 1.0, user-scalable = no,  width=device-width">
+	<title>SISTEMA INTEGRADO DE EXPEDIENTE VIRTUAL - SIEV</title>
+	
 	<script src="/a/js/libs/jquery/1.11.2/jquery.min.js"></script> 
  
 	<script src="/a/js/libs/bootstrap/3.3.2/js/bootstrap.min.js"></script>		
@@ -24,18 +21,12 @@
 	<link  href="/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/extensions/Scroller/css/dataTables.scroller.css" rel="stylesheet" type="text/css" >  
 	
 	<link href="/a/js/libs/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-3.1.3/css/bootstrap-datetimepicker.min.css" 	rel="stylesheet" />  
-	<!--<script src="/a/js/libs/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-3.1.3/js/moment.js" type="text/javascript"></script>-->
 	<script src="/a/js/libs/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-3.1.3/js/moment-with-locales.js" type="text/javascript"></script>
 	<script src="/a/js/libs/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-3.1.3/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 	<script src="/a/js/bootstrapvalidator/js/bootstrapValidator.min.js"></script> 	
 	<script src="/a/js/libs/bootstrap/3.3.2/plugins/jquery.inputmask-3.1/dist/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
 	<script src="/a/js/js.js" type="text/javascript"></script>
-	<script src="/a/js/bootstrap/3.2.0/js/jquery.blockUI.js" type="text/javascript"></script>
-    
-	<!--[if lt IE 10]>
-      <script src="/a/js/libs/bootstrap/3.3.2/plugins/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="/a/js/libs/bootstrap/3.3.2/plugins/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+	<script src="/a/js/bootstrap/3.2.0/js/jquery.blockUI.js" type="text/javascript"></script>  
 	
  <style type="text/css">
 	
@@ -289,8 +280,6 @@
  <script type="text/javascript">
  
 	var listadoProcesos = ${listadoProcesos};
-	//var listaTipoBusquedaFecha =  ${listadoTipoFecha};
-	
 	var excepciones =  ${excepciones};
 	var titulos =  ${titulos};
 	var numExpedienteConsultar="";
@@ -303,23 +292,48 @@
 	var gNumExpBlur = true;
 	
 	$(function () {
-    	
 		$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
-		construirTablaRequerimiento( [] );
+		construirTablaRequerimiento([]);
+		
 		$('#tblRequerimientos tbody').on('mouseenter', 'tr', function() {
 			$(this).addClass("selected");
 		});	
 		$('#tblRequerimientos tbody').on( 'mouseleave', 'tr', function () {
 			 $(this).removeClass("selected");
-			 //$('#tblRequerimientos').dataTable().fnDraw();
+			 //$("#context-menu").hide();
 		} );
+		
 		inicializarProcesos();
 		var table = $('#tblRequerimientos').DataTable();
  
-		$('#tblRequerimientos tbody').on( 'mouseenter', 'tr', function () {
+		$('#tblRequerimientos tbody').on('mouseenter', 'tr', function () {
 			indexDocumentos = table.row( this ).index();
-			
-		} );
+		});
+	
+		
+    	$('#tblRequerimientos tbody').on('click', 'tr', function(e) {
+		  var top = e.pageY - 10;
+		  var left = e.pageX - 10;
+		  
+		  $("#context-menu").css({
+		    display: "block",
+		    top: top,
+		    left: left
+		  });
+		  
+		  return false;
+		  
+		//}).on("click", function() {
+		
+		  //$("#context-menu").hide();
+		});
+		
+		$("#context-menu a").on("click", function() {
+			alert("ok");
+			$("#context-menu").hide();
+		  //$(this).parent().hide();
+		});
+    
 		
 		$('#divFechaDesde').datetimepicker({
             format: 'DD/MM/YYYY',
@@ -398,7 +412,7 @@
 								if(retorno){
 									var numExpediente = $('#txtNumeroExpediente').val();
 									if (numExpediente != "") {
-										if (numExpediente.length > 13) {
+										if (numExpediente.length > 14) {
 											$('#frmFiltroBusquedaEspecifica').bootstrapValidator('updateMessage', 'numExp', 'callback', 'Ingrese N&uacute;mero Expediente V&aacute;lido.');
 											$('#frmFiltroBusquedaEspecifica').bootstrapValidator('updateOption', 'numExp', 'callback', 'Ingrese N&uacute;mero Expediente V&aacute;lido.');
 											retorno = false;
@@ -544,18 +558,7 @@
 		$.each(listadoProcesos, function(i, dato) {
 			var $option = $("<option/>").attr("value", dato.codParametro).text(dato.desParametro);
 			$element.append($option);
-		});
-	
-		//fecha
-		/*var $element = $('#selTipoBusquedaFecha');
-		$.each(listaTipoBusquedaFecha, function(i, dato) {
-			var $option = $("<option/>").attr("value", dato.codParametro).text(dato.desParametro);
-			$element.append($option);
-		});
-		$('#selTipoBusquedaFecha').val("1");
-		$('#selTipoBusquedaFecha').attr("disabled",true);
-		*/
-	
+		});	
 	}
 	
     function limpiar(){
@@ -687,7 +690,7 @@
  				{data : "numExpedienteVirtual", sClass: 'left alinearCentrado'},
 				{data : "desProceso", sClass: 'left alinearCentrado'},
 				{data : "desTipoExpediente", sClass: 'left alinearCentrado'},
-				{data : "fecRegis", sClass: 'left alinearCentrado'},
+				{data : "fecRegistro", sClass: 'left alinearCentrado'},
 				{data : "codEstado", sClass: 'left alinearCentrado'}
 			],
 			data: dataGrilla,
@@ -830,6 +833,7 @@
 	function buscar() {
 			//$('#btnConsulta').prop('disabled', true);
 			listaRequerimientos = [];
+			$("#context-menu").hide();
 			
 			$.ajax({
 				url : '${pageContext.request.contextPath}/otrosEscritosElecronicos.htm?action=cargarListadoExpedientesPendientes',
@@ -850,7 +854,7 @@
 						return;
 					}
 					
-					listaRequerimientos = response.listT6620RequerimBean;
+					listaRequerimientos = response.listaExpedientesVirtuales;
 					
 					
 					if (listaRequerimientos.length > 0) {
@@ -1190,7 +1194,13 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="context-menu">
+				<ul>
+	  				<li><a class="dropdown-item" href="#">Ingresar Ampliatorio</a></li>
+					<li><a class="dropdown-item" href="#">Presentar Desistimiento</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	</body>
 </html>
